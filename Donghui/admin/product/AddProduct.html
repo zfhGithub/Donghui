@@ -1,0 +1,208 @@
+﻿<script type="text/javascript">
+ 
+function pic_upload_success(file, data) {
+    var json = $.parseJSON(data) 
+    if (json.status == 1) { 
+        $("#phead").val(json.ImgName);
+        $('#j_custom_span_pic').html('<img src="' + json.src + '" width="160" height="100" />')
+    } else {
+        $('#j_custom_name').alertmsg("info", "上传失败");
+    }
+    //$(this).bjuiajax('ajaxDone', json)
+    //if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
+    //    $('#j_custom_pic').val(json.filename).trigger('validate')
+    //    $('#j_custom_span_pic').html('<img src="'+ json.filename +'" width="100" />')
+    //}
+}
+function product_upload_success(file, data) {
+    var json = $.parseJSON(data);
+    if ($("#pproduct").val() == "")
+        $("#pproduct").val( json.src); 
+    else
+        $("#pproduct").val($("#pproduct").val() + ";" + json.src);
+    $('#j_custom_span_product').append('<table style="float:left"><tr><td><img alt="'+json.src+'" src="../../image/product/' + json.src + '" width="160" height="100" /> </td></tr><tr style="text-align:center; "><td><input class="btn btn-red btn-sm" type="button" value="移除" onclick=\"removeImage(this)\" /></td></tr></table>')
+}
+function kindeditor_upload_success(url) {
+   
+   // console.log(url);
+}
+$("#btnAddProductSave").on("click", function (e) {
+    if (editid) {
+        $("#j_product_form").attr("action", "ajax.ashx?action=addproduct&id=" + editid);
+    }
+    $("#j_product_form").submit();
+});
+function removeImage(_this) {
+   
+    var src = $(_this).parent().parent().parent().find("img").attr("alt");
+    
+    var val = $("#pproduct").val(); 
+    val = val.replace(src + ";", "").replace(src,"");
+    $("#pproduct").val(val);
+    console.log(val);
+    $(_this).parent().parent().parent().remove();
+}
+  
+$(function  () { 
+    var editor 
+    if (editid) {
+        $.ajax({
+            url: "ajax.ashx?action=getProductById",
+            data: {id:editid}, 
+            success: function (r) {
+                var d = JSON.parse(r)[""][0]; 
+                $("#j_custom_name").val(d.GoodsName);
+                $("#j_custom_total").val(d.Price);
+                $("#j_custom_number").val(d.GoodsNo);
+                $('#j_custom_span_pic').html('<img src="../../image/head/' + d.Photos + '" width="160" height="100" />')
+                $("#j_custom_span_pic").val();
+                $("#phead").val(d.Photos); 
+                
+                $("#j_custom_sale").selectpicker('val', d.ClassID);
+                $("#j_custom_sale").selectpicker('refresh');
+
+                $("#j_custom_title").val(d.Title);
+                var is = d.Images.split(";");
+                for (var i = 0; i < is.length; i++) { 
+                    $('#j_custom_span_product').append('<table style="float:left"><tr><td><img alt="' + is[i] + '" src="../../image/product/' + is[i] + '" width="160" height="100" /> </td></tr><tr style="text-align:center; "><td><input class="btn btn-red btn-sm" type="button" value="移除" onclick=\"removeImage(this)\" /></td></tr></table>')
+                }
+                $("#pproduct").val(d.Images);
+                if (d.HomeRecommend == "1") {
+                    $("#j_custom_tj").iCheck('check'); 
+                } if (d.HomeShow) {
+                    $("#j_custom_zs").iCheck('check');
+                } 
+                KindEditor.html('#j_form_content', d.GoodsDetail); 
+            }, error: function () {
+                console.log("error");
+            }
+        });
+  
+    } 
+
+    KindEditor.ready(function (K) {
+        var editor = K.editor({
+            allowFileManager: true
+        });
+        console.log(editor);
+      
+                editor.plugin.multiImageDialog({
+                    clickFn: function (urlList) {
+                        console.log(urlList);
+                        //var div = K('#J_imageView');
+                       // div.html('');
+                        K.each(urlList, function (i, data) {
+                          //  div.append('<img src="' + data.url + '">');
+                        });
+                        editor.hideDialog();
+                    }
+                });
+           
+    
+    });
+});
+
+</script>
+<div class="bjui-pageContent">
+    <form action="ajax.ashx?action=addproduct" id="j_product_form" data-toggle="validate" data-alertmsg="false" >
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="j_custom_name" class="control-label x85">商品名称：</label>
+                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required" size="15">
+                    </td>
+                    <td>
+                        <label for="j_custom_total" class="control-label x85">商品价格：</label>
+                        <input type="text" name="pprict" id="j_custom_total" value="1" size="12" data-toggle="spinner" data-min="0" data-max="100" data-step="1" data-rule="integer">元
+                    </td>
+                    <td>
+                        <label for="j_custom_number" class="control-label x85">商品编号：</label>
+                        <input type="text" name="pnumber" id="j_custom_number" value="" data-rule="required" size="15">
+                    </td>
+                    <td> 
+                        <input type="checkbox" name="cktj" id="j_custom_tj" data-toggle="icheck" value="true" data-label="主页推荐">
+                        
+                        <input type="checkbox" name="ckzs" id="j_custom_zs" data-toggle="icheck" value="true" data-label="主页展示">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="j_custom_sale" class="control-label x85">所属分类：</label>
+                        <select name="ptype" id="j_custom_sale" data-toggle="selectpicker" data-rule="required">
+                            <option value="1">棒球帽</option>
+                            <option value="2">平板帽</option>
+                            <option value="3">网帽</option>
+                            <option value="4">针织帽</option>
+                            <option value="5">五片帽</option>
+                            <option value="6">边帽</option>
+                        </select>
+                    </td> 
+                    <td>
+                        <label class="control-label x85">商品头像：</label>
+                        <div style="display: inline-block; vertical-align: middle;">
+                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=head"
+                                 data-file-size-limit="2097152"
+                                 data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                 data-multi="false"
+                                 data-drag-drop="true"
+                                 data-on-upload-success="pic_upload_success"
+                                 data-icon="cloud-upload"></div>
+                            <input type="hidden" name="phead" value="" id="phead" data-rule="商品头像:required" >
+                            <span id="j_custom_span_pic"></span>
+                        </div> 
+                    </td>
+                    <td colspan="2">
+                        <!--<label for="j_custom_color" class="control-label x85">表示颜色：</label>
+                            <input type="text" name="custom.color" id="j_custom_color" value="" data-toggle="colorpicker" data-bgcolor="true" size="15" readonly>
+                            <a href="javascript:;" title="清除颜色" data-toggle="clearcolor" data-target="#j_custom_color">清除颜色</a>--> 
+                    </td>
+                </tr>
+      
+      
+                <tr>
+                    <td colspan="4">
+                        <label for="j_custom_note" class="control-label x85">商品标题：</label>
+                        <textarea name="ptitle" id="j_custom_title" data-toggle="autoheight" cols="60" rows="1" data-rule="required" ></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <label for="j_custom_note" class="control-label x85">商品图片：</label>
+                        <div style="display: inline-block; vertical-align: middle;">
+                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=pimage"
+                                 data-file-size-limit="5242880"
+                                 data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                 data-multi="true"
+                                 data-drag-drop="true"
+                                 data-on-upload-success="product_upload_success"
+                                 data-icon="cloud-upload"></div>
+                            <input type="hidden" name="pproduct" value="" id="pproduct" data-rule="商品图片:required">
+                            <span id="j_custom_span_product"></span>
+                        </div> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <label for="j_custom_content" class="control-label x85">产品详情：</label>
+                        <div style="display: inline-block; vertical-align: middle;">
+                            <textarea name="pdetail" id="j_form_content" class="j-content" style="width: 700px;"  data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
+                                      data-after-upload="kindeditor_upload_success" data-file-manager-json="ajax.ashx?action=fileManagerJson"
+                                      data-toggle="kindeditor" data-minheight="200"  >
+                             
+
+                            </textarea>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
+    </ul>
+</div>

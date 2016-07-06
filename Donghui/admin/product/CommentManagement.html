@@ -1,0 +1,189 @@
+﻿<script type="text/javascript">
+  
+        var Comindex = 1;//当前页
+        var ComSize = 20;//每页显示10条数据
+        var TotalCount;//定义全局总条数
+        var TotalPage;//一共多少页
+        function CommentManagement(){
+        $.ajax({
+            url: 'ajax.ashx?action=GetComment',
+            data:{"Comindex":Comindex,"ComSize":ComSize},
+            type:'post',
+            success: function (msg) {
+                var html = [];
+                var data = JSON.parse(msg);
+                var count = data["ComCount"];
+                count = JSON.parse(count);
+                TotalCount = count[""][0]["count(*)"];//取出总条数
+                TotalPage=Math.ceil(TotalCount/ComSize); //计算一共多少页采用Math.ceil 向上取整
+                var Comdata = data["Comstr"];
+                Comdata = JSON.parse(Comdata);
+                var Objdata = Comdata[""];          
+                var rowid = ((Comindex - 1) * ComSize) +1;//编号
+                $.each(Objdata, function (k, v) {
+                    var cs = "btn btn-blue ";
+                    if (v.Whetherread==1) {
+                        cs = "disabled " + cs;//如果等于当前页 当前页默认选中
+                    }           
+                    html.push("<tr><td>" + (rowid++) + "</td><td>" + v.Name + "</td><td>" + v.Email + "</td><td>" + v.Phone + "</td><td>" + v.Message + "</td><td>" + v.Created + "</td><td>" + (v.Whetherread == 1 ? "已读" : "未读") + "</td>")
+                    html.push('<td><input type="checkbox" name="ids" data-toggle="icheck" value="' + v.id + '" ></td>')
+                    html.push("<td><a href='ajax.ashx?action=fetch&fetchid=" + v.id + "' class='" + cs + "'  data-toggle='doajax' data-confirm-msg='是否将留言设为已读？' >标为已读</a>");
+                    html.push(" <a href='ajax.ashx?action=CommentId&Cid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                  
+                });
+            
+                $("#Comtab tbody").empty().append(html.join(''));
+                html = [];
+                $("#Comtotal").html(TotalCount);
+                html.push("<ul class='pagination'>");
+                html.push("<li class='c-first'><a href='javascript:'onclick='c_first()'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                html.push("<li class='c-prev'><a href='javascript:' onclick='c_Pre()'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                for (var i = 1; i <= TotalPage; i++)
+                {
+                    var cs = "j-sum";//计算当前页码
+                    if (i==Comindex) {
+                        cs = "selected " + cs;//如果等于当前页 当前页默认选中selected  j-sum                      
+                    }
+                    html.push("<li class='" + cs + "'><a href='javascript:'> " + i + "</a></li>");//把页码添加到页面上
+                }
+                html.push("<li class='c-next'><a href='javascript:' onclick='c_next()'><span class='c_next' ><i class='fa fa-forward'></i>下一页</span></li>");
+                html.push("<li class='c-last'><a href='javascript:' onclick='c_last()'><i class='fa fa-step-forward'></i>末页</a></li>")
+                html.push("<li class='jumpto'><span class='p-input'><input  id='C_put' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='goto()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                html.push("<ul>");
+                $("#pag").empty().append(html.join(''));//先清空，否则点击下一页会再追加一组页码
+                //如果当前页等于1，首页，上一页按钮禁用
+                if (Comindex == 1) {
+                    $(".c-first").addClass("disabled");
+                    $(".c-prev").addClass("disabled");
+                }
+                //如果当前页是最后一页，尾页，下一页按钮禁用
+                if (Comindex >= TotalPage) {
+                    $(".c-next").addClass("disabled");
+                    $(".c-last").addClass("disabled");
+                }
+           }
+        });
+        }
+    //下一页
+        function c_next() {
+            Comindex++;
+            if (Comindex>TotalPage) {
+                Comindex = TotalPage;
+            }
+            CommentManagement();
+            Comindex
+        }
+    //上一页
+        function c_Pre() {
+            Comindex--;
+            if (Comindex<1) {
+                Comindex = 1;
+            }
+            
+            CommentManagement();
+        }
+    //首页
+        function c_first() {
+            Comindex = 1;
+            CommentManagement();
+
+        }
+    //末页
+        function c_last() {
+            Comindex = TotalPage;
+            CommentManagement();
+        }
+        function goto() {
+            
+            var Comvalue = $("#C_put").val();
+            if (Comvalue > TotalPage) {
+                $(this).alertmsg('warn', '你输入的数字超过页面范围');
+                return;
+            }
+            if (Comvalue < 1) {
+                $(this).alertmsg('warn', '请输入大于第一页的数字');
+                return;
+            }
+            if (isNaN(Number(Comvalue)) || Comvalue == "") {
+                $(this).alertmsg('warn', '请输入数字');
+                return;
+            }
+            Comindex = Comvalue;
+            CommentManagement();
+
+        }
+
+        $(function () {
+            CommentManagement();  
+            //点击页码，跳转到相应页面
+            $(".j-sum").live("click", function () {
+                var ClickJump = $(this).text();
+                Comindex = ClickJump;
+                CommentManagement();
+            });     
+    
+            //根据下拉值，显示页面size
+            $("#ComSelected").live("change", function () {
+                var ComSelect = $("#Comselect").find("option:selected").text();
+                if (Comselect > TotalCount) {
+                    Comindex = 1;
+                }
+                ComSize = ComSelect;
+                CommentManagement();
+                SelPage();
+            })
+           
+        });
+   
+    
+</script>
+
+<div class="bjui-pageHeader">
+    <div class="pull-right">    
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy"> 复选框-批量操作<span class="caret"></span></button>
+            <ul class="dropdown-menu right" role="menu" style="min-width: 153px;">          
+                <li><a href="ajax.ashx?action=CheckDe" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="delids" data-group="ids">删除选中</a></li>
+                <li><a href="ajax.ashx?action=CheckUp" data-toggle="doajaxchecked" data-confirm-msg="选中标记为已读？" data-idname="delids" data-group="ids">选中标记为已读</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="bjui-pageContent CommentManagement">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="Comtab">
+        <thead>
+            <tr>
+
+                <th data-order-field="id">序号</th>
+                <th data-order-field="id">用户</th>
+                <th data-order-field="name">E-mail</th>
+                <th data-order-field="type">手机号码</th>
+                <th data-order-field="price">留言内容</th>
+                <th data-order-field="price">留言时间</th>
+                <th data-order-field="sex">状态</th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>         
+                <th data-order-field="del">操作</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize" id="ComSelected">
+            <select data-toggle="selectpicker" id="Comselect">
+                 
+                <option value="20" id="three">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+
+            </select>
+
+        </div>
+        <span>&nbsp;条, 共&nbsp;<span id="Comtotal"></span>  条</span>
+    </div>
+    <div class="pagination-box" id="pag" data-total="10" data-page-size="2" data-page-current="1">
+    </div>
+
+</div>

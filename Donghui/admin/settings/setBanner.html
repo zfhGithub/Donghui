@@ -1,0 +1,99 @@
+﻿<script type="text/javascript">
+    function pic_upload_one_success(file,data) {
+        var json = $.parseJSON(data);
+        var m = Math.round(Math.random() * 1000000); 
+        $("#imgBanner1").attr("src", json.url + "?tempid=" + m).parent().attr("href", json.url + "?tempid=" + m);
+    }
+    function pic_upload_two_success(file, data) {
+        var json = $.parseJSON(data);
+        var m = Math.round(Math.random() * 1000000); 
+        $("#imgBanner2").attr("src", json.url + "?tempid=" + m).parent().attr("href", json.url + "?tempid=" + m);
+    }
+    function pic_upload_three_success(file, data) {
+        var json = $.parseJSON(data);
+        var m = Math.round(Math.random() * 1000000);  
+        $("#imgBanner3").attr("src", json.url + "?tempid=" + m).parent().attr("href", json.url + "?tempid=" + m);
+    }
+</script>
+<div class="bjui-pageContent">
+    <div style="margin:15px auto 0; width:95%;">
+        <div class="row" style="padding: 0 8px;">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-picture-o"></i>第一张 
+                                    <div style="display: inline-block; vertical-align: middle;">
+                                        <div id="j_custom_pic_one_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=banner1"
+                                             data-file-size-limit="5120152"
+                                             data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                             data-multi="false"
+                                             data-drag-drop="true"
+                                             data-on-upload-success="pic_upload_one_success"
+                                             data-icon="cloud-upload"></div>
+                                        <input type="hidden" name="phead" value="" id="phead" >
+ 
+                                    </div> 
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div style="min-width:400px;height:350px; text-align:center" > <a href="../../image/banner1.jpg" target="_blank" title="点击看原图"> <img src="../../image/banner1.jpg" alt="第一张" id="imgBanner1" height="350" /> </a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-picture-o"></i>第二张
+                              <div style="display: inline-block; vertical-align: middle;">
+                                        <div id="j_custom_pic_two_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=banner2"
+                                             data-file-size-limit="5120152"
+                                             data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                             data-multi="false"
+                                             data-drag-drop="true"
+                                             data-on-upload-success="pic_upload_two_success"
+                                             data-icon="cloud-upload"></div>
+                                        <input type="hidden" name="phead" value="" id="phead"  >
+                                      
+                                    </div> 
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="min-width:400px;height:350px;text-align:center" ><a href="../../image/banner2.jpg" target="_blank" title="点击看原图"> <img src="../../image/banner2.jpg" alt="第二张" id="imgBanner2" height="350" /></a> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                       <h3 class="panel-title">
+                                                   <i class="fa fa-picture-o"></i>第三张
+                           <div style="display: inline-block; vertical-align: middle;">
+                               <div id="j_custom_pic_three_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=banner3"
+                                    data-file-size-limit="5120152"
+                                    data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                    data-multi="false"
+                                    data-drag-drop="true"
+                                    data-on-upload-success="pic_upload_three_success"
+                                    data-icon="cloud-upload"></div>
+                               <input type="hidden" name="phead" value="" id="phead"  >
+                             
+                           </div> 
+                       </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="mini-width:600px;height:350px ;text-align:center" ><a href="../../image/banner3.jpg" target="_blank" title="点击看原图"> <img src="../../image/banner3.jpg" alt="第三张" id="imgBanner3" height="350" /></a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>

@@ -1,0 +1,272 @@
+
+<!--<script src="/admin/js/js/json.js"></script>
+<script src="/admin/js/js/jquery-1.8.3.js"></script>-->
+<script  type="text/javascript"> 
+    var pageIndex = 1;
+    var pageSize = 10;
+    var MaxPage;
+    var TotalPage;//总条数
+
+    function ProductInfo() {
+        var customNo = $("#customNo").val();
+        var customName = $("#customName").val();        
+        var Protype = $("#Protype").find("option:selected").val();
+        var CheckboxCK = $('#j_table_chk').attr('checked');
+        var CheckboxSH = $('#j_table_Show').attr('checked'); 
+        $.ajax({
+                url:'ajax.ashx?action=ProductPage',
+                data: {
+                    "pageIndex": pageIndex,
+                    "pageSize": pageSize,
+                    'customNo': customNo,
+                    'customName':customName,
+                    'Protype': Protype,
+                    'CheckboxCK': CheckboxCK,
+                    'CheckboxSH': CheckboxSH,
+                },
+                type: "post",
+                success: function (msg) { 
+                    var html = [];
+                    var json = JSON.parse(msg);                 
+                    var count = json["count"];
+                    count = JSON.parse(count);
+                    TotalPage = count[""][0]["count"];//总记录数
+                    //求出最大页   
+                    MaxPage = Math.ceil(TotalPage / pageSize);
+  
+                    var da = json["data"];
+                    da = JSON.parse(da);    
+                    var data = da[""];
+                    var rowid = (pageIndex - 1) * pageSize;
+                    $.each(data, function (k, v) {
+                        //如果商品详情的长度大于等于100个字符，后面则用...表示
+                        if (v.GoodsDetail.length >= 100) {
+                            v.GoodsDetail = v.GoodsDetail.substring(0, 100) + " ... ";
+                        } 
+                        html.push("<tr><td>" + (++rowid) + "</td><td>" + v.GoodsNo + "</td><td>" + v.GoodsName + "</td><td>" + v.className + "</td><td>" + v.Price + "</td><td>" + v.Title + "</td><td>" + (v.HomeRecommend == 1 ? "是" : "否") + "</td><td> " + (v.HomeShow == 1 ? "是" : "否") + "</td><td>" + v.Created + "</td><td> <img src='../../image/head/" + v.Photos + "' width='70' height='60'/> </td>");
+                        html.push('<td><input type="checkbox" name="ids" data-toggle="icheck" value="' + v.id + '"></td>')
+                        html.push("<td> <a href='http://www.bestcaps.cn/pd.aspx?id="+v.id+"' target='_blank' class='btn btn-green' >查看</a>");
+                        html.push(" <a href='#' onclick='editproduct(this,\"" + v.id + "\",\"" + v.GoodsName + "\")' class='btn btn-green' >编辑</a>");
+                        html.push(" <a href='ajax.ashx?action=deleteproduct&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                                      
+                    });
+                    $("#tab tbody").empty().append(html.join(''));
+                    html = [];
+
+                    $("#total").html(TotalPage);//共..条数据   
+                    html.push("<ul class='pagination'>");
+                    html.push("<li class='j-first'><a href='javascript:' onclick='first()'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                    html.push("<li class='j-prev'><a href='javascript:' onclick='Prepage()'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                 
+                    for (var i = 1; i <= MaxPage; i++) {
+                        var c = "j-num";
+                        if (i == pageIndex) {
+                            c = "selected " + c;
+                        } 
+                        html.push("<li class='"+c+"'><a href='javascript:' '> "+i+"</a></li>");
+                    }
+                    html.push("<li class='j-next'><a href='javascript:' onclick='next()'><span class='next' ><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last'><a href='javascript:' onclick='weiye()'><i class='fa fa-step-forward'></i>末页</a></li>")
+                    html.push("<li class='jumpto'><span class='p-input'><input  id='putvalue' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='Letgo()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                    html.push("<ul>");
+                //    console.log(pageIndex, pageSize, MaxPage, TotalPage);
+                    $("#ination").empty().append(html.join(''));
+                    //如果当前页等于1就让首页、上一页不可点击
+                    if (pageIndex == 1) {
+                        $(".j-first").addClass("disabled");
+                        $(".j-prev").addClass("disabled");
+                     
+                    }              
+                    if (pageIndex == MaxPage)
+                    {
+                        $(".j-next").addClass("disabled");
+                        $(".j-last").addClass("disabled");
+                        return MaxPage;
+                    }
+                    
+
+            }
+        });
+    }
+    //下一页
+    function next() {
+        pageIndex++;
+        if (pageIndex>MaxPage) {
+            pageIndex = MaxPage;
+        }
+        ProductInfo();
+    }
+    //上一页
+    function Prepage () {
+        pageIndex--;
+        if (pageIndex<1) {
+            pageIndex = 1;
+        }
+        ProductInfo();
+    }
+    //首页
+    function first() {
+        pageIndex = 1;
+        ProductInfo();
+    }
+
+    //尾页
+    function weiye() {
+       
+        pageIndex = MaxPage;
+        ProductInfo();
+
+    }
+    function Letgo() {
+        var InputValue = $("#putvalue").val();
+        if (InputValue > MaxPage) {
+            $(this).alertmsg('warn', '你输入的数字超过页面范围');
+            return;
+        }
+        if (InputValue < 1) {
+            $(this).alertmsg('warn', '请输入大于第一页的数字');
+            return;
+        }
+        if (isNaN(Number(InputValue)) || InputValue == "") {
+            $(this).alertmsg('warn', '请输入数字');
+            return;
+        }
+        //console.log(InputValue);
+        pageIndex = InputValue;
+        ProductInfo();
+    }
+
+    $(function () {
+        
+        ProductInfo();
+        //点击跳转相应页面
+        $(".j-num").live("click", function () {
+            $(".j-num").removeClass("selected");
+            $(this).attr("class", "selected");
+            var Sum = $(this).text();         
+            pageIndex = Sum;         
+            ProductInfo();   
+        })
+    
+   
+        // 设置option选项 .选中每页显示多少条数据
+        $("#sl").live("change", function () {
+            var checkText = $("#sel").find("option:selected").text();
+            if (checkText>TotalPage) {
+                pageIndex = 1;
+            }
+            pageSize = checkText;
+            ProductInfo();
+            search();
+        });
+
+    });
+    function search() {
+        pageIndex = 1;
+        ProductInfo();
+    }
+
+    function editproduct(_this, id, name) {
+        editid = id;
+        $(_this).navtab({ id: 'addproduct', url: '/admin/product/AddProduct.html?id=' + id, title: "编辑-" + name, reloadWarn: '本页已有打开的内容，确定将刷新本页内容，是否继续？', toggle: 'navtab' });
+    }
+</script>
+
+<div class="bjui-pageHeader">
+    <div class="pull-right">
+         
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy"> 复选框-批量操作<span class="caret"></span></button>
+            <ul class="dropdown-menu right" role="menu" style="min-width: 153px;">
+                <li><a href="ajax.ashx?action=ProductDels" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="del" data-group="ids">删除选中</a></li>        
+            </ul>
+        </div>
+    </div>
+       <!--<input type="hidden" name="pageSize" value="${model.pageSize}">
+        <input type="hidden" name="pageCurrent" value="${model.pageCurrent}">
+        <input type="hidden" name="orderField" value="${param.orderField}">
+        <input type="hidden" name="orderDirection" value="${param.orderDirection}">-->
+        <div class="bjui-searchBar">
+            <label>商品分类:</label>
+                <select name="type" id="Protype" data-toggle="selectpicker">
+                    <option value="" selected>请选择</option>
+                    <option value="1">棒球帽</option>
+                    <option value="2">平板帽</option>
+                    <option value="3">网帽</option>
+                    <option value="4">针织帽</option>
+                    <option value="5">五片帽</option>
+                    <option value="6">边帽</option>
+                </select>&nbsp;     
+
+            <label>商品编号：</label><input type="text" id="customNo" value="" name="code" class="form-control" size="10">&nbsp;
+            <label>商品名称：</label><input type="text" value=""id="customName" name="name" class="form-control" size="8">&nbsp;
+            <input type="checkbox" id="j_table_chk" value="false" data-toggle="icheck" data-label="首页推荐 ">
+            <input type="checkbox" id="j_table_Show" value="true" data-toggle="icheck" data-label="首页展示 ">
+            <!--<button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>-->
+            <button type="submit" class="btn-default" data-icon="search" onclick="search()">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>
+            <div class="pull-right">
+                 <!--<button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
+                <div class="btn-group">
+                   <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy">复选框-批量操作<span class="caret"></span></button>
+                    <ul class="dropdown-menu right" role="menu">
+                        <li><a href="book1.xlsx" data-toggle="doexport" data-confirm-msg="确定要导出信息吗？">导出<span style="color: green;">全部</span></a></li>
+                        <li><a href="book1.xlsx" data-toggle="doexportchecked" data-confirm-msg="确定要导出选中项吗？" data-idname="expids" data-group="ids">导出<span style="color: red;">选中</span></a></li>
+                        <li class="divider"></li>
+                        <li><a href="/B-JUI/ajaxDone2.html" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="delids" data-group="ids">删除选中</a></li>
+                    </ul>
+                </div>-->
+            </div>
+        </div>
+        <!--<div class="bjui-moreSearch">
+            <label>职业：</label><input type="text" value="" name="profession" size="15" />
+            <label>&nbsp;性别:</label>
+            <select name="sex" data-toggle="selectpicker">
+                <option value="">全部</option>
+                <option value="true">男</option>
+                <option value="false">女</option>
+            </select>
+            <label>&nbsp;手机:</label>
+            <input type="text" value="" name="mobile" size="10">
+        </div>-->    
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="tab">
+        <thead>
+            <tr> 
+                <th data-order-field="rowid">序号</th>
+                <th data-order-field="id">商品编号</th>
+                <th data-order-field="name">商品名称</th>
+                <th data-order-field="type">商品分类</th>
+                 <th data-order-field="price">商品价格</th>
+                <th data-order-field="sex">商品标题</th>
+                <th data-order-field="sex">首页推荐</th>
+                <th data-order-field="birthday">首页展示</th>
+                <th data-order-field="created">添加时间</th>
+                <th data-order-field="birthplace">商品图片</th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>      
+                <th data-order-field="#">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize" id="sl">
+           <select data-toggle="selectpicker" id="sel">
+               <option value="10" id="three">10</option>
+                <option value="20" id="six">20</option>
+                 <option value="30">30</option>
+                 
+            </select>
+        </div>
+        <span>&nbsp;条, 共&nbsp;<span id="total"> </span> 条</span>
+    </div>
+    <div class="pagination-box" id="ination" data-total="10" data-page-size="2" data-page-current="1">
+    </div>
+
+</div>
