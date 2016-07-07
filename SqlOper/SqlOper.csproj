@@ -54,12 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SqlHelper.cs" />
+    <Compile Include="MySqlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLServerOperating.cs" />
     <Compile Include="Utils.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MySqlOper.csproj.user" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

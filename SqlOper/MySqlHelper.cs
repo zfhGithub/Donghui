@@ -21,7 +21,7 @@ namespace SqlOper
     {
         /// <summary>
         /// 创建连接对象
-        /// </summary>
+        /// </summary> 
         /// <returns>连接对象</returns>
         public static MySqlConnection CreateConn()
         {

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SqlOper
 {
-    public class Utils
+    public static class Utils
     {
         private static string language = "zh-cn";
 
@@ -28,7 +28,7 @@ namespace SqlOper
                 language = value;
             }
         }
-         
+
         /// <summary>
         /// 生成缩略图
         /// </summary>
@@ -76,7 +76,7 @@ namespace SqlOper
                 {
                     //以jpg格式保存缩略图
                     bm.Save(thumbnailImagePath);
-                    return "{\"status\":1,\"msg\":\"上传成功\",\"src\":\"" + Utils.urlconvertor("../"+thumbnailImagePath) + "\",\"ImgName\":\"" + SaveFileName + "\",\"statusCode\":\"200\"}";
+                    return "{\"status\":1,\"msg\":\"上传成功\",\"src\":\"" + Utils.urlconvertor("../" + thumbnailImagePath) + "\",\"ImgName\":\"" + SaveFileName + "\",\"statusCode\":\"200\"}";
                 }
                 catch (System.Exception e)
                 {
@@ -141,36 +141,50 @@ namespace SqlOper
         /// <param name="font"></param>
         /// <param name="pointX"></param>
         /// <param name="pointY"></param>
-        public static  void SetPicDescription(string filePath,string strDescription= null, float font=13, float pointX = 30, float pointY = 20)
+        public static void SetPicDescription(string filePath, string strDescription = null, float font = 13, float pointX = 30, float pointY = 20)
         {
 
             if (System.IO.File.Exists(filePath))//看该路径下图片是否存在
-            { 
+            {
                 System.IO.MemoryStream ms = new System.IO.MemoryStream(System.IO.File.ReadAllBytes(filePath));
-                Image image = Image.FromStream(ms); 
+                Image image = Image.FromStream(ms);
                 Graphics g = Graphics.FromImage(image);
                 //Brush drawBrush = new SolidBrush(System.Drawing.Color.FromArgb(((System.Byte)(222)), ((System.Byte)(243)), ((System.Byte)(255)))); //自定义字体颜色
                 if (pointX < 1)
                 {
-                    pointX = image.Width /( 1 / pointX);
+                    pointX = image.Width / (1 / pointX);
                 }
                 if (pointY < 1)
                 {
-                    pointY = image.Height/ (1 / pointY);
+                    pointY = image.Height / (1 / pointY);
                 }
                 else
                 {
                     pointY = image.Height - pointY;
                 }
 
-              //  SqlOper.SqlHelper ss = new SqlHelper();
-               // Hashtable hs =  ss.Select("select * from company");
+                //  SqlOper.SqlHelper ss = new SqlHelper();
+                // Hashtable hs =  ss.Select("select * from company");
 
                 strDescription = strDescription ?? "http://www.bestcaps.cn/";// hs["WatermarkText"].ToString();
-              //  g.DrawString(strDescription, new Font("宋体", font), new SolidBrush(Color.FromArgb(Convert.ToInt32(hs["WatermarkColor"]))), new PointF(pointX, pointY));
-                g.DrawString(strDescription, new Font("宋体", font),  Brushes.Red, new PointF(pointX, pointY));
+                                                                             //  g.DrawString(strDescription, new Font("宋体", font), new SolidBrush(Color.FromArgb(Convert.ToInt32(hs["WatermarkColor"]))), new PointF(pointX, pointY));
+                g.DrawString(strDescription, new Font("宋体", font), Brushes.Red, new PointF(pointX, pointY));
                 System.IO.File.Delete(filePath);
                 image.Save(filePath);
+            }
+
+
+
+        }
+        public static string ToStringEmpty(this Object str)
+        {
+            if (str == null)
+            {
+                return "";
+            }
+            else
+            {
+                return str.ToString();
             }
         }
     }
