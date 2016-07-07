@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
 
 namespace SqlOper
 {
@@ -41,7 +42,7 @@ namespace SqlOper
             }
         }
 
-        public string Selects(string strSql)
+        public string Select(string strSql)
         {
             using (SqlConnection conn = GetConnection())
             { 
@@ -52,6 +53,26 @@ namespace SqlOper
                 return cmd.ExecuteScalar().ToStringEmpty();
             }
         }
+
+        public DataTable Selects(string strSql)
+        {
+            try
+            {
+                using (SqlConnection conn = GetConnection())
+                {
+                    conn.Open(); 
+                    SqlDataAdapter sda = new SqlDataAdapter(strSql,conn);
+                    DataSet ds = new DataSet();
+                    sda.Fill(ds);
+                    return ds.Tables[0];
+                }
+            }
+            catch (Exception ex)
+            { 
+                throw ex;
+            } 
+        }
+
 
         public int ExecutionSql(List<string> sqlList,List<SqlParameter[]> listSqlParmeter)
         {

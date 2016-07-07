@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Best.admin
 {
-    public partial class Index : com.BaseClass
+    public partial class Index : Donghui.com.BaseClass
     {
         protected void Page_Load(object sender, EventArgs e)
         {

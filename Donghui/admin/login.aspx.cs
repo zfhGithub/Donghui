@@ -24,8 +24,8 @@ namespace Best.admin
                 string pwd = Request.Form["passwordmd5"];
 
                 string strSql =string.Format("select * from users where username='{0}' and password = '{1}';",name,pwd);
-                SqlOper.SqlHelper sqlHelper = new SqlOper.SqlHelper(); 
-                Hashtable table = sqlHelper.Select( strSql );
+                SqlOper.SQLServerOperating sqlHelper = new SqlOper.SQLServerOperating(); 
+                Hashtable table = sqlHelper.Selects( strSql );
                 if (table.Count > 0)
                 {
                     Session["UserInfo"] = table["username"];
