@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="price.aspx.cs" Inherits="Sihui.price" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="price.aspx.cs" Inherits="Donghui.price" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sidebar-right.aspx.cs" Inherits="Sihui.sidebar_right" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="sidebar-right.aspx.cs" Inherits="Donghui.sidebar_right" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

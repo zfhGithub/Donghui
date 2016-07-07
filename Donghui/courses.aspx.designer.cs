@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Sihui {
+namespace Donghui {
     
     
     public partial class courses {

@@ -1,5 +1,4 @@
-﻿using SqlOper;
-using MySql.Data.MySqlClient;
+﻿using SqlOper; 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace Best.admin
 {
-    public partial class login1 : System.Web.UI.Page
+    public partial class login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,12 +24,7 @@ namespace Best.admin
 
                 string strSql =string.Format("select * from users where username='{0}' and password = '{1}';",name,pwd);
                 SqlOper.SQLServerOperating sqlHelper = new SqlOper.SQLServerOperating(); 
-                Hashtable table = sqlHelper.Selects( strSql );
-                if (table.Count > 0)
-                {
-                    Session["UserInfo"] = table["username"];
-                    Response.Redirect("Index.aspx");
-                }
+                
             }
         }
     }

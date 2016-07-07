@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Best.admin {
+namespace Donghui.admin {
     
     
-    public partial class login1 {
+    public partial class login {
         
         /// <summary>
         /// txtErrorMsg 控件。
