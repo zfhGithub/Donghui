@@ -10,6 +10,7 @@ namespace Donghui.com
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
+              
             if (Session["UserInfo"] == null)
             { 
                 Response.Redirect("/admin/login.aspx");
