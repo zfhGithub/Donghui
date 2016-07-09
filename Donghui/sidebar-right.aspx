@@ -35,10 +35,10 @@
 				<ul class="nav navbar-nav pull-right mainNav">
 					<li><a href="index.aspx">首页</a></li>
 					<li><a href="about.aspx">关于</a></li>
-					<li><a href="courses.aspx">Courses</a></li>
-					<li><a href="price.aspx">Price</a></li>
-					<li><a href="videos.aspx">Videos</a></li>
-					<li class="dropdown active">
+					<li><a href="courses.aspx">领先优势</a></li>
+					<li><a href="price.aspx">价格</a></li>
+					<li><a href="videos.aspx">案例</a></li>
+					<%--<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="sidebar-right.aspx">Right Sidebar</a></li>
@@ -46,8 +46,9 @@
 							<li><a href="#">Dummy Link2</a></li>
 							<li><a href="#">Dummy Link3</a></li>
 						</ul>
-					</li>
-					<li><a href="contact.aspx">Contact</a></li>
+					</li>--%>
+					<li><a href="contact.aspx">联系我们</a></li>
+
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -57,8 +58,8 @@
 
 	<header id="head" class="secondary">
             <div class="container">
-                    <h1>Sidebar Heading</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
+                    <h1>赴美生子妈妈注意：要拿到医院和医生的费用交付证明</h1>
+                    <p> 发布者：admin; 发布时间:2016-07-10</p>
                 </div>
     </header>
 
@@ -71,43 +72,61 @@
 			<article class="col-md-8 maincontent">
 				<br />
 				<br />
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque cursus erat vitae interdum. Nam vehicula, felis eu semper tincidunt, mauris risus ultricies dolor, a tristique arcu libero sit amet felis. Donec venenatis sed velit eget dignissim. Mauris tempor purus enim, vitae ultricies arcu scelerisque vel. Suspendisse ultrices ut dolor nec laoreet. Mauris luctus elit odio, in hendrerit odio aliquet et. Morbi vitae diam felis. Mauris vulputate nisi erat, adipiscing pretium lacus lacinia quis. Sed consectetur ipsum et leo posuere vestibulum. Vivamus mattis fringilla ultrices. Donec sit amet tincidunt arcu, sit amet adipiscing felis.</p>
+				<p>的小编多次提醒我们的妈妈，生完孩子一定要拿到医生和医院的费用交付证明（即账单结清证明），以备再签证时说明是自费生产，没有占用美国的医疗福利（白卡Medi-caid）。</p>
 
-				<p>Cras accumsan sollicitudin eleifend. Nunc id lorem nulla. In pretium laoreet libero, at interdum nisi facilisis eget. Pellentesque dapibus, lectus in sollicitudin ullamcorper, urna sem sodales lacus, eget laoreet metus metus ut nibh. Integer tempor erat odio, quis eleifend lectus gravida in. Etiam sit amet tortor ullamcorper, interdum turpis gravida, convallis tortor. Ut venenatis lorem non iaculis malesuada.</p>
+				<p>
+那些证明资料在之前的签证申请上很有用，但是今年4月份以后，医生医院缴费证明有时候竟然成为拒签理由。</p>
 
-				<p>Suspendisse faucibus, mauris eget dictum facilisis, libero sem lacinia diam, at vestibulum nulla nisi quis nisi. Donec at tempus arcu, non consectetur diam. Morbi vehicula sit amet velit et aliquet. Maecenas vel dui tristique, ornare nibh a, consectetur magna. Nunc sagittis turpis sem, eu euismod ipsum eleifend et. Duis a ligula augue. Morbi laoreet est at urna pellentesque lacinia.</p>
+				<p>
+签证官VO看到医院费用顺产2000多美金，剖腹产4000多美金，非常肯定地说，你这个是申请了美国的医疗福利，要不然不可能是这个价格，正常顺产是2-3万美金，剖腹4-5万美元。</p>
 
 				<h2>Facilis natus illum vitae doloremque</h2>
-				<p>In eleifend diam ipsum, a hendrerit sapien vehicula sed. Donec fermentum dolor in diam accumsan ultrices. Nullam interdum diam ut urna ullamcorper, ut vulputate mi tincidunt. Sed volutpat a nunc ut ultrices. Suspendisse tempor ornare nisi ac rhoncus. Quisque id tellus justo. In in quam sed lorem dignissim egestas. Vivamus est libero, tempus et pretium ac, ultricies ac augue. Quisque placerat vitae nisi eget facilisis. Quisque consectetur neque in ornare accumsan. Praesent at molestie nunc. Proin sollicitudin arcu posuere accumsan pretium. Maecenas tincidunt lorem arcu, vel semper justo congue et.</p>
+				<p>
+有些妈妈会感到非常冤枉，努力解释医院自费折扣就是这个，但是VO不听解释。也许，签证官VO他们确实是不知道洛杉矶医疗费用情况，或者，他们就是以此作为拒签理由。</p>
 
-				<p>Aliquam sollicitudin in nulla ut sagittis. Fusce feugiat, sapien eget rutrum ullamcorper, lectus dui dapibus felis, blandit sagittis libero mi eu velit. Cras venenatis, arcu et ornare pharetra, quam ante accumsan libero, ac condimentum felis velit quis lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse sit amet urna est. Proin vulputate laoreet turpis ut pulvinar. Ut sollicitudin sem dui, vel elementum velit venenatis a. Fusce scelerisque tortor in augue consectetur lacinia. In at mattis mi.</p>
+				<p>
+其实，医院没有申请福利，这是肯定的，并且大多数医院都可以支持提供没有申请福利的证明，</p>
 
-				<blockquote>Venenatis, arcu et ornare pharetra, quam ante accumsan libero, ac condimentum felis velit quis lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse sit amet urna est. Proin vulputate laoreet turpis ut pulvinar.</blockquote>
+				<blockquote>
+下图为回国后的C妈妈提供的嘉惠尔医院的证明。</blockquote>
 				<p>Odit, laudantium, dolores, natus distinctio labore voluptates in inventore quasi qui nobis quis adipisci fugit id! Aliquam alias ea modi. Porro, odio, sed veniam hic numquam qui ad molestiae sint placeat expedita? Perferendis, enim qui numquam sequi obcaecati molestiae fugiat!</p>
 				<p>Dignissimos, beatae, praesentium illum eos autem perspiciatis? Minus, non, tempore, illo, mollitia exercitationem tempora quas harum odio dolores delectus quidem laudantium adipisci ducimus ullam placeat eaque minima quae iure itaque corporis magni nesciunt eius sed dolor doloremque id quasi nisi.</p>
 			</article>
 			<!-- /Article -->
 
 			<!-- Sidebar -->
-			<aside class="col-md-4 sidebar sidebar-right">
+            <aside class="col-md-4 sidebar sidebar-right">
+                <div class="row panel">
+                    <div class="col-xs-12">
+                        <h3>图片</h3>
+                        <p>
+                            <img src="assets/images/1.jpg" alt="">
+                        </p>
+                        <p>Morbi vitae diam felis. Mauris vulputate nisi erat, adipiscing pretium lacus lacinia quis. Sed consectetur ipsum.</p>
+                    </div>
+                </div>
+                <div class="row panel">
+                    <div class="col-xs-12">
 
-				<div class="row panel">
-					<div class="col-xs-12">
-						<h3>Lorem ipsum dolor sit</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras scelerisque cursus erat vitae interdum. Nam vehicula, felis eu semper tincidunt, mauris risus ultricies dolor, a tristique arcu libero sit amet felis. Donec venenatis sed velit eget dignissim.</p>
-					</div>
-				</div>
-				<div class="row panel">
-					<div class="col-xs-12">
-						<h3>Lorem ipsum dolor sit</h3>
-						<p>
-							<img src="assets/images/1.jpg" alt="">
-						</p>
-						<p>Morbi vitae diam felis. Mauris vulputate nisi erat, adipiscing pretium lacus lacinia quis. Sed consectetur ipsum.</p>
-					</div>
-				</div>
+                        <div class="title-box clearfix ">
+                            <h2 class="title-box_primary">知识点</h2>
+                        </div>
+                        <div class="list styled custom-list">
+                            <ul>
+                                <li><a target="_blank" title="赴美生子妈妈注意：要拿到医院和医生的费用交付证明" href="sidebar-right.aspx?id=1">1.要拿到医院和医生的费用交付证明</a></li>
+                                <li><a target="_blank" title="美国生孩子费用详细分解" href="sidebar-right.aspx?id=2">2.美国生孩子费用详细分解</a></li>
+                                <li><a target="_blank" title="去美国生孩子费用和条件有哪些" href="sidebar-right.aspx?id=3">3.去美国生孩子费用和条件有哪些</a></li>
+                                <li><a target="_blank" title="美国剖腹产费用" href="sidebar-right.aspx?id=4">4.美国剖腹产费用</a></li>
+                                <li><a target="_blank" title="去美国生孩子的费用是多少？" href="sidebar-right.aspx?id=5">5.去美国生孩子的费用是多少？</a></li>
+                                <li><a target="_blank" title="美国生产费用_赴美生子大概需要多少费用" href="sidebar-right.aspx?id=6">6.美国生产费用_赴美生子大概需要多少费用</a></li>
+                            </ul>
+                        </div>
 
-			</aside>
+                    </div>
+                </div>
+
+
+            </aside>
 			<!-- /Sidebar -->
 
 		</div>

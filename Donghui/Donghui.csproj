@@ -619,6 +619,13 @@
     <Content Include="admin\product\CommentManagement.html" />
     <Content Include="admin\product\ProductTable.html" />
     <Content Include="admin\settings\setBanner.html" />
+    <Content Include="assets\images\banner\01.jpg" />
+    <Content Include="assets\images\banner\03.jpg" />
+    <Content Include="assets\images\banner\04.jpg" />
+    <Content Include="assets\images\banner\05.jpg" />
+    <Content Include="assets\images\banner\banner22.jpg" />
+    <Content Include="assets\images\banner\banner_live.jpg" />
+    <Content Include="assets\images\banner\banner_mbq.jpg" />
     <Content Include="packages.config" />
     <Content Include="351\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="351\assets\fonts\fontawesome-webfont.ttf" />

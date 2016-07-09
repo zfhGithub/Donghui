@@ -38,10 +38,10 @@
 				<ul class="nav navbar-nav pull-right mainNav">
 					<li><a href="index.aspx">首页</a></li>
 					<li><a href="about.aspx">关于</a></li>
-						<li><a href="courses.aspx">Courses</a></li>
-					<li><a href="price.aspx">Price</a></li>
-					<li class="active"><a href="videos.aspx">Videos</a></li>
-					<li class="dropdown">
+					<li><a href="courses.aspx">领先优势</a></li>
+					<li><a href="price.aspx">价格</a></li>
+					<li class="active"><a href="videos.aspx">案例</a></li>
+					<%--<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="sidebar-right.aspx">Right Sidebar</a></li>
@@ -49,8 +49,9 @@
 							<li><a href="#">Dummy Link2</a></li>
 							<li><a href="#">Dummy Link3</a></li>
 						</ul>
-					</li>
-					<li><a href="contact.aspx">Contact</a></li>
+					</li>--%>
+					<li><a href="contact.aspx">联系我们</a></li>
+
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

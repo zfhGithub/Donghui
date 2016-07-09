@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="webThemez.com">
-	<title>首页</title>
+	<title>去塞班岛生孩子</title>
 	<link rel="favicon" href="assets/images/favicon.png">
 	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -35,10 +35,10 @@
 				<ul class="nav navbar-nav pull-right mainNav">
 					<li class="active"><a href="index.aspx">首页</a></li>
 					<li><a href="about.aspx">关于</a></li>
-					<li><a href="courses.aspx">Courses</a></li>
-					<li><a href="price.aspx">Price</a></li>
-					<li><a href="videos.aspx">Videos</a></li>
-					<li class="dropdown">
+					<li><a href="courses.aspx">领先优势</a></li>
+					<li><a href="price.aspx">价格</a></li>
+					<li><a href="videos.aspx">案例</a></li>
+					<%--<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="sidebar-right.aspx">Right Sidebar</a></li>
@@ -46,8 +46,8 @@
 							<li><a href="#">Dummy Link2</a></li>
 							<li><a href="#">Dummy Link3</a></li>
 						</ul>
-					</li>
-					<li><a href="contact.aspx">Contact</a></li>
+					</li>--%>
+					<li><a href="contact.aspx">联系我们</a></li>
 
 				</ul>
 			</div>
@@ -59,10 +59,10 @@
 	<!-- Header -->
 	<header id="head">
 		<div class="container">
-             <div class="heading-text">							
+            <%-- <div class="heading-text">							
 							<h1 class="animated flipInY delay1">Start Online Education</h1>
 							<p>Free Online education template for elearning and online education institute.</p>
-						</div>
+						</div>--%>
             
 					<div class="fluid_container">                       
                     <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
@@ -72,6 +72,8 @@
                         <div data-thumb="assets/images/slides/thumbs/img2.jpg" data-src="assets/images/slides/img2.jpg">
                         </div>
                         <div data-thumb="assets/images/slides/thumbs/img3.jpg" data-src="assets/images/slides/img3.jpg">
+                        </div> 
+                          <div data-thumb="assets/images/banner/03.jpg" data-src="assets/images/banner/03.jpg">
                         </div> 
                     </div><!-- #camera_wrap_3 -->
                 </div><!-- .fluid_container -->
@@ -129,7 +131,7 @@
     </div>
       <section class="news-box top-margin">
         <div class="container">
-            <h2><span>New Courses</span></h2>
+            <h2><span>案例</span></h2>
             <div class="row">
        
                 <div class="col-lg-4 col-md-4 col-sm-12">
@@ -139,8 +141,8 @@
                             <div class="caption maxheight2">
                             <div class="box_inner">
                                         <div class="box">
-                                            <p class="title"><h5>Developer</h5></p>
-                                            <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs. Aenean.</p>
+                                            <p class="title"><h5>案例11</h5></p>
+                                            <p>。。。。。。。。。。。。。.</p>
                                         </div> 
                                 </div>
                             </div>
@@ -154,8 +156,8 @@
                             <div class="caption maxheight2">
                             <div class="box_inner">
                                         <div class="box">
-                                            <p class="title"><h5>Photography   </h5></p>
-                                            <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs. Aenean.</p>
+                                            <p class="title"><h5>案例22   </h5></p>
+                                            <p>.。。。。。。。。。。。。。。。。。。。。</p>
                                         </div> 
                                 </div>
                             </div>
@@ -169,8 +171,8 @@
                             <div class="caption maxheight2">
                            <div class="box_inner">
                                         <div class="box">
-                                            <p class="title"><h5>Audio Editing</h5></p>
-                                            <p>Lorem ipsum dolor sit amet, conc tetu er adipi scing. Praesent ves tibuum molestie lacuiirhs. Aenean.</p>
+                                            <p class="title"><h5>案例33</h5></p>
+                                            <p>.。。。。。。。。。。。。。。。。。。。。。。。。。</p>
                                         </div> 
                                 </div>
                             </div>
@@ -185,21 +187,27 @@
 	
       <section class="container">
       <div class="row">
-      	<div class="col-md-8"><div class="title-box clearfix "><h2 class="title-box_primary">关于 Us</h2></div> 
-        <p><span>Perspiciatis unde omnis iste natus error sit voluptatem. Cum sociis natoque penatibus et magnis dis parturient montes ascetur ridiculus musull dui.</span></p>
-        <p>Lorem ipsumulum aenean noummy endrerit mauris. Cum sociis natoque penatibus et magnis dis parturient montes ascetur ridiculus mus. Null dui. Fusce feugiat malesuada odio.</p><p>Lorem ipsumulum aenean noummy endrerit mauris. Cum sociis natoque penatibus et magnis dis parturient montes ascetur ridiculus mus. Null dui. Fusce feugiat malesuada odio.</p>
-        <a href="#" title="read more" class="btn-inline " target="_self">read more</a> </div>
+      	<div class="col-md-8"><div class="title-box clearfix "><h2 class="title-box_primary">关于我们</h2></div> 
+      介绍一下美国本土生子与塞班生子的区别。
+　　从结果上来说，没有什么区别。因为塞班是美国领土，这就像西沙群岛是中国的领土一样，因此在塞班出生的婴儿就是美国公民，这是美国宪法规定的，是任何人包括美国总统无法改变的。塞班出生的美国公民可以自由出入美国本土，和美国本土出生的公民没有区别。美国不同于中国的户口制度，任何地区的包括塞班出生的美国公民在美国任何一个大城市比如纽约还是旧金山生活一年，有了一年的纳税证明，就能成为这个城市的居民。因此，可以说在美国塞班生子是我们的最佳跳板，免签而且费用便宜的情况下就能取得美国国籍，可谓最小的代价换取最大的收获。
+　　但是从过程上来说：美国塞班生子的优势很多：
+　　第一，免签，省了签证的烦恼，不仅孕妇可以免签过去，家人要照顾孕妇也是买张机票就能直接飞过去，相当的方便
+　　第二，路途近，四个小时就到，本土要十几个小时
+　　第三，费用低，只要不是太奢侈5万人民币就够，本土最节省的也要十几万。美国本土的月子中心现在普遍涨到15万以上了基本上是塞班生子价格的2倍。用最小的代价换最大的收获，塞班免签而且费用便宜，生下来的都是美国公民，请大家珍惜这个难得机会，尽早行动 ，不要等塞班像香港一样关门了再悔之晚矣。
+月子中心的弊端
+　　奉劝大家不要去网上找那些什么月子中心，黑得很，给你们包吃包住，实际上你们住进去就知道了，吃的都是些粗茶淡饭，其实找我们就好了，我们只是挣一点辛苦费，至于租房、平常吃饭都是我们给你安排。但是由你们自己付费，想住什么样的房子，我们都可以帮你找，房租都是你们自己给房东，平常买菜也是你们自己去买，我们可以带着你，想吃啥就吃啥，这种方式比月子中心要灵活自由多了，而且关键是不会套牢你们，那些月子中心其实就是租房转租给你们的，你们一进去就要交好几万，所以有些孕妇会上美国塞班生子月子中心的当，这真是遗憾，他们全包价的肯定要压缩成本，每天买最便宜的菜给你吃，他们是商人，不是慈善家，他们的目的是为了将他们的利益最大化。
+        <a href="contact.aspx" title="read more" class="btn-inline " target="_self">阅读更多</a> </div>
               
           
-          <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">Up Coming Courses</h2></div> 
+          <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">知识点</h2></div> 
             <div class="list styled custom-list">
             <ul>
-            <li><a title="Snatoque penatibus et magnis dis partu rient montes ascetur ridiculus mus." href="#">Mathematics and Computer Science</a></li>
-            <li><a title="Fusce feugiat malesuada odio. Morbi nunc odio gravida at cursus nec luctus." href="#">Mathematics and Philosophy</a></li>
-            <li><a title="Penatibus et magnis dis parturient montes ascetur ridiculus mus." href="#">Philosophy and Modern Languages</a></li>
-            <li><a title="Morbi nunc odio gravida at cursus nec luctus a lorem. Maecenas tristique orci." href="#">History (Ancient and Modern)</a></li>
-            <li><a title="Snatoque penatibus et magnis dis partu rient montes ascetur ridiculus mus." href="#">Classical Archaeology and Ancient History</a></li>
-            <li><a title="Fusce feugiat malesuada odio. Morbi nunc odio gravida at cursus nec luctus." href="#">Physics and Philosophy</a></li>
+            <li><a target="_blank" title="赴美生子妈妈注意：要拿到医院和医生的费用交付证明" href="sidebar-right.aspx?id=1">1.要拿到医院和医生的费用交付证明</a></li>
+            <li><a target="_blank" title="美国生孩子费用详细分解" href="sidebar-right.aspx?id=2">2.美国生孩子费用详细分解</a></li>
+            <li><a target="_blank" title="去美国生孩子费用和条件有哪些" href="sidebar-right.aspx?id=3">3.去美国生孩子费用和条件有哪些</a></li>
+            <li><a target="_blank" title="美国剖腹产费用" href="sidebar-right.aspx?id=4">4.美国剖腹产费用</a></li>
+            <li><a target="_blank" title="去美国生孩子的费用是多少？" href="sidebar-right.aspx?id=5">5.去美国生孩子的费用是多少？</a></li>
+            <li><a target="_blank" title="美国生产费用_赴美生子大概需要多少费用" href="sidebar-right.aspx?id=6">6.美国生产费用_赴美生子大概需要多少费用</a></li>
             </ul>
             </div>
          </div>
@@ -295,10 +303,10 @@
     </div>
     <div class="col-md-3 col-sm-6"> 
             	<div class="footerwidget"> 
-                         <h4>Contact</h4> 
-                        <p>Lorem reksi this dummy text unde omnis iste natus error sit volupum</p>
+                         <h4>联系我们</h4> 
+                        <p></p>
             <div class="contact-info"> 
-            <i class="fa fa-map-marker"></i> Kerniles 416  - United Kingdom<br>
+            <i class="fa fa-map-marker"></i> 广东省四会市四会大道....<br>
             <i class="fa fa-phone"></i>+00 123 156 711 <br>
              <i class="fa fa-envelope-o"></i> youremail@email.com
               </div> 
