@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Sihui
+namespace Donghui
 {
     public partial class sidebar_right : System.Web.UI.Page
     {

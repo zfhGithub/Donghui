@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Sihui
+namespace Donghui
 {
     public partial class courses : System.Web.UI.Page
     {
