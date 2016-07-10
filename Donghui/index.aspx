@@ -86,45 +86,41 @@
 					<div class="col-md-3">
 						<div class="grey-box-icon">
 							<div class="icon-box-top grey-box-icon-pos">
-								<img src="assets/images/1.png" alt="" />
+								<img src="assets/images/775-1606241S114K1-lp.jpg" alt="" />
 							</div><!--icon box top -->
-							<h4>Online Courses</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue
-							eset nec lacus elit dor broma.</p>
-     						<p><a href="#"><em>Read More</em></a></p>
+							<h4>掌握面签主动权 看张小姐KO签证官</h4>
+							<p>微课堂再次开课啦，分享攒人品，都是干货哦！ 直接进入主题说美国签证续签，自打美国给了十年签证，大家都嗷嗷的去办签证！ 自打小黄拿到十年美签，终于可以傲娇的说走.</p>
+     						<p><a href="sidebar-right.aspx?id=6" target="_blank"><em>阅读更多</em></a></p>
 						</div><!--grey box -->
 					</div><!--/span3-->
 					<div class="col-md-3">
 						<div class="grey-box-icon">
 							<div class="icon-box-top grey-box-icon-pos">
-								<img src="assets/images/2.png" alt="" />
+								<img src="assets/images/775-1606241S439610-lp.jpg" alt="" />
 							</div><!--icon box top -->
-							<h4>Meet our Staff</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue
-							eset nec lacus elit dor broma.</p>
-     						<p><a href="#"><em>Read More</em></a></p>
+							<h4>续签被拒，到底该拿什么拯救你呢</h4>
+							<p>张小姐2012年在美丽的洛杉矶生好baby，回国之后， 经不住姐姐想去美帝旅游的游说，加上也想带着宝宝再来一次加州之旅，又开始惦记起续签，毕竟，最高10年往返，也是满满的.</p>
+     						<p><a href="sidebar-right.aspx?id=7" target="_blank"><em>阅读更多</em></a></p>
 						</div><!--grey box -->
 					</div><!--/span3-->
 					<div class="col-md-3">
 						<div class="grey-box-icon">
 							<div class="icon-box-top grey-box-icon-pos">
-								<img src="assets/images/3.png" alt="" />
+								<img src="assets/images/775-1606241SRH46-lp.jpg" alt="" />
 							</div><!--icon box top -->
-							<h4>Latest Updates</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue
-							eset nec lacus elit dor broma.</p>
-     						<p><a href="#"><em>Read More</em></a></p>
+							<h4>充分准备，注重技巧，李小姐的十</h4>
+							<p>李小姐2014年在加州生下第二个baby，当时加州的蓝天白云就让李小姐惊叹不已，正好15年李小姐有个朋友在波士顿读书，一直叫她去玩，终于9月份的时候，李小姐一家决定大手牵.</p>
+     						<p><a href="sidebar-right.aspx?id=8" target="_blank"><em>阅读更多</em></a></p>
 						</div><!--grey box -->
 					</div><!--/span3-->
 					<div class="col-md-3">
 						<div class="grey-box-icon">
 							<div class="icon-box-top grey-box-icon-pos">
-								<img src="assets/images/4.png" alt="" />
+								<img src="assets/images/775-1606241T055128-lp.jpg" alt="" />
 							</div><!--icon box top -->
-							<h4>Placements</h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tempus eleifend risus ut congue
-							eset nec lacus elit dor broma.</p>
-     						<p><a href="#"><em>Read More →</em></a></p>
+							<h4>诚实签也是蛮拼的，四次被拒..</h4>
+							<p>所谓 诚实签 是相对于之前的旅游签而说的，是赴美生子妈妈们所特有的一种签证方式，爸妈们需要如实回答：我去美国的目的是生孩子。 对于很多妈妈申请旅游签，想抱着侥幸.</p>
+     						<p><a href="sidebar-right.aspx?id=9" target="_blank"><em>阅读更多</em></a></p>
 						</div><!--grey box -->
 					</div><!--/span3-->
 				</div>
@@ -196,7 +192,7 @@
 　　第三，费用低，只要不是太奢侈5万人民币就够，本土最节省的也要十几万。美国本土的月子中心现在普遍涨到15万以上了基本上是塞班生子价格的2倍。用最小的代价换最大的收获，塞班免签而且费用便宜，生下来的都是美国公民，请大家珍惜这个难得机会，尽早行动 ，不要等塞班像香港一样关门了再悔之晚矣。
 月子中心的弊端
 　　奉劝大家不要去网上找那些什么月子中心，黑得很，给你们包吃包住，实际上你们住进去就知道了，吃的都是些粗茶淡饭，其实找我们就好了，我们只是挣一点辛苦费，至于租房、平常吃饭都是我们给你安排。但是由你们自己付费，想住什么样的房子，我们都可以帮你找，房租都是你们自己给房东，平常买菜也是你们自己去买，我们可以带着你，想吃啥就吃啥，这种方式比月子中心要灵活自由多了，而且关键是不会套牢你们，那些月子中心其实就是租房转租给你们的，你们一进去就要交好几万，所以有些孕妇会上美国塞班生子月子中心的当，这真是遗憾，他们全包价的肯定要压缩成本，每天买最便宜的菜给你吃，他们是商人，不是慈善家，他们的目的是为了将他们的利益最大化。
-        <a href="contact.aspx" title="read more" class="btn-inline " target="_self">阅读更多</a> </div>
+        <a href="about.aspx" title="read more" class="btn-inline " target="_self">阅读更多</a> </div>
               
           
           <div class="col-md-4"><div class="title-box clearfix "><h2 class="title-box_primary">知识点</h2></div> 

@@ -61,7 +61,7 @@
 
 		<header id="head" class="secondary">
             <div class="container">
-                    <h1>Online Videos</h1>
+                    <h1>案例</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
                 </div>
     </header>

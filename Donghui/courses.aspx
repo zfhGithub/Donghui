@@ -70,43 +70,44 @@
     18年月子中心，真正百人团队，超高通过率，100%入境 优质直营月子中心12万RMB起（仅限本月）！免费提供去美国坐月子最新政策咨询，量身制定专业方案，合法安全，全程透明。
 </p>
 <br/>
-<ul class="list-unstyled video-list-thumbs row">
-	<li class="col-lg-3 col-sm-4 col-xs-6">
-		<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-			<img src="assets/images/portfolio/img1.jpg" alt="Barca" class="img-responsive" height="130px" />
-			<h2>我们的团队是由沪上三甲医院妇产科专业，经验丰富的护理人员组成，具有卫生局颁发的护士职业资格证书和注册证书，让您得到专业放心母婴健康咨询。同时我们的团队人员也具有美国助理护士资格证书，给您双重保障。 </h2>
-			<span class="play-button"></span>
-			<span class="duration">安全中心</span>
-		</a>
-	</li>
-	<li class="col-lg-3 col-sm-4 col-xs-6">
-		<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-			<img src="assets/images/portfolio/img2.jpg" alt="Barca" class="img-responsive" height="130px" />
-			<h2>美宝之家为了确保您获得满意服务，美宝之家在2010年业内首创并实施S.M.A.R.T.2010满意度管理体系。
-我们特设流程监督经理一职，美国月子全程设置各个环节的监督细则，确保您全程重要环节无一遗漏，完整完成。</h2>
-			<span class="play-button"></span>
-			<span class="duration">服务团队</span>
-		</a>
-	</li>
-	<li class="col-lg-3 col-sm-4 col-xs-6">
-		<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-			<img src="assets/images/portfolio/img3.jpg" alt="Barca" class="img-responsive" height="130px" />
-			<h2>		8年公司历史超过数千客户案例服务经验，为您提供特色三阶段美国行前培训。如此重要阶段，怎可容忍丝毫闪失？</h2>
-			<span class="play-button"></span>
-			<span class="duration">专业行前培训</span>
-		</a>
-	</li>
-	<li class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-		<a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
-			<img src="assets/images/portfolio/img4.jpg" alt="Barca" class="img-responsive" height="130px" />
-			<h2>按照美国法律规定标准免费为您提供驾照翻译件。</h2>
-			<span class="play-button"></span>
-			<span class="duration">国际驾照翻译</span>
-		</a>
-	</li> 
-</ul>
+        <ul class="list-unstyled video-list-thumbs row">
+            <li class="col-lg-3 col-sm-4 col-xs-6">
+                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                    <img src="assets/images/portfolio/img1.jpg" alt="Barca" class="img-responsive" height="130px" />
+                    <h2>我们的团队是由沪上三甲医院妇产科专业，经验丰富的护理人员组成，具有卫生局颁发的护士职业资格证书和注册证书，让您得到专业放心母婴健康咨询。同时我们的团队人员也具有美国助理护士资格证书，给您双重保障。 </h2>
+                    <span class="play-button"></span>
+                    <span class="duration">安全中心</span>
+                </a>
+            </li>
+            <li class="col-lg-3 col-sm-4 col-xs-6">
+                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                    <img src="assets/images/portfolio/img2.jpg" alt="Barca" class="img-responsive" height="130px" />
+                    <h2>美宝之家为了确保您获得满意服务，美宝之家在2010年业内首创并实施S.M.A.R.T.2010满意度管理体系。
+                    我们特设流程监督经理一职，美国月子全程设置各个环节的监督细则，确保您全程重要环节无一遗漏，完整完成。</h2>
+                    <span class="play-button"></span>
+                    <span class="duration">服务团队</span>
+                </a>
+            </li>
+            <li class="col-lg-3 col-sm-4 col-xs-6">
+                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                    <img src="assets/images/portfolio/img3.jpg" alt="Barca" class="img-responsive" height="130px" />
+                    <h2>8年公司历史超过数千客户案例服务经验，为您提供特色三阶段美国行前培训。如此重要阶段，怎可容忍丝毫闪失？</h2>
+                    <span class="play-button"></span>
+                    <span class="duration">专业行前培训</span>
+                </a>
+            </li>
+            <li class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <a href="#" title="Claudio Bravo, antes su debut con el Barça en la Liga">
+                    <img src="assets/images/portfolio/img4.jpg" alt="Barca" class="img-responsive" height="130px" />
+                    <h2>按照美国法律规定标准免费为您提供驾照翻译件。</h2>
+                    <span class="play-button"></span>
+                    <span class="duration">国际驾照翻译</span>
+                </a>
+            </li>
+        </ul>
 
 </div>
+    	<!--
 	<div id="courses">
 		<section class="container">
 			<h3>发展历程</h3>
@@ -165,18 +166,18 @@
 
 		</section>
 	</div>
-    
+     -->
 	<!-- container -->
 	<div class="container">
 		<div class="row">
 			<!-- Article content -->
 			<section class="col-sm-12 maincontent">
-				<h3>Responsive Website</h3>
+				<h3>我们承诺</h3>
 				<p>
 					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
 				</p>
-				<h3>Bootstrap</h3>
-				<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+				<%--<h3>Bootstrap</h3>
+				<p>Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>--%>
 			</section>
 		</div>
 	</div>
