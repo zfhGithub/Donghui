@@ -45,7 +45,7 @@
                         } 
                         html.push("<tr><td>" + (++rowid) + "</td><td>" + v.GoodsNo + "</td><td>" + v.GoodsName + "</td><td>" + v.className + "</td><td>" + v.Price + "</td><td>" + v.Title + "</td><td>" + (v.HomeRecommend == 1 ? "是" : "否") + "</td><td> " + (v.HomeShow == 1 ? "是" : "否") + "</td><td>" + v.Created + "</td><td> <img src='../../image/head/" + v.Photos + "' width='70' height='60'/> </td>");
                         html.push('<td><input type="checkbox" name="ids" data-toggle="icheck" value="' + v.id + '"></td>')
-                        html.push("<td> <a href='http://www.bestcaps.cn/pd.aspx?id="+v.id+"' target='_blank' class='btn btn-green' >查看</a>");
+                        html.push("<td> <a href='http://www.Donghuicaps.cn/pd.aspx?id="+v.id+"' target='_blank' class='btn btn-green' >查看</a>");
                         html.push(" <a href='#' onclick='editproduct(this,\"" + v.id + "\",\"" + v.GoodsName + "\")' class='btn btn-green' >编辑</a>");
                         html.push(" <a href='ajax.ashx?action=deleteproduct&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                                       

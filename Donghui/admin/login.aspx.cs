@@ -23,8 +23,9 @@ namespace Donghui.admin
                 string pwd = Request.Form["passwordmd5"];
 
                 string strSql =string.Format("select * from users where username='{0}' and password = '{1}';",name,pwd);
-                SqlOper.SQLServerOperating sqlHelper = new SqlOper.SQLServerOperating(); 
-                
+                SqlOper.SQLServerOperating sqlHelper = new SqlOper.SQLServerOperating();
+                Session["UserInfo"] = "login";
+                Response.Redirect("index.aspx");
             }
         }
     }

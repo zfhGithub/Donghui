@@ -100,15 +100,15 @@
                 <div class="panel">
                     <h4>最新消息</h4>
                     <ul class="list-unstyled list-spaces">
-                        <li><a href="">Responsive Design</a><br>
+                        <li><a href="sidebar-right.aspx?id=a1">Responsive Design</a><br>
                             <span class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, laborum.</span></li>
-                        <li><a href="">HTML5, CSS3 and JavaScript</a><br>
+                        <li><a href="sidebar-right.aspx?id=a2">HTML5, CSS3 and JavaScript</a><br>
                             <span class="small text-muted">Consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam</span></li>
-                        <li><a href="">Bootstrap</a><br>
+                        <li><a href="sidebar-right.aspx?id=a3">Bootstrap</a><br>
                             <span class="small text-muted">Eveniet, consequuntur eius repellendus eos aliquid molestiae ea</span></li>
-                        <li><a href="">Clean Template</a><br>
+                        <li><a href="sidebar-right.aspx?id=a4">Clean Template</a><br>
                             <span class="small text-muted">Sed, mollitia earum debitis est itaque esse reiciendis amet cupiditate.</span></li>
-                        <li><a href="">Premium Quality</a><br>
+                        <li><a href="sidebar-right.aspx?id=a5">Premium Quality</a><br>
                             <span class="small text-muted">Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</span></li>
                     </ul>
                 </div>

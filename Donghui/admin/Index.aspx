@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Best.admin.Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Donghui.admin.Index" %>
 <!DOCTYPE html>
 <html lang="zh">
 <head>
@@ -249,13 +249,29 @@ $(function(){
                     <li class="active"><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-check-square-o"></i> 功能管理 </a>
                         <div class="items hide" data-noinit="true">
                             <ul id="bjui-hnav-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-faicon="check-square-o">
-                                <li data-id="1" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">商品信息</li>                  
-                                <li data-id="12" data-pid="1" data-url="product/AddProduct.html"data-tabid="addproduct" >添加商品</li>
-                                <li data-id="13" data-pid="1" data-url="product/ProductTable.html" data-tabid="productlist" data-faicon="check-square-o">商品列表</li>                        
-                                <li data-id="14" data-pid="1" data-url="product/CommentManagement.html" data-tabid="CommentManagement" >留言管理</li>  
-                              <li data-id="2" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">设置</li>                  
-                                <li data-id="22" data-pid="2" data-url="settings/setBanner.html"data-tabid="setBanner" >上传轮播图片</li>  
+                                <li data-id="1" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">公司信息</li>                  
+                                <li data-id="12" data-pid="1" data-url="about/aboutinfo.html"data-tabid="addproduct">关于我们</li>
+                                <li data-id="13" data-pid="1" data-url="product/ProductTable.html" data-tabid="productlist" data-faicon="check-square-o">联系信息</li>
+ 
+                                 
+                                <li data-id="2" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">留言管理</li> 
+                                <li data-id="22" data-pid="2" data-url="settings/setBanner.html"data-tabid="setBanner6" >留言列表</li>  
+                                 
+                                <li data-id="3" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">领先优势</li> 
+                                <li data-id="32" data-pid="3" data-url="settings/setBanner.html"data-tabid="setBanner5" >优势管理</li> 
+                                <li data-id="31" data-pid="3" data-url="settings/setBanner.html"data-tabid="setBanner4" >我们的承诺</li>  
+
+                                <li data-id="4" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">价格</li> 
+                                <li data-id="42" data-pid="4" data-url="settings/setBanner.html"data-tabid="setBanner3" >套餐管理</li> 
+                                
+                                <li data-id="5" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">案例</li> 
+                                <li data-id="52" data-pid="5" data-url="settings/setBanner.html"data-tabid="setBanner2" >案例管理</li> 
+
+                                <li data-id="6" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">文章管理</li> 
+                                <li data-id="62" data-pid="6" data-url="article/articlelist.html" data-tabid="setBanner1" >文章列表</li> 
+                                  
                             </ul>                
+
                            
                         </div>    
                     </li>
@@ -299,7 +315,7 @@ $(function(){
             </div>
         </div>
     </div>
-    <footer id="bjui-footer">Copyright &copy; 2013 - 2015　<a href="http://www.bestcaps.cn/" target="_blank">bestcaps</a>　
+    <footer id="bjui-footer">Copyright &copy; 2013 - 2015　<a href="../index.aspx" target="_blank">Donghuicaps</a>　
         <!--  
         <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252983288'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1252983288%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
         -->

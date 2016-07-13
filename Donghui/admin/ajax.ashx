@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="ajax.ashx.cs" Class="Best.admin.ajax" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="ajax.ashx.cs" Class="Donghui.admin.ajax" %>

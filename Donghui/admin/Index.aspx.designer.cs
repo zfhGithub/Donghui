@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Best.admin {
+namespace Donghui.admin {
     
     
     public partial class Index {

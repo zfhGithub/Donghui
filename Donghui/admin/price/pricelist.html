@@ -1,0 +1,95 @@
+﻿<div class="bjui-pageHeader">
+    <div class="pull-right">
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy"> 复选框-批量操作<span class="caret"></span></button>
+            <ul class="dropdown-menu right" role="menu" style="min-width: 153px;">
+                <li><a href="ajax.ashx?action=ProductDels" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="del" data-group="ids">删除选中</a></li>
+            </ul>
+        </div>
+    </div>
+    <!--<input type="hidden" name="pageSize" value="${model.pageSize}">
+     <input type="hidden" name="pageCurrent" value="${model.pageCurrent}">
+     <input type="hidden" name="orderField" value="${param.orderField}">
+     <input type="hidden" name="orderDirection" value="${param.orderDirection}">-->
+    <div class="bjui-searchBar">
+        <label>商品分类:</label>
+        <select name="type" id="Protype" data-toggle="selectpicker">
+            <option value="" selected>请选择</option>
+            <option value="1">棒球帽</option>
+            <option value="2">平板帽</option>
+            <option value="3">网帽</option>
+            <option value="4">针织帽</option>
+            <option value="5">五片帽</option>
+            <option value="6">边帽</option>
+        </select>&nbsp;
+
+        <label>商品编号：</label><input type="text" id="customNo" value="" name="code" class="form-control" size="10">&nbsp;
+        <label>商品名称：</label><input type="text" value="" id="customName" name="name" class="form-control" size="8">&nbsp;
+
+        <!--<button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>-->
+        <button type="submit" class="btn-default" data-icon="search" onclick="search()">查询</button>&nbsp;
+        <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>
+        <div class="pull-right">
+            <!--<button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
+            <div class="btn-group">
+               <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy">复选框-批量操作<span class="caret"></span></button>
+                <ul class="dropdown-menu right" role="menu">
+                    <li><a href="book1.xlsx" data-toggle="doexport" data-confirm-msg="确定要导出信息吗？">导出<span style="color: green;">全部</span></a></li>
+                    <li><a href="book1.xlsx" data-toggle="doexportchecked" data-confirm-msg="确定要导出选中项吗？" data-idname="expids" data-group="ids">导出<span style="color: red;">选中</span></a></li>
+                    <li class="divider"></li>
+                    <li><a href="/B-JUI/ajaxDone2.html" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="delids" data-group="ids">删除选中</a></li>
+                </ul>
+            </div>-->
+        </div>
+    </div>
+    <!--<div class="bjui-moreSearch">
+        <label>职业：</label><input type="text" value="" name="profession" size="15" />
+        <label>&nbsp;性别:</label>
+        <select name="sex" data-toggle="selectpicker">
+            <option value="">全部</option>
+            <option value="true">男</option>
+            <option value="false">女</option>
+        </select>
+        <label>&nbsp;手机:</label>
+        <input type="text" value="" name="mobile" size="10">
+    </div>-->
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="tab">
+        <thead>
+            <tr>
+                <th data-order-field="rowid">序号</th>
+                <th data-order-field="id">商品编号</th>
+                <th data-order-field="name">商品名称</th>
+                <th data-order-field="type">商品分类</th>
+                <th data-order-field="price">商品价格</th>
+                <th data-order-field="sex">商品标题</th>
+                <th data-order-field="sex">首页推荐</th>
+                <th data-order-field="birthday">首页展示</th>
+                <th data-order-field="created">添加时间</th>
+                <th data-order-field="birthplace">商品图片</th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th data-order-field="#">操作</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize" id="sl">
+            <select data-toggle="selectpicker" id="sel">
+                <option value="10" id="three">10</option>
+                <option value="20" id="six">20</option>
+                <option value="30">30</option>
+
+            </select>
+        </div>
+        <span>&nbsp;条, 共&nbsp;<span id="total"> </span> 条</span>
+    </div>
+    <div class="pagination-box" id="ination" data-total="10" data-page-size="2" data-page-current="1">
+    </div>
+
+</div>

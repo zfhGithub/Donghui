@@ -66,6 +66,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\about\aboutinfo.html" />
+    <Content Include="admin\advantage\advantagelist.html" />
+    <Content Include="admin\article\articlelist.html" />
+    <Content Include="admin\case\caselist.html" />
     <Content Include="admin\changepwd.html" />
     <Content Include="admin\Index.aspx" />
     <Content Include="admin\index_layout.html" />
@@ -615,6 +619,8 @@
     <Content Include="admin\js\js\syntaxhighlighter-2.1.382\styles\shThemeMidnight.css" />
     <Content Include="admin\js\js\syntaxhighlighter-2.1.382\styles\shThemeRDark.css" />
     <Content Include="admin\login.aspx" />
+    <Content Include="admin\message\messagelist.html" />
+    <Content Include="admin\price\pricelist.html" />
     <Content Include="admin\product\AddProduct.html" />
     <Content Include="admin\product\CommentManagement.html" />
     <Content Include="admin\product\ProductTable.html" />
@@ -903,7 +909,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="admin\Ajax\" />
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>

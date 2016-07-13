@@ -45,7 +45,7 @@ a:link {color: #285e8e;}
 </style>
 <script type="text/javascript">
  
-    var COOKIE_NAME = 'bestUserName';
+    var COOKIE_NAME = 'DonghuiUserName';
     $(function () {
         choose_bg();
         //changeCode();
