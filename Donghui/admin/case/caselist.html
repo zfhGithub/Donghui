@@ -13,24 +13,16 @@
      <input type="hidden" name="orderField" value="${param.orderField}">
      <input type="hidden" name="orderDirection" value="${param.orderDirection}">-->
     <div class="bjui-searchBar">
-        <label>商品分类:</label>
-        <select name="type" id="Protype" data-toggle="selectpicker">
-            <option value="" selected>请选择</option>
-            <option value="1">棒球帽</option>
-            <option value="2">平板帽</option>
-            <option value="3">网帽</option>
-            <option value="4">针织帽</option>
-            <option value="5">五片帽</option>
-            <option value="6">边帽</option>
-        </select>&nbsp;
-
-        <label>商品编号：</label><input type="text" id="customNo" value="" name="code" class="form-control" size="10">&nbsp;
-        <label>商品名称：</label><input type="text" value="" id="customName" name="name" class="form-control" size="8">&nbsp;
+         
+         
+        <label>名称：</label><input type="text" value="" id="customName" name="name" class="form-control" >&nbsp;
 
         <!--<button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>-->
         <button type="submit" class="btn-default" data-icon="search" onclick="search()">查询</button>&nbsp;
         <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>
         <div class="pull-right">
+            <button type="button" class="btn-blue" data-url="case/addcase.html" data-id="dialog-addprice" data-width="800" data-height="400"
+                    data-toggle="dialog"> 添加案例 </button>
             <!--<button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
             <div class="btn-group">
                <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy">复选框-批量操作<span class="caret"></span></button>
@@ -60,15 +52,12 @@
         <thead>
             <tr>
                 <th data-order-field="rowid">序号</th>
-                <th data-order-field="id">商品编号</th>
-                <th data-order-field="name">商品名称</th>
-                <th data-order-field="type">商品分类</th>
-                <th data-order-field="price">商品价格</th>
-                <th data-order-field="sex">商品标题</th>
-                <th data-order-field="sex">首页推荐</th>
-                <th data-order-field="birthday">首页展示</th>
-                <th data-order-field="created">添加时间</th>
-                <th data-order-field="birthplace">商品图片</th>
+                <th data-order-field="name">名称</th>
+                <th data-order-field="type">标题</th>
+
+                <th data-order-field="birthday">介绍</th>
+                <th data-order-field="created">创建时间</th>
+                <th data-order-field="birthplace">图片</th>
                 <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
                 <th data-order-field="#">操作</th>
             </tr>

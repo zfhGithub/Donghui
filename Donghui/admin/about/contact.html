@@ -1,0 +1,38 @@
+﻿
+<div class="bjui-pageContent">
+    <form action="ajax.ashx?action=addproduct" id="j_product_form" data-toggle="validate" data-alertmsg="false">
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="j_custom_name" class="control-label x85">公司名称：</label>
+                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required">
+                    </td>
+                    <td>
+                        <label for="j_custom_total" class="control-label x85">邮箱：</label>
+                        <input type="text" name="pprict" id="j_custom_total"   data-rule="email"> 
+                    </td>
+                  
+                </tr>
+                <tr>
+                    <td>
+                        <label for="j_custom_number" class="control-label x85">电话：</label>
+                        <input type="text" name="pnumber" id="j_custom_number" value="" data-rule="required">
+                    </td>
+                    <td>
+                        <label for="j_custom_name" class="control-label x85">地址：</label>
+                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required">
+                    </td>  
+                </tr>
+       
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
+    </ul>
+</div>

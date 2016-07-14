@@ -251,21 +251,21 @@ $(function(){
                             <ul id="bjui-hnav-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-faicon="check-square-o">
                                 <li data-id="1" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">公司信息</li>                  
                                 <li data-id="12" data-pid="1" data-url="about/aboutinfo.html"data-tabid="addproduct">关于我们</li>
-                                <li data-id="13" data-pid="1" data-url="product/ProductTable.html" data-tabid="productlist" data-faicon="check-square-o">联系信息</li>
+                                <li data-id="13" data-pid="1" data-url="about/contact.html" data-tabid="contact" data-faicon="check-square-o">联系信息</li>
  
                                  
                                 <li data-id="2" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">留言管理</li> 
-                                <li data-id="22" data-pid="2" data-url="settings/setBanner.html"data-tabid="setBanner6" >留言列表</li>  
+                                <li data-id="22" data-pid="2" data-url="message/messagelist.html"data-tabid="setBanner6" >留言列表</li>  
                                  
                                 <li data-id="3" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">领先优势</li> 
-                                <li data-id="32" data-pid="3" data-url="settings/setBanner.html"data-tabid="setBanner5" >优势管理</li> 
-                                <li data-id="31" data-pid="3" data-url="settings/setBanner.html"data-tabid="setBanner4" >我们的承诺</li>  
+                                <li data-id="32" data-pid="3" data-url="advantage/advantagelist.html"data-tabid="setBanner5" >优势管理</li> 
+                                <li data-id="31" data-pid="3" data-url="advantage/mycommit.html"data-tabid="setBanner4" >我们的承诺</li>  
 
                                 <li data-id="4" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">价格</li> 
-                                <li data-id="42" data-pid="4" data-url="settings/setBanner.html"data-tabid="setBanner3" >套餐管理</li> 
+                                <li data-id="42" data-pid="4" data-url="price/pricelist.html"data-tabid="setBanner3" >套餐管理</li> 
                                 
                                 <li data-id="5" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">案例</li> 
-                                <li data-id="52" data-pid="5" data-url="settings/setBanner.html"data-tabid="setBanner2" >案例管理</li> 
+                                <li data-id="52" data-pid="5" data-url="case/caselist.html"data-tabid="setBanner2" >案例管理</li> 
 
                                 <li data-id="6" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">文章管理</li> 
                                 <li data-id="62" data-pid="6" data-url="article/articlelist.html" data-tabid="setBanner1" >文章列表</li> 

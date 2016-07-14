@@ -67,8 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\about\aboutinfo.html" />
+    <Content Include="admin\about\contact.html" />
+    <Content Include="admin\advantage\addadvantage.html" />
     <Content Include="admin\advantage\advantagelist.html" />
+    <Content Include="admin\advantage\mycommit.html" />
+    <Content Include="admin\article\addarticle.html" />
     <Content Include="admin\article\articlelist.html" />
+    <Content Include="admin\case\addcase.html" />
     <Content Include="admin\case\caselist.html" />
     <Content Include="admin\changepwd.html" />
     <Content Include="admin\Index.aspx" />
@@ -620,6 +625,7 @@
     <Content Include="admin\js\js\syntaxhighlighter-2.1.382\styles\shThemeRDark.css" />
     <Content Include="admin\login.aspx" />
     <Content Include="admin\message\messagelist.html" />
+    <Content Include="admin\price\addprice.html" />
     <Content Include="admin\price\pricelist.html" />
     <Content Include="admin\product\AddProduct.html" />
     <Content Include="admin\product\CommentManagement.html" />
