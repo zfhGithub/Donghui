@@ -631,6 +631,10 @@
     <Content Include="admin\product\CommentManagement.html" />
     <Content Include="admin\product\ProductTable.html" />
     <Content Include="admin\settings\setBanner.html" />
+    <Content Include="assets\images\775-1606241S114K1-lp.jpg" />
+    <Content Include="assets\images\775-1606241S439610-lp.jpg" />
+    <Content Include="assets\images\775-1606241SRH46-lp.jpg" />
+    <Content Include="assets\images\775-1606241T055128-lp.jpg" />
     <Content Include="assets\images\banner\01.jpg" />
     <Content Include="assets\images\banner\03.jpg" />
     <Content Include="assets\images\banner\04.jpg" />
@@ -638,6 +642,7 @@
     <Content Include="assets\images\banner\banner22.jpg" />
     <Content Include="assets\images\banner\banner_live.jpg" />
     <Content Include="assets\images\banner\banner_mbq.jpg" />
+    <Content Include="assets\images\logo.png" />
     <Content Include="packages.config" />
     <Content Include="351\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="351\assets\fonts\fontawesome-webfont.ttf" />
@@ -668,6 +673,7 @@
     <Content Include="admin\js\font\typicons.eot" />
     <Content Include="admin\js\font\typicons.ttf" />
     <Content Include="admin\js\font\typicons.woff" />
+    <None Include="Properties\PublishProfiles\donghui_localhost.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -778,7 +784,7 @@
     <Content Include="assets\images\camera-loader.gif" />
     <Content Include="assets\images\camera_skins.png" />
     <Content Include="assets\images\favicon.png" />
-    <Content Include="assets\images\logo.png" />
+    <Content Include="assets\images\logo1.png" />
     <Content Include="assets\images\news2.jpg" />
     <Content Include="assets\images\news3.jpg" />
     <Content Include="assets\images\news4.jpg" />
