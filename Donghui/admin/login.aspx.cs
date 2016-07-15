@@ -24,8 +24,16 @@ namespace Donghui.admin
 
                 string strSql =string.Format("select * from users where username='{0}' and password = '{1}';",name,pwd);
                 SqlOper.SQLServerOperating sqlHelper = new SqlOper.SQLServerOperating();
-                Session["UserInfo"] = "login";
-                Response.Redirect("index.aspx");
+                if (name.Trim() =="admin" && pwd=="123456")
+                {
+                    Session["UserInfo"] = "login";
+                    Response.Redirect("index.aspx");
+                }
+                else
+                {
+                    txtErrorMsg.Visible = true;
+                    txtErrorMsg.Text = "账号密码错误！";
+                }
             }
         }
     }
