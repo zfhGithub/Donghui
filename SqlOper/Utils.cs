@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace SqlOper
 {
@@ -187,5 +190,169 @@ namespace SqlOper
                 return str.ToString();
             }
         }
+
+        public static string GetReulst(int statusCode,  string successMsg, string failureMsg="", int? count = null)
+        {
+            string msg = "";
+            if (count != null)
+            {
+                if (count > 0)
+                {
+                    msg = successMsg;
+                }
+                else
+                {
+                    msg = failureMsg;
+                } 
+            }
+            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":false,    \"forward\":\"\",    \"forwardConfirm\":\"\"}";
+
+            return str;
+        }
+
+        /// <summary>    
+        /// 把表格转换成json数据   
+        /// /// 通过表格名查找表格数组中的数据   
+        /// /// </summary>    
+        /// <param name="table">表格</param>    
+        /// <param name="JsonName">表格名称</param>
+        /// <returns></returns>    
+        public static string DataTableToJSON(DataTable table, string TableName = "d")
+        {
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            using (JsonWriter jw = new JsonTextWriter(sw))
+            {
+                JsonSerializer ser = new JsonSerializer();
+                jw.WriteStartObject();
+                jw.WritePropertyName(TableName);
+                //  表格名           
+                jw.WriteStartArray();
+                // 表格数组           
+                try
+                {
+                    //   通过循环输出表格中数据               
+                    foreach (DataRow dr in table.Rows)
+                    {
+                        jw.WriteStartObject();
+                        foreach (DataColumn dc in table.Columns)
+                        {
+                            jw.WritePropertyName(dc.ColumnName);
+                            ser.Serialize(jw, dr[dc].ToString());
+                        }
+                        jw.WriteEndObject();//结束输出        
+                    }
+                    jw.WriteEndArray();//结束表格输出              
+                    jw.WriteEndObject();//结束输出     
+                }
+                catch (Exception ex)
+                {
+                    string me = ex.Message;
+                }
+                sw.Close();//关闭流           
+                jw.Close();//关闭流      
+            }
+            return sb.ToString();
+        }
+        public static string UploadImage(HttpPostedFile file, string type)
+        {
+            if (type == "head")
+            {
+                #region 上传商品头像 
+                if (file.ContentLength > 2097152)
+                {
+                    return "{\"status\":\"0\",\"statusCode\":\"300\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"image\head\";
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                String fileName = Guid.NewGuid() + ".png";
+                file.SaveAs(filepath + fileName);
+
+                string rt = Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
+              //  Utils.SetPicDescription(filepath + "best-" + fileName, "BESTCAPS", pointX: 0.2f, pointY: 0.5f);
+                return rt;
+                #endregion
+            }
+            else if (type.StartsWith("banner"))
+            {
+                if (file.ContentLength > 5242880)
+                {
+                    return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"image\";
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                String fileName = "";
+                if (type.Equals("banner1") || type.Equals("banner2") || type.Equals("banner3"))
+                {
+                    fileName = type + ".jpg";
+                    if (File.Exists(filepath + fileName))
+                    {
+                        File.Delete(filepath + fileName);
+                    }
+                    file.SaveAs(filepath + fileName);
+                    return "{ \"statusCode\":200,\"url\":\"/image/" + fileName + "\"}";
+                }
+                else
+                {
+                    return "{ \"statusCode\":300,\"url\":\"\"}";
+                }
+            }
+            else if (type == "kindeditor")
+            {
+                if (file.ContentLength > 5242880)
+                {
+                    return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"image\detail\";
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                try
+                {
+                    String fileName = Guid.NewGuid() + ".png";
+                    file.SaveAs(filepath + fileName);
+                    // return "{ \"statusCode\":\"200\",\"message\":\"上传成功\",\"src\":\""+fileName+"\"}";
+                   // Utils.SetPicDescription(filepath + fileName, font: 30, pointX: 0.25f, pointY: 0.5f);
+                    return "{ \"error\":0,\"url\":\"/image/detail/" + fileName + "\"}";
+                }
+                catch
+                {
+                    return "{ \"statusCode\":\"300\",\"message\":\"上传失败\"}";
+                }
+            }
+            else
+            {
+                if (file.ContentLength > 5242880)
+                {
+                    return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"image\product\";
+                if (!Directory.Exists(filepath))
+                {
+                    Directory.CreateDirectory(filepath);
+                }
+                try
+                {
+                    String fileName = Guid.NewGuid() + ".png";
+                    file.SaveAs(filepath + fileName);
+                    //   Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
+                   // Utils.SetPicDescription(filepath + fileName, font: 23, pointX: 0.25f, pointY: 0.5f);
+                    return "{ \"statusCode\":\"200\",\"message\":\"上传成功\",\"src\":\"" + fileName + "\"}";
+                }
+                catch
+                {
+                    return "{ \"statusCode\":\"300\",\"message\":\"上传失败\"}";
+                }
+
+            }
+        }
+
     }
 }

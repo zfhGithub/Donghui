@@ -66,7 +66,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\about\aboutinfo.html" />
+    <Content Include="admin\about\achievement.html" />
+    <Content Include="admin\about\myteam.html" />
+    <Content Include="admin\about\aboutus.html" />
     <Content Include="admin\about\contact.html" />
     <Content Include="admin\advantage\addadvantage.html" />
     <Content Include="admin\advantage\advantagelist.html" />
@@ -870,9 +872,11 @@
     <Compile Include="admin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="com\aboutinfo.cs" />
     <Compile Include="com\BaseClass.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="com\message.cs" />
     <Compile Include="contact.aspx.cs">
       <DependentUpon>contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -897,6 +901,7 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Users.cs" />
     <Compile Include="price.aspx.cs">
       <DependentUpon>price.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -922,7 +927,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SqlOper\SqlOper.csproj">

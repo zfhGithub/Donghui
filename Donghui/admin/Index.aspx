@@ -249,9 +249,11 @@ $(function(){
                     <li class="active"><a href="javascript:;" data-toggle="slidebar"><i class="fa fa-check-square-o"></i> 功能管理 </a>
                         <div class="items hide" data-noinit="true">
                             <ul id="bjui-hnav-tree1" class="ztree ztree_main" data-toggle="ztree" data-on-click="MainMenuClick" data-expand-all="true" data-faicon="check-square-o">
-                                <li data-id="1" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">公司信息</li>                  
-                                <li data-id="12" data-pid="1" data-url="about/aboutinfo.html"data-tabid="addproduct">关于我们</li>
-                                <li data-id="13" data-pid="1" data-url="about/contact.html" data-tabid="contact" data-faicon="check-square-o">联系信息</li>
+                                <li data-id="1" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">关于我们</li>                  
+                                 <li data-id="12" data-pid="1" data-url="about/aboutus.html"data-tabid="aboutus">我们的简介</li>
+                                 <li data-id="13" data-pid="1" data-url="about/achievement.html"data-tabid="achievement">我们的成就</li>
+                                 <li data-id="14" data-pid="1" data-url="about/myteam.html"data-tabid="aboutinfo">我们的团队</li>
+                                <li data-id="15" data-pid="1" data-url="about/contact.html" data-tabid="contact" data-faicon="check-square-o">联系信息</li>
  
                                  
                                 <li data-id="2" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">留言管理</li> 

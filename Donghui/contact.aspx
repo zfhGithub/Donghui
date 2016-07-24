@@ -77,11 +77,11 @@
 						
 					  
 		<!--NOTE: Update your email Id in "contact_me.php" file in order to receive emails from your contact form-->
-                        <form name="sentMessage" id="contactForm" novalidate>
+                        <form name="sentMessage" id="contactForm" novalidate action="contact.aspx" method="post">
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="text" class="form-control"
-                                        placeholder="输入您的姓名" id="name" required
+                                        placeholder="输入您的姓名" id="name" required name="cname"
                                         data-validation-required-message="请输入您的姓名" />
                                     <p class="help-block"></p>
                                 </div>
@@ -89,15 +89,15 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="text" maxlength="11" class="form-control" placeholder="电话"
-                                        id="phone" required
-                                        data-validation-required-message="请输入你的邮箱" />
+                                        id="phone" required name="cphone"
+                                        data-validation-required-message="请输入你的电话" />
                                         <p class="help-block"></p>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <input type="email" class="form-control" placeholder="邮箱"
-                                        id="email" required
+                                        id="email" required name="cemail"
                                         data-validation-required-message="请输入你的邮箱" />
                                         <p class="help-block"></p>
                                 </div>
@@ -106,7 +106,7 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <textarea rows="10" cols="100" class="form-control"
-                                        placeholder="消息内容" id="message" required
+                                        placeholder="消息内容" id="message" required name="cmessage"
                                         data-validation-required-message="请输入消息内容" minlength="5"
                                         data-validation-minlength-message="最少输入五个字"
                                         maxlength="999" style="resize: none"></textarea>
@@ -123,13 +123,13 @@
 								<h3 class="section-title">办公地址</h3>
 								<div class="contact-info">
 									<h5>地址</h5>
-									<p>。。。。。。。。。</p>
+									<p><%= contactDt.Rows[0]["Address"].ToString() %></p>
 									
 									<h5>邮箱</h5>
-									<p>info@webthemez.com</p>
+									<p><%= contactDt.Rows[0]["Email"].ToString() %></p>
 									
-									<h5>电话</h5>
-									<p>+09 123 1234 123</p>
+									<h5>联系方式</h5>
+									<p><%= contactDt.Rows[0]["Phone"].ToString() %></p>
 								</div>
 							</div> 
 						</div> 						

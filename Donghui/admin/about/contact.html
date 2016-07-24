@@ -1,28 +1,28 @@
 ﻿
 <div class="bjui-pageContent">
-    <form action="ajax.ashx?action=addproduct" id="j_product_form" data-toggle="validate" data-alertmsg="false">
+    <form action="ajax.ashx?action=setcontact" id="j_contact_form" data-toggle="validate" data-alertmsg="false">
         <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     <td>
                         <label for="j_custom_name" class="control-label x85">公司名称：</label>
-                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required">
+                        <input type="text" name="cname" id="j_custom_name" value="" data-rule="required">
                     </td>
                     <td>
                         <label for="j_custom_total" class="control-label x85">邮箱：</label>
-                        <input type="text" name="pprict" id="j_custom_total"   data-rule="email"> 
+                        <input type="text" name="cemail" id="j_custom_email"   data-rule="email"> 
                     </td>
                   
                 </tr>
                 <tr>
                     <td>
                         <label for="j_custom_number" class="control-label x85">电话：</label>
-                        <input type="text" name="pnumber" id="j_custom_number" value="" data-rule="required">
+                        <input type="text" name="cphone" id="j_custom_phone" value="" data-rule="required">
                     </td>
                     <td>
                         <label for="j_custom_name" class="control-label x85">地址：</label>
-                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required">
+                        <input type="text" name="caddress" id="j_custom_address" value="" data-rule="required">
                     </td>  
                 </tr>
        
@@ -33,6 +33,29 @@
 <div class="bjui-pageFooter">
     <ul>
         <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-default" id="btnAddProductSave" onclick="submit()" data-icon="save">保存</button></li>
     </ul>
 </div>
+<script type="text/javascript">
+    function submit() {
+        $("#j_contact_form").submit();
+    }
+
+    $(function () {
+        $.ajax({
+            url: "ajax.ashx?action=getaboutinfo",
+            data: {},
+            success: function (r) {
+                var d = JSON.parse(r)["d"][0];
+                $("#j_custom_name").val(d.CompanyName);
+                $("#j_custom_email").val(d.Email);
+                $("#j_custom_phone").val(d.Phone);
+                $("#j_custom_address").val(d.Address);
+            }, error: function () {
+                console.log("error");
+            }
+        });
+
+      
+    });
+</script>
