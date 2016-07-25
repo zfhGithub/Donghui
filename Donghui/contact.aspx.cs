@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +10,22 @@ namespace Donghui
 {
     public partial class contact : System.Web.UI.Page
     {
+        public DataTable contactDt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+             contactDt = com.aboutinfo.getAboutInfo();
+            if (Request.HttpMethod.ToUpper() =="POST")
+            {
+                string cname = Request.Form["cname"];
+                string cphone = Request.Form["cphone"];
+                string cemail = Request.Form["cemail"];
+                string cmessage = Request.Form["cmessage"];
+                int s = com.message.addMessage(cname, cemail, cphone, cmessage);
+                if (s > 0)
+                {
+                    Response.Write("<script>alert('我们已经收到你的留言！');</script>");
+                }
+            }
         }
     }
 }

@@ -70,27 +70,11 @@
             <!-- main content -->
             <section class="col-sm-8 maincontent">
                 <h3>关于我们</h3>
-                <p>
-                    <img src="assets/images/about.jpg" alt="" class="img-rounded pull-right" width="300">
-                   <%-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente.--%>
-                </p>
-                <p> 介绍一下美国本土生子与塞班生子的区别。
-　　从结果上来说，没有什么区别。因为塞班是美国领土，这就像西沙群岛是中国的领土一样，因此在塞班出生的婴儿就是美国公民，这是美国宪法规定的，是任何人包括美国总统无法改变的。塞班出生的美国公民可以自由出入美国本土，和美国本土出生的公民没有区别。美国不同于中国的户口制度，任何地区的包括塞班出生的美国公民在美国任何一个大城市比如纽约还是旧金山生活一年，有了一年的纳税证明，就能成为这个城市的居民。因此，可以说在美国塞班生子是我们的最佳跳板，免签而且费用便宜的情况下就能取得美国国籍，可谓最小的代价换取最大的收获。
-　　但是从过程上来说：美国塞班生子的优势很多：
-　　第一，免签，省了签证的烦恼，不仅孕妇可以免签过去，家人要照顾孕妇也是买张机票就能直接飞过去，相当的方便
-　　第二，路途近，四个小时就到，本土要十几个小时
-　　第三，费用低，只要不是太奢侈5万人民币就够，本土最节省的也要十几万。美国本土的月子中心现在普遍涨到15万以上了基本上是塞班生子价格的2倍。用最小的代价换最大的收获，塞班免签而且费用便宜，生下来的都是美国公民，请大家珍惜这个难得机会，尽早行动 ，不要等塞班像香港一样关门了再悔之晚矣。
-月子中心的弊端
-　　奉劝大家不要去网上找那些什么月子中心，黑得很，给你们包吃包住，实际上你们住进去就知道了，吃的都是些粗茶淡饭，其实找我们就好了，我们只是挣一点辛苦费，至于租房、平常吃饭都是我们给你安排。但是由你们自己付费，想住什么样的房子，我们都可以帮你找，房租都是你们自己给房东，平常买菜也是你们自己去买，我们可以带着你，想吃啥就吃啥，这种方式比月子中心要灵活自由多了，而且关键是不会套牢你们，那些月子中心其实就是租房转租给你们的，你们一进去就要交好几万，所以有些孕妇会上美国塞班生子月子中心的当，这真是遗憾，他们全包价的肯定要压缩成本，每天买最便宜的菜给你吃，他们是商人，不是慈善家，他们的目的是为了将他们的利益最大化。</p>
+                 
+       <%= aboutDt.Rows[0]["AboutusText"].ToString() %>
+                 
                 <h3>我们的成就</h3>
-                <strong>2014</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2013</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2012</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
-                <strong>2011</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam beatae soluta accusantium iusto nihil nesciunt unde veniam magnam repudiandae sapiente. consequuntur eius repellendus eos aliquid molestiae ea laborum ex quibusdam laudantium voluptates placeat consectetur quam aliquam!</p>
+       <%= aboutDt.Rows[0]["AchievementText"].ToString() %>         
             </section>
             <!-- /main -->
 
@@ -124,96 +108,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <h3>我们的团队</h3>
-                    <p>Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</p>
+                   <%-- <p>Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.Voluptate minus illo tenetur sint ab in culpa cumque impedit quibusdam. Saepe, molestias quia.</p>--%>
                     <br />
                 </div>
             </div>
             <div class="row">
 
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <!-- Team Member -->
-                    <div class="team-member">
-                        <!-- Image Hover Block -->
-                        <div class="member-img">
-                            <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/photo-1.jpg" alt="">
-                        </div>
-                        <!-- Member Details -->
-                        <h4>John Doe</h4>
-                        <!-- Designation -->
-                        <span class="pos">CEO</span>
-                        <div class="team-socials">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <!-- Team Member -->
-                    <div class="team-member pDark">
-                        <!-- Image Hover Block -->
-                        <div class="member-img">
-                            <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/photo-2.jpg" alt="">
-                        </div>
-                        <!-- Member Details -->
-                        <h4>Larry Doe</h4>
-                        <!-- Designation -->
-                        <span class="pos">Director</span>
-                        <div class="team-socials">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <!-- Team Member -->
-                    <div class="team-member pDark">
-                        <!-- Image Hover Block -->
-                        <div class="member-img">
-                            <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/photo-3.jpg" alt="">
-                        </div>
-                        <!-- Member Details -->
-                        <h4>Ranith Kays</h4>
-                        <!-- Designation -->
-                        <span class="pos">Manager</span>
-                        <div class="team-socials">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <!-- Team Member -->
-                    <div class="team-member pDark">
-                        <!-- Image Hover Block -->
-                        <div class="member-img">
-                            <!-- Image  -->
-                            <img class="img-responsive" src="assets/images/photo-4.jpg" alt="">
-                        </div>
-                        <!-- Member Details -->
-                        <h4>Joan Ray</h4>
-                        <!-- Designation -->
-                        <span class="pos">Creative</span>
-                        <div class="team-socials">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-dribbble"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
+          <%= aboutDt.Rows[0]["MyTeamText"].ToString() %>
             </div>
         </div>
     </section>
