@@ -1,4 +1,137 @@
-﻿
+﻿<script type="text/javascript">
+
+    var pageIndex = 1;
+    var pageSize = 10;
+    var MaxPage;
+    var TotalPage;//总条数
+
+    function ProductInfo() {
+        var customNo = $("#customNo").val();
+        var customName = $("#customName").val();
+        var Protype = $("#Protype").find("option:selected").val();
+        $.ajax({
+                url: 'ajax.ashx?action=messagelist',
+                data: {
+                    "pageIndex": pageIndex,
+                    "pageSize": pageSize,
+                    'customNo': customNo,
+                    'customName':customName,
+                    'Protype': Protype,
+                },
+                type: "post",
+                success: function (msg) {
+                    var html = [];
+                    var json = JSON.parse(msg);
+                    var count = json["count"];
+                    count = JSON.parse(count);
+                    TotalPage = count[""][0]["count"];//总记录数
+                    //求出最大页
+                    MaxPage = Math.ceil(TotalPage / pageSize);
+                    var da = json["data"];
+                    da = JSON.parse(da);
+                    var data = da[""];
+                    $.each(data, function (k, v) {
+                        html.push("<tr><td>" + v.GoodsNo + "</td><td>" + v.GoodsName + "</td><td>" + v.className + "</td><td>" + v.Price + "</td><td>" + v.Title + "</td><td>" + (v.HomeRecommend == 1 ? "是" : "否") + "</td><td> " + (v.HomeShow == 1 ? "是" : "否") + "</td><td> <img src='../../image/head/" + v.Photos + "' width='70' height='60'/> </td>");
+                        html.push("<td><a href='#' onclick='editproduct(this,\""+v.id+"\",\""+v.GoodsName+"\")' class='btn btn-green' >编辑</a>");
+                        html.push("   <a href='ajax.ashx?action=deleteproduct&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                    });
+                    $("#tab tbody").empty().append(html.join(''));
+                    html = [];
+                    $("#total").html(TotalPage);//共6条数据
+
+                    html.push("<ul class='pagination'>");
+                    html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                    html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+
+                    for (var i = 1; i <= MaxPage; i++) {
+                        var c = "j-num";
+                        if (i == pageIndex) {
+                            c = "selected " + c;
+                        }
+                        html.push("<li class='"+c+"'><a href='javascript:'> "+i+"</a></li>");
+                    }
+                    html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
+                    html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                    html.push("<ul>");
+
+                    $("#pagination").empty().append(html.join(''));
+                    //如果当前页等于1就让首页、上一页不可点击
+                    if (pageIndex == 1) {
+                        $(".j-first").addClass("disabled");
+                        $(".j-prev").addClass("disabled");
+                    }
+
+                    if (pageIndex == MaxPage)
+                    {
+                        $(".j-next").addClass("disabled");
+                        $(".j-last").addClass("disabled");
+                    }
+            }
+        });
+    }
+    $(function () {
+        ProductInfo();
+        var Protype = $("#Protype").find("option:selected").text();
+        //下一页
+        $(".j-next").live("click", function () {
+            pageIndex++;
+            ProductInfo();
+        });
+        //点击跳转相应页面
+        $(".j-num").live("click", function () {
+            $(".j-num").removeClass("selected");
+            $(this).attr("class", "selected");
+            var Sum = $(this).text();
+            pageIndex = Sum;
+            ProductInfo();
+        })
+        //末页
+        $(".last").live("click", function () {
+            pageIndex = MaxPage;
+            ProductInfo();
+        });
+        //上一页
+        $(".j-prev").live("click", function () {
+            pageIndex--;
+            ProductInfo();
+        })
+        //输入跳转
+        $(".goto").live("click", function () {
+            var InputValue = $("#put").val();
+            if (InputValue>MaxPage) {
+                $(this).alertmsg('warn','你输入的数字超过页面范围');
+                return;
+            }
+            if (InputValue<1) {
+                $(this).alertmsg('warn', '请输入大于第一页的数字');
+                return;
+            }
+            if (isNaN(Number(InputValue))||InputValue=="") {
+                $(this).alertmsg('warn', '请输入数字');
+                return;
+            }
+            console.log(InputValue);
+            pageIndex = InputValue;
+            ProductInfo();
+        });
+        // 设置option选项 .选中每页显示多少条数据
+        $("#sl").live("change", function () {
+            var checkText = $("#sel").find("option:selected").text();
+            pageSize = checkText;
+            ProductInfo();
+        });
+
+    });
+    function search() {
+        pageIndex = 1;
+        ProductInfo();
+    }
+    function editproduct(_this, id, name) {
+        editid = id;
+        $(_this).navtab({ id: 'addproduct', url: '/admin/product/AddProduct.html?id=' + id, title: "编辑-" + name, reloadWarn: '本页已有打开的内容，确定将刷新本页内容，是否继续？', toggle: 'navtab' });
+    }
+</script>
 <div class="bjui-pageHeader">
     <div class="pull-right">
         <div class="btn-group">
@@ -30,21 +163,20 @@
     </table>
 </div>
 <div class="bjui-pageFooter">
+
     <div class="pages">
         <span>每页&nbsp;</span>
-        <div class="selectPagesize" id="ComSelected">
-            <select data-toggle="selectpicker" id="Comselect">
-
-                <option value="20" id="three">20</option>
+        <div class="selectPagesize" id="sl">
+            <select data-toggle="selectpicker" id="sel">
+                <option value="10" id="three">10</option>
+                <option value="20" id="six">20</option>
                 <option value="30">30</option>
-                <option value="50">50</option>
 
             </select>
-
         </div>
-        <span>&nbsp;条, 共&nbsp;<span id="Comtotal"></span>  条</span>
+        <span>&nbsp;条, 共&nbsp;<span id="total"></span>  条</span>
     </div>
-    <div class="pagination-box" id="pag" data-total="10" data-page-size="2" data-page-current="1">
+    <div class="pagination-box" id="pagination" data-total="10" data-page-size="2" data-page-current="1">
     </div>
 
 </div>
