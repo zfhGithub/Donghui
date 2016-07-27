@@ -191,7 +191,7 @@ namespace SqlOper
             }
         }
 
-        public static string GetReulst(int statusCode,  string successMsg, string failureMsg="", int? count = null)
+        public static string GetReulst(int statusCode,  string successMsg, string failureMsg="", int? count = null,string closeCurrent="false")
         {
             string msg = "";
             if (count != null)
@@ -202,10 +202,11 @@ namespace SqlOper
                 }
                 else
                 {
+                    closeCurrent = "false";
                     msg = failureMsg;
                 } 
             }
-            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":false,    \"forward\":\"\",    \"forwardConfirm\":\"\"}";
+            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":"+ closeCurrent + ",    \"forward\":\"\",    \"forwardConfirm\":\"\"}";
 
             return str;
         }
@@ -271,9 +272,9 @@ namespace SqlOper
                 String fileName = Guid.NewGuid() + ".png";
                 file.SaveAs(filepath + fileName);
 
-                string rt = Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
-              //  Utils.SetPicDescription(filepath + "best-" + fileName, "BESTCAPS", pointX: 0.2f, pointY: 0.5f);
-                return rt;
+                //  string rt = Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
+                //  Utils.SetPicDescription(filepath + "best-" + fileName, "BESTCAPS", pointX: 0.2f, pointY: 0.5f);
+                    return "{ \"statusCode\":\"200\",\"url\":\"/image/head/" + fileName + "\"}"; ;
                 #endregion
             }
             else if (type.StartsWith("banner"))

@@ -873,6 +873,7 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="com\aboutinfo.cs" />
+    <Compile Include="com\advantage.cs" />
     <Compile Include="com\BaseClass.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

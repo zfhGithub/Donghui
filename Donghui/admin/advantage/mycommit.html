@@ -12,12 +12,20 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <div style="display: inline-block; vertical-align: middle;">
-                                    <textarea name="pdetail" id="j_form_content" class="j-content" style="width: 100%;" data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
-                                              data-after-upload="kindeditor_upload_success" data-file-manager-json="ajax.ashx?action=fileManagerJson"
-                                              data-toggle="kindeditor" data-minheight="200"></textarea>
-                                </div>
-                            </div>
+                                <form role="form" action="ajax.ashx?action=setmycommit" method="post" id="frm_commit_title" data-toggle="validate" data-alertmsg="false">
+                                   <input type="hidden" value="" id="old_mycommit_title" />
+                                     <label for="mycommit_title">标题:</label>  <input type="text" name="mycommit_title" id="mycommit_title" data-rule="required" size="60" />
+                                    <p></p>
+                                    </form>
+                                    <form role="form" action="ajax.ashx?action=setmycommit" method="post" id="frm_commit_content" data-toggle="validate" data-alertmsg="false">
+                                     
+                                        <div style="display: inline-block; vertical-align: middle;">
+                                            <textarea name="k_mycommit" id="j_form_k_mycommit" class="j-content" style="width: 100%;" data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
+                                                      data-after-upload="kindeditor_upload_success" data-file-manager-json="ajax.ashx?action=fileManagerJson"
+                                                      data-toggle="kindeditor" data-minheight="200"></textarea>
+                                        </div>
+                                    </form>
+</div>
                         </div>
                     </div>
                 </div>
@@ -27,7 +35,31 @@
 </div>
 <div class="bjui-pageFooter">
     <ul>
+        
         <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-default" data-icon="save" onclick="submit_commit(this)">保存</button></li>
     </ul>
 </div>
+<script type="text/javascript">
+    function submit_commit(_btn) {
+        $("#frm_commit_content").submit();
+        if ( $("#old_mycommit_title").val() != $("#mycommit_title").val()) {
+            $("#frm_commit_title").submit();
+        } 
+    }
+    $(function () {
+        $.ajax({
+            url: "ajax.ashx?action=getmycommit",
+            data: {},
+            success: function (r) {
+                var d = JSON.parse(r)["d"][0];
+                $("#mycommit_title").val(d.title);
+                $("#old_mycommit_title").val(d.title);
+                
+                KindEditor.html('#j_form_k_mycommit', d.content);
+            }, error: function () {
+                console.log("error");
+            }
+        });
+    });
+</script>

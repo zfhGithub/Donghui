@@ -1,4 +1,132 @@
-﻿<div class="bjui-pageHeader">
+﻿<script type="text/javascript">
+    var pageIndex = 1;
+    var pageSize = 10;
+    var MaxPage;
+    var TotalPage;//总条数
+
+    function ProductInfo() {
+        var customNo = $("#customNo").val();
+        var customName = $("#customName").val();
+        var Protype = $("#Protype").find("option:selected").val();
+        $.ajax({
+            url: 'ajax.ashx?action=getadvantagelist',
+            data: {
+                "pageIndex": pageIndex,
+                "pageSize": pageSize,
+                'customNo': customNo,
+                'customName': customName,
+                'Protype': Protype,
+            },
+            type: "post",
+            success: function (result) {
+                var html = [];
+                var json = JSON.parse(result);
+                TotalPage = json["count"];//总记录数
+                //求出最大页
+                MaxPage = Math.ceil(TotalPage / pageSize);
+                var da = json["data"];
+                da = JSON.parse(da);
+                var data = da["d"];
+                $.each(data, function (k, v) {
+                    html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.title + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
+
+                    html.push("  <td> <a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                });
+                $("#t_advantage_list tbody").empty().append(html.join(''));
+                html = [];
+                $("#total").html(TotalPage);//共6条数据
+
+                html.push("<ul class='pagination'>");
+                html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+
+                for (var i = 1; i <= MaxPage; i++) {
+                    var c = "j-num";
+                    if (i == pageIndex) {
+                        c = "selected " + c;
+                    }
+                    html.push("<li class='" + c + "'><a href='javascript:'> " + i + "</a></li>");
+                }
+                html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
+                html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
+                html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                html.push("<ul>");
+
+                $("#pagination").empty().append(html.join(''));
+                //如果当前页等于1就让首页、上一页不可点击
+                if (pageIndex == 1) {
+                    $(".j-first").addClass("disabled");
+                    $(".j-prev").addClass("disabled");
+                }
+
+                if (pageIndex == MaxPage) {
+                    $(".j-next").addClass("disabled");
+                    $(".j-last").addClass("disabled");
+                }
+            }
+        });
+    }
+
+    $(function () {
+        ProductInfo();
+        var Protype = $("#Protype").find("option:selected").text();
+        //下一页
+        $(".j-next").live("click", function () {
+            pageIndex++;
+            ProductInfo();
+        });
+        //点击跳转相应页面
+        $(".j-num").live("click", function () {
+            $(".j-num").removeClass("selected");
+            $(this).attr("class", "selected");
+            var Sum = $(this).text();
+            pageIndex = Sum;
+            ProductInfo();
+        })
+        //末页
+        $(".last").live("click", function () {
+            pageIndex = MaxPage;
+            ProductInfo();
+        });
+        //上一页
+        $(".j-prev").live("click", function () {
+            pageIndex--;
+            ProductInfo();
+        })
+        //输入跳转
+        $(".goto").live("click", function () {
+            var InputValue = $("#put").val();
+            if (InputValue > MaxPage) {
+                $(this).alertmsg('warn', '你输入的数字超过页面范围');
+                return;
+            }
+            if (InputValue < 1) {
+                $(this).alertmsg('warn', '请输入大于第一页的数字');
+                return;
+            }
+            if (isNaN(Number(InputValue)) || InputValue == "") {
+                $(this).alertmsg('warn', '请输入数字');
+                return;
+            }
+            console.log(InputValue);
+            pageIndex = InputValue;
+            ProductInfo();
+        });
+        // 设置option选项 .选中每页显示多少条数据
+        $("#s_advantage").live("change", function () {
+            var checkText = $("#s_advantage_select").find("option:selected").text();
+            pageSize = checkText;
+            ProductInfo();
+        });
+
+    });
+    function search() {
+        pageIndex = 1;
+        ProductInfo();
+    }
+
+</script>
+<div class="bjui-pageHeader">
     <div class="pull-right">
 
         <div class="btn-group">
@@ -16,13 +144,13 @@
         &nbsp;
 
     
-        <label>商品名称：</label><input type="text" value="" id="customName" name="name" class="form-control" size="8">&nbsp;
+         <!--<label>商品名称：</label><input type="text" value="" id="customName" name="name" class="form-control" size="8">&nbsp;
 
-        <!--<button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>-->
+       <button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>
         <button type="submit" class="btn-default" data-icon="search" onclick="search()">查询</button>&nbsp;
-        <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>
+        <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>-->
         <div class="pull-right">
-            <button type="button" class="btn-blue" data-url="advantage/addadvantage.html" data-id="dialog-addadvantage" data-width="800" data-height="400"
+            <button type="button" class="btn-blue" data-url="advantage/addadvantage.html" data-id="dialog-addadvantage" data-width="860" data-height="400"
                     data-toggle="dialog">添加优势</button>
            <!--  <button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
            <div class="btn-group">
@@ -49,17 +177,15 @@
     </div>-->
 </div>
 <div class="bjui-pageContent tableContent">
-    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="tab">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="t_advantage_list">
         <thead>
             <tr>
                 <th data-order-field="rowid">序号</th>
                 <th data-order-field="id">优势名称</th>
                 <th data-order-field="name">标题</th>
-           
-                <th data-order-field="name">简介</th>
+            
                 <th data-order-field="created">创建时间</th>
-                <th data-order-field="birthplace">图片</th>
-                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th data-order-field="birthplace">图片</th> 
                 <th data-order-field="#">操作</th>
             </tr>
         </thead>
@@ -69,8 +195,8 @@
 <div class="bjui-pageFooter">
     <div class="pages">
         <span>每页&nbsp;</span>
-        <div class="selectPagesize" id="sl">
-            <select data-toggle="selectpicker" id="sel">
+        <div class="selectPagesize" id="s_advantage">
+            <select data-toggle="selectpicker" id="s_advantage_select">
                 <option value="10" id="three">10</option>
                 <option value="20" id="six">20</option>
                 <option value="30">30</option>

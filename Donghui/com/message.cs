@@ -19,7 +19,7 @@ namespace Donghui.com
         {
             string strSql = string.Format(@"SELECT TOP {0} * 
                             FROM(
-                                    SELECT ROW_NUMBER() OVER(ORDER BY id) AS rowIndex, Id, Name, MsgContent, CreateTime, Phone, Email FROM Message
+                                    SELECT ROW_NUMBER() OVER(ORDER BY id desc) AS rowIndex, Id, Name, MsgContent, CreateTime, Phone, Email FROM Message
                                     ) m
                             WHERE rowIndex >  {0} * ( {1} - 1) order by id desc", pageCount, currentIndex);
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();

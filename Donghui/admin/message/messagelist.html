@@ -19,23 +19,21 @@
                     'Protype': Protype,
                 },
                 type: "post",
-                success: function (msg) {
+                success: function (result) { 
                     var html = [];
-                    var json = JSON.parse(msg);
-                    var count = json["count"];
-                    count = JSON.parse(count);
-                    TotalPage = count[""][0]["count"];//总记录数
+                    var json = JSON.parse(result);  
+                    TotalPage = json["count"];//总记录数
                     //求出最大页
                     MaxPage = Math.ceil(TotalPage / pageSize);
                     var da = json["data"];
                     da = JSON.parse(da);
-                    var data = da[""];
+                    var data = da["d"]; 
                     $.each(data, function (k, v) {
-                        html.push("<tr><td>" + v.GoodsNo + "</td><td>" + v.GoodsName + "</td><td>" + v.className + "</td><td>" + v.Price + "</td><td>" + v.Title + "</td><td>" + (v.HomeRecommend == 1 ? "是" : "否") + "</td><td> " + (v.HomeShow == 1 ? "是" : "否") + "</td><td> <img src='../../image/head/" + v.Photos + "' width='70' height='60'/> </td>");
-                        html.push("<td><a href='#' onclick='editproduct(this,\""+v.id+"\",\""+v.GoodsName+"\")' class='btn btn-green' >编辑</a>");
-                        html.push("   <a href='ajax.ashx?action=deleteproduct&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.Name + "</td><td>" + v.Email + "</td><td>" + v.Phone + "</td><td>" + v.MsgContent + "</td><td>" + v.CreateTime + "</td>  ");
+                     
+                        html.push("  <td> <a href='ajax.ashx?action=deletemessage&pid=" + v.Id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                     });
-                    $("#tab tbody").empty().append(html.join(''));
+                    $("#t_message_list tbody").empty().append(html.join(''));
                     html = [];
                     $("#total").html(TotalPage);//共6条数据
 
@@ -127,25 +125,22 @@
         pageIndex = 1;
         ProductInfo();
     }
-    function editproduct(_this, id, name) {
-        editid = id;
-        $(_this).navtab({ id: 'addproduct', url: '/admin/product/AddProduct.html?id=' + id, title: "编辑-" + name, reloadWarn: '本页已有打开的内容，确定将刷新本页内容，是否继续？', toggle: 'navtab' });
-    }
+
 </script>
 <div class="bjui-pageHeader">
     <div class="pull-right">
-        <div class="btn-group">
+        <!--<div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy"> 复选框-批量操作<span class="caret"></span></button>
             <ul class="dropdown-menu right" role="menu" style="min-width: 153px;">
                 <li><a href="ajax.ashx?action=CheckDe" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="delids" data-group="ids">删除选中</a></li>
                 <li><a href="ajax.ashx?action=CheckUp" data-toggle="doajaxchecked" data-confirm-msg="选中标记为已读？" data-idname="delids" data-group="ids">选中标记为已读</a></li>
             </ul>
-        </div>
+        </div>-->
     </div>
 </div>
 
 <div class="bjui-pageContent CommentManagement">
-    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="Comtab">
+    <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="t_message_list">
         <thead>
             <tr>
 
@@ -154,9 +149,7 @@
                 <th data-order-field="email">E-mail</th>
                 <th data-order-field="phone">手机号码</th>
                 <th data-order-field="msg">留言内容</th>
-                <th data-order-field="time ">留言时间</th>
-                <th data-order-field="status">状态</th>
-                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th data-order-field="time ">留言时间</th>  
                 <th data-order-field="del">操作</th>
         </thead>
         <tbody></tbody>

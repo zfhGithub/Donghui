@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,9 +10,16 @@ namespace Donghui
 {
     public partial class courses : System.Web.UI.Page
     {
+        public string myCommitHtml="";
+        public string title = "";
+        public DataTable advList = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
 
+           advList =  com.advantage.getAdvantageList("1", "4");
+            DataTable dt = com.advantage.getMyCommit();
+            myCommitHtml = dt.Rows[0]["content"].ToString();
+            title = dt.Rows[0]["title"].ToString();
         }
     }
 }
