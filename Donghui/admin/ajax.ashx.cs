@@ -13,7 +13,6 @@ namespace Donghui.admin
     /// </summary>
     public class ajax : IHttpHandler
     {
-
         public void ProcessRequest(HttpContext context)
         {
             context.Response.ContentType = "text/plain";
@@ -92,7 +91,39 @@ namespace Donghui.admin
                     break;
                 case "deleteadvantage":
                     string id = req.QueryString["id"];
-                    res.Write(Utils.GetReulst(200,"删除成功！","删除失败！",com.advantage.deleteAdvantageById(id)));
+                    res.Write(Utils.GetReulst(200, "删除成功！", "删除失败！", com.advantage.deleteAdvantageById(id)));
+                    break;
+                #endregion
+
+                #region 套餐管理
+                case "getpriceitemlist":
+                    string pid = req.Form["pid"];
+                    res.Write(Utils.DataTableToJSON(com.price.getPriceItemList(pid)));
+                    break;
+                case "getpricelist":
+                    currentIndex = req.Form["pageIndex"];
+                    pageCount = req.Form["pageSize"];
+                    jsonDic = new Dictionary<string, string>();
+                    jsonDic.Add("data", Utils.DataTableToJSON(com.price.getPriceList(currentIndex, pageCount)));
+                    jsonDic.Add("count", com.price.getPriceListCount());
+                    js = new JavaScriptSerializer();
+                    res.Write(js.Serialize(jsonDic));
+                    break;
+                case "addpriceitem":
+                    string priceItemName = req.Params["priceItemName"];
+                    string priceItemPrice = req.Params["price"];
+                    string priceItemPid = req.Params["pricePid"];
+
+                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", com.price.addPriceItem(priceItemName, priceItemPrice, priceItemPid)));
+                    break;
+                case "addprice":
+                    string items = req.Form["items"];
+                    string name = req.Form["name"]; 
+                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name, items)));
+                    break;
+                case "deletepriceitem":
+                    id = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功！", "删除失败！", com.price.deletePriceItem(id)));
                     break;
                     #endregion
             }

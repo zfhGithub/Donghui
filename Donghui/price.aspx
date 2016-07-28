@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="webThemez.com">
-	<title></title>
+	<title>价格</title>
 	<link rel="favicon" href="assets/images/favicon.png">
 	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -58,8 +58,8 @@
 
 		<header id="head" class="secondary">
             <div class="container">
-                    <h1>Our Price</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
+                    <h1>我们的价格</h1>
+                    <p>我们提供最优质的服务，最低廉的价格!</p>
                 </div>
     </header>
 
@@ -69,9 +69,9 @@
 		<div class="row">
 			<!-- Article content -->
 			<section class="col-sm-12 maincontent">
-				<h3>Cost</h3>
+				<h3>简介</h3>
 				<p>
-					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+					　　对于孩子，人们展开越来越深的思考，对于孩子的未来的规划从怀孕那一刻就开始，甚至更早，因此赴美产子就不再是一件稀奇古怪的事情了，赴美产子和美国生孩子费用成为大家议论的话题，毕竟赴美产子需要大笔的开支，是需要一定的经济条件基础才可以实行的，那么，美国生孩子到底需要多少钱，下面从各个方面来分解一下。
 				</p>
 
 			</section>
@@ -82,8 +82,8 @@
 	<section class="container">
 		<div class="heading">
 			<!-- Heading -->
-			<h3>Range</h3>
-			<p>At lorem Ipsum available, but the majority have suffered alteration in some form by injected humour.</p>
+			<h3>套餐</h3>
+			<p>以下是我们的套餐价格.</p>
 			<br />
 		</div>
 		<div class="row flat">
@@ -110,7 +110,7 @@
 						<strong>Live</strong> Demo
 					</li>
 					<li class="plan-action">
-						<a href="#" class="btn">Signup</a>
+						<a href="#" class="btn">咨询客服</a>
 					</li>
 				</ul>
 			</div>
@@ -172,7 +172,7 @@
 			</div>
 
 			<div class="col-lg-3 col-md-3 col-xs-6">
-				<ul class="plan plan4">
+				<ul class="plan plan4 featured">
 					<li class="plan-name">Mighty
 					</li>
 					<li class="plan-price">

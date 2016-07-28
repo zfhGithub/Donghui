@@ -603,8 +603,6 @@
     <Content Include="admin\js\images\loginbg_07.jpg" />
     <Content Include="admin\js\images\loginbg_08.jpg" />
     <Content Include="admin\js\images\loginbg_09.jpg" />
-    <Content Include="admin\js\images\logo.jpg" />
-    <Content Include="admin\js\images\logo.png" />
     <Content Include="admin\js\images\logo1.png" />
     <Content Include="admin\js\images\logo_bootstrap.png" />
     <Content Include="admin\js\js\jquery-1.8.3.js" />
@@ -878,6 +876,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="com\message.cs" />
+    <Compile Include="com\price.cs" />
     <Compile Include="contact.aspx.cs">
       <DependentUpon>contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
