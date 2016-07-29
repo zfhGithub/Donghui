@@ -872,9 +872,11 @@
     </Compile>
     <Compile Include="com\aboutinfo.cs" />
     <Compile Include="com\advantage.cs" />
+    <Compile Include="com\article.cs" />
     <Compile Include="com\BaseClass.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="com\case.cs" />
     <Compile Include="com\message.cs" />
     <Compile Include="com\price.cs" />
     <Compile Include="contact.aspx.cs">

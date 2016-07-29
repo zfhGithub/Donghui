@@ -125,7 +125,67 @@ namespace Donghui.admin
                     id = req.Params["id"];
                     res.Write(Utils.GetReulst(200, "删除成功！", "删除失败！", com.price.deletePriceItem(id)));
                     break;
+                #endregion
+
+                #region 案例管理
+                case "getcaselist":
+                    currentIndex = req.Form["pageIndex"];
+                    pageCount = req.Form["pageSize"];
+                    jsonDic = new Dictionary<string, string>();
+                    jsonDic.Add("data", Utils.DataTableToJSON(com.@case.getCaseList(currentIndex, pageCount)));
+                    jsonDic.Add("count", com.@case.getCaseListCount());
+                    js = new JavaScriptSerializer();
+                    res.Write(js.Serialize(jsonDic));
+                    break;
+                case "addcase":
+                     title = req.Form["case_title"];
+                    string photo = req.Form["case_photo"];
+                    string content = req.Form["case_content"];
+                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.@case.addCase(title, photo, content)));
+                    break;
+                case "deletecase":
+                    id = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.@case.deleteCaseById(id)));
+                    break;
+                case "updatecase":
+                    title = req.Form["case_title"];
+                     photo = req.Form["case_photo"];
+                     content = req.Form["case_content"];
+                    id = req.Form["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.@case.updateCase(id, title, photo, content)));
+                    break;
+                #endregion
+                #region 文章管理
+                case "getarticlelist":
+                    currentIndex = req.Form["pageIndex"];
+                    pageCount = req.Form["pageSize"];
+                    jsonDic = new Dictionary<string, string>();
+                    jsonDic.Add("data", Utils.DataTableToJSON(com.article.getArticleList(currentIndex, pageCount)));
+                    jsonDic.Add("count", com.article.getArticleListCount());
+                    js = new JavaScriptSerializer();
+                    res.Write(js.Serialize(jsonDic));
+                    break;
+                case "addarticle":
+                    title = req.Form["article_title"];
+                    photo = req.Form["article_photo"];
+                    content = req.Form["article_content"];
+                    string subtitle = req.Form["article_subtitle"];
+                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.article.addArticle(title, subtitle, photo, content)));
+                    break;
+                case "deletearticle":
+                    id = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.deleteArticleById(id)));
+                    break;
+                case "updatearticle":
+                    title = req.Form["article_title"];
+                    photo = req.Form["article_photo"];
+                    content = req.Form["article_content"];
+                    subtitle = req.Form["article_subtitle"];
+                    id = req.Form["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.updateArticle(id, title, subtitle, photo, content)));
+                    break;
                     #endregion
+
             }
         }
 
