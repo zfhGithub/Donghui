@@ -191,7 +191,7 @@ namespace SqlOper
             }
         }
 
-        public static string GetReulst(int statusCode,  string successMsg, string failureMsg="", int? count = null,string closeCurrent="false")
+        public static string GetReulst(int statusCode,  string successMsg, string failureMsg="", int? count = null,string closeCurrent="false",string json="")
         {
             string msg = "";
             if (count != null)
@@ -206,7 +206,7 @@ namespace SqlOper
                     msg = failureMsg;
                 } 
             }
-            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":"+ closeCurrent + ",    \"forward\":\"\",    \"forwardConfirm\":\"\"}";
+            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":"+ closeCurrent + ",    \"forward\":\"\",   \"forwardConfirm\":\"\" ,"+json+"}";
 
             return str;
         }

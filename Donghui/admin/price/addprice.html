@@ -1,14 +1,13 @@
 ﻿
 <div class="bjui-pageContent tableContent">
-    <form action="ajax.ashx?action=addprice" id="j_product_form" data-toggle="validate" data-alertmsg="false">
-        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+    <form action="ajax.ashx?action=addprice" id="j_addprice_form" data-toggle="validate" data-alertmsg="false">
+       <input type="hidden" value="" id="txtIds" name="ids" />
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
                     <td>
                         <label for="j_custom_name" class="control-label x85">套餐名称：</label>
-                        <input type="text" name="pname" id="p_price_name" value="" data-rule="required" size="15">
-                        <input type="hidden" id="pricePid" name="pricePid" value="" />
+                        <input type="text" name="p_price_name" id="p_price_name" value="" data-rule="required" size="15"> 
                     </td>
                     <td>    </td>
                     <td>   </td>
@@ -16,16 +15,16 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <table id="addpriceitem" class="table table-bordered table-hover table-striped table-top" data-action="ajax.ashx?action=addpriceitem&pid=[#price_edit_id]" data-toggle="tabledit" data-initnum="10" data-single-noindex="true">
+                        <table id="addpriceitem" class="table table-bordered table-hover table-striped table-top" 
+                                data-initnum="10" data-single-noindex="true" >
                             <thead>
                                 <tr>
                                     <th title="项目名">
-                                         <input type="text" value="" placeholder="请输入项目名" size="10" name="priceItemName" id="priceItemName[#index#]" data-rule="required"/> 
-                               
+                                         <input type="text" value="" placeholder="请输入项目名" size="10" name="priceItemName" id="priceItemName#index#" data-rule="required"/> 
                                     </th>
-                                    <th title="价格(元)"><input type="text" name="price" value="1" size="4" data-toggle="spinner" id="t_price[#index#]" data-min="1" data-step="10" data-rule="required,integer"  /></th>
+                                    <th title="价格(元)"><input type="text" name="price" value="1" size="4" data-toggle="spinner" id="t_price#index#" data-min="1" data-step="10" data-rule="required,integer"  /></th>
                                     <th title="操作">
-                                        <a href="javascript:;" class="btn btn-green" indexid="[#index#]" data-toggle="dosave" onclick="pirce_item_dosave(this)">保存</a>
+                                        <a href="javascript:;" class="btn btn-green" data-toggle="dosave" id="btnsave#index#" name="t_price-#index#" onclick="btn_price_item_add(this)" >保存</a>
                                         <a href="javascript:;" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a> 
                                     </th>
                                 </tr>
@@ -52,11 +51,18 @@
 </div>
 <script type="text/javascript">
     $(function () {
-
+        var options = {};
+        options.initnum = 10;
+        options.singleNoindex = true;
+        options.addtool = true;
+        console.log(price_edit_id)
         if (price_edit_id) {
+        
             $("#p_price_name").val(price_edit_name);
             $("#pricePid").val(price_edit_id);
-         
+            console.log($("#pricePid").val())
+            options.action = "ajax.ashx?action=addpriceitem&pricePid=" + price_edit_id;
+          
             $.ajax({
                 url: "ajax.ashx?action=getpriceitemlist",
                 data: { pid: price_edit_id },
@@ -71,48 +77,48 @@
                         html.push(' <td>   '); 
                         html.push('<a href="ajax.ashx?action=deletepriceitem&id='+ d.id +'" data-toggle="doajax" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a></td> </tr>'); 
                     }
-                    $("#addpriceitem tbody").empty().append(html.join('')); 
-                  
-                   // price_edit_id = undefined;
+                    $("#addpriceitem tbody").empty().append(html.join(''));  
                 }, error: function () {
                     console.log("error");
                 }
             });
+        } else {
+            options.action = "ajax.ashx?action=addpriceitem&pricePid=-1";
+            options.callback = "action_callback";
         }
-      
-    });
-    var price_item_list_temp = [];
-    function pirce_item_dosave(_this) {
-     
-        var rowindex = $(_this).attr("indexid");
-        var obj = new Object();
-        obj.itemName = $("#priceItemName" + rowindex).val()
-        obj.itemPrice = $("#t_price" + rowindex).val()
-        obj.pid = $("#pricePid").val();
-        price_item_list_temp.push(obj);
-        if (price_item_list_temp.length > 0) {
-            for (var i = 0; i < price_item_list_temp.length; i++) {
-                console.log(price_item_list_temp[i]);
-            } 
-        }
-    }
-    function add_price_save() {
-        var postData = {};
-        console.log(price_item_list_temp.length);
-        if (price_item_list_temp.length > 0) {
-            postData.items = price_item_list_temp;
-        }
-        postData.name = $("#p_price_name").val();
-        $.ajax({
-            url: "ajax.ashx?action=addprice",
-            data: postData,
-            type: "post",
-            success: function (r) {
-                console.log(r);
-            }, error: function () {
-                console.log("error");
+        $("#addpriceitem").tabledit(options)
+    }); 
+   
+    function add_price_save() { 
+        if (price_edit_id) {  
+            $("#j_addprice_form").attr("action", "ajax.ashx?action=updateprice&updateid=" + price_edit_id);
+         
+        } else {
+            $("#j_addprice_form").attr("action", "ajax.ashx?action=addprice");
+            if (ids.length > 0) { 
+                $("#txtIds").val(ids.join(','));
             }
-        });
-        
+        }
+        $("#j_addprice_form").submit(); 
     }
+    var ids = [];
+    var rowindex=-1;
+    function action_callback(json) {
+ 
+        var $tr = $("#t_price" + rowindex).parent().parent().parent();
+    
+        if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
+            ids.push(json["id"]);
+            console.log(ids.join(','));
+           $($($tr).find("td")[0]).text($($($tr).find("td")[0]).find("input").val());
+           $($($tr).find("td")[1]).text($($($tr).find("td")[1]).find("input").val());
+           $("#btnsave" + rowindex).remove();
+            return true;
+        } else {
+        }
+    }
+    function btn_price_item_add(_this) {
+        rowindex = $(_this).attr("name").split('-')[1];
+    }
+ 
 </script>

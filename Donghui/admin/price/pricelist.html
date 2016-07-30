@@ -131,8 +131,14 @@
     function detail(_this) {
         price_edit_id = $(_this).attr("pid");
         price_edit_name = $(_this).attr("pname");
-        $(_this).dialog({ id: 'dialog-addprice', url: 'price/addprice.html', title: '修改套餐',height:'400',width:"800" });
-
+        $(_this).dialog({ id: 'dialog-addprice', url: 'price/addprice.html', title: '修改套餐', height: '400', width: "800", onClose: "dialog_addprice_before_close" });
+    }
+    function dialog_addprice_before_close($dialog) { 
+        price_edit_id = undefined;
+        price_edit_name = undefined;
+        $("body").navtab("refresh", "pricelist");
+        //refresh("pricelist");
+        return true;
     }
 </script>
 <div class="bjui-pageHeader">
@@ -159,7 +165,7 @@
         <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>-->
         <div class="pull-right">
             <button type="button" class="btn-blue" data-url="price/addprice.html" data-id="dialog-addprice" data-width="800" data-height="400"
-                    data-toggle="dialog"> 添加套餐 </button>
+                    data-toggle="dialog" data-on-close="dialog_addprice_before_close"> 添加套餐 </button>
             <!--<button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
             <div class="btn-group">
                <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy">复选框-批量操作<span class="caret"></span></button>

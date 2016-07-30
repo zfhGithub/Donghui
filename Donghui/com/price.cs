@@ -31,28 +31,35 @@ namespace Donghui.com
             return s.Select(strSql);
         }
 
-        public static int addPriceItem(string name,string price,string pid)
+        public static string addPriceItem(string name,string price,string pid)
         {
             if (string.IsNullOrWhiteSpace( pid ))
             {
-                return -1;
+                return "-1";
             }
             if (price == "")
             {
                 price = "0";
             }
-            string strSql = string.Format("insert into Price  values( '{0}','{1}',{2},getdate() )",name,price,pid);
+            string strSql = string.Format("insert into Price  values( '{0}','{1}',{2},getdate()) select @@identity", name,price,pid);
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
-            return s.ExecuteSql(strSql);
+            return s.Select(strSql);
         }
 
-        public static int addPrice(string name, string items)
+        public static int addPrice(string name)
         {
             string strSql = string.Format("insert into Price  values( '{0}','{1}',{2},getdate() )", name, 0.00, 0);
-            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
-
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating(); 
             return s.ExecuteSql(strSql);
         }
+
+        public static int updatePrice(string id,string name)
+        {
+            string strSql = string.Format("update Price set name='{0}' where id={1} and praentId=0", name, id);
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            return s.ExecuteSql(strSql);
+        }
+
         public static int deletePriceItem(string id)
         {
             string strSql = "delete from Price where id="+id;

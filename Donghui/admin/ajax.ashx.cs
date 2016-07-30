@@ -113,13 +113,21 @@ namespace Donghui.admin
                     string priceItemName = req.Params["priceItemName"];
                     string priceItemPrice = req.Params["price"];
                     string priceItemPid = req.Params["pricePid"];
-
-                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", com.price.addPriceItem(priceItemName, priceItemPrice, priceItemPid)));
+                    string identity = com.price.addPriceItem(priceItemName, priceItemPrice, priceItemPid);
+                    if (!string.IsNullOrWhiteSpace( identity ))
+                        res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", 1, json: "\"id\":\"" + identity + "\""));
+                    else
+                        res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", 0));
                     break;
-                case "addprice":
-                    string items = req.Form["items"];
-                    string name = req.Form["name"]; 
-                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name, items)));
+                case "addprice": 
+                    string name = req.Form["p_price_name"];
+                   string ids = req.Params["ids"];
+                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name), closeCurrent: "true"));
+                    break;
+                case "updateprice":
+                   name = req.Form["p_price_name"];
+                    id = req.Params["updateid"];
+                   res.Write( Utils.GetReulst(200,"修改成功","修改失败", com.price.updatePrice(id, name), closeCurrent: "true"));
                     break;
                 case "deletepriceitem":
                     id = req.Params["id"];
