@@ -5,79 +5,39 @@
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
                 <tr>
-                    <td>
-                        <label for="j_custom_name" class="control-label x85">商品名称：</label>
-                        <input type="text" name="pname" id="j_custom_name" value="" data-rule="required" size="15">
+                    <td colspan="4">
+                        <label for="i_case_title" class="control-label x85">标题：</label>
+                        <input type="text" name="i_case_title" id="i_case_title" value="" data-rule="required" size="35">
                     </td>
-                    <td>
-                        <label for="j_custom_total" class="control-label x85">商品价格：</label>
-                        <input type="text" name="pprict" id="j_custom_total" value="1" size="12" data-toggle="spinner" data-min="0" data-max="100" data-step="1" data-rule="integer">元
-                    </td>
-                    <td>
-                        <label for="j_custom_number" class="control-label x85">商品编号：</label>
-                        <input type="text" name="pnumber" id="j_custom_number" value="" data-rule="required" size="15">
-                    </td>
-                    <td></td>
+                    
                 </tr>
-                <tr>
-                    <td>
-                        <label for="j_custom_sale" class="control-label x85">所属分类：</label>
-                        <select name="ptype" id="j_custom_sale" data-toggle="selectpicker" data-rule="required">
-                            <option value="1">棒球帽</option>
-                            <option value="2">平板帽</option>
-                            <option value="3">网帽</option>
-                            <option value="4">针织帽</option>
-                            <option value="5">五片帽</option>
-                            <option value="6">边帽</option>
-                        </select>
-                    </td>
-                    <td>
-                        <label class="control-label x85">商品头像：</label>
-                        <div style="display: inline-block; vertical-align: middle;">
-                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=head"
-                                 data-file-size-limit="2097152"
-                                 data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
-                                 data-multi="false"
-                                 data-drag-drop="true"
-                                 data-on-upload-success="pic_upload_success"
-                                 data-icon="cloud-upload"></div>
-                            <input type="hidden" name="phead" value="" id="phead" data-rule="商品头像:required">
-                            <span id="j_custom_span_pic"></span>
-                        </div>
-                    </td>
-                    <td colspan="2">
-                        <!--<label for="j_custom_color" class="control-label x85">表示颜色：</label>
-                            <input type="text" name="custom.color" id="j_custom_color" value="" data-toggle="colorpicker" data-bgcolor="true" size="15" readonly>
-                            <a href="javascript:;" title="清除颜色" data-toggle="clearcolor" data-target="#j_custom_color">清除颜色</a>-->
-                    </td>
-                </tr>
-
+            
 
                 <tr>
                     <td colspan="4">
-                        <label for="j_custom_note" class="control-label x85">商品标题：</label>
-                        <textarea name="ptitle" id="j_custom_title" data-toggle="autoheight" cols="60" rows="1" data-rule="required"></textarea>
+                        <label for="i_case_subtitle" class="control-label x85">二级标题：</label>
+                        <textarea name="i_case_subtitle" id="i_case_subtitle" data-toggle="autoheight" cols="60" rows="1" data-rule="required"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <label for="j_custom_note" class="control-label x85">商品图片：</label>
+                        <label for="u_case_pic_up" class="control-label x85">图片：</label>
                         <div style="display: inline-block; vertical-align: middle;">
-                            <div id="j_custom_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=uploadHeard&type=pimage"
+                            <div id="u_case_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=kindeditor&type=head"
                                  data-file-size-limit="5242880"
                                  data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
                                  data-multi="true"
                                  data-drag-drop="true"
-                                 data-on-upload-success="product_upload_success"
+                                 data-on-upload-success="case_photo_upload_success"
                                  data-icon="cloud-upload"></div>
-                            <input type="hidden" name="pproduct" value="" id="pproduct" data-rule="商品图片:required">
-                            <span id="j_custom_span_product"></span>
+                            <input type="hidden" name="i_case_photo" value="" id="i_case_photo" data-rule="图片:required">
+                            <span id="j_case_span_head"></span>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <label for="j_custom_content" class="control-label x85">产品详情：</label>
+                        <label for="j_custom_content" class="control-label x85">内容：</label>
                         <div style="display: inline-block; vertical-align: middle;">
                             <textarea name="pdetail" id="j_form_content" class="j-content" style="width: 700px;" data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
                                       data-after-upload="kindeditor_upload_success" data-file-manager-json="ajax.ashx?action=fileManagerJson"
@@ -95,3 +55,14 @@
         <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
     </ul>
 </div>
+<script type="text/javascript">
+    function case_photo_upload_success(file, data) {
+        var json = JSON.parse(data);
+        if (json.statusCode == 200) {
+            $("#i_case_photo").val(json.url);
+            $('#j_case_span_head').html('已上传图片：<img src="' + json.url + '" width="100">')
+
+        }
+
+    }
+</script>

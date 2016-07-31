@@ -46,11 +46,18 @@ namespace Donghui.com
             return s.Select(strSql);
         }
 
-        public static int addPrice(string name)
+        public static int addPrice(string name, string ids)
         {
-            string strSql = string.Format("insert into Price  values( '{0}','{1}',{2},getdate() )", name, 0.00, 0);
-            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating(); 
-            return s.ExecuteSql(strSql);
+            string strSql = string.Format("insert into Price  values( '{0}','{1}',{2},getdate() ) ; select @@identity", name, 0.00, 0);
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            string pid = s.Select(strSql);
+            if (!ids.Equals(string.Empty))
+            {
+                strSql = string.Format("update Price set praentId={0} where id in ({1}) and praentId=-1", pid, ids);
+                return s.ExecuteSql(strSql);
+            }
+            else
+                return Convert.ToInt32(pid);
         }
 
         public static int updatePrice(string id,string name)
@@ -68,7 +75,19 @@ namespace Donghui.com
         }
 
 
-            
+        public static DataTable getPriceTop4()
+        {
+            string strSql = "select top 4 id, name, itemPrice, praentId, created from Price where praentId=0 order by created desc";
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            return s.Selects(strSql);
+        }
+
+        public static DataTable getPriceTop4Item(string id)
+        {
+            string strSql = "select id, name, itemPrice, praentId, created from Price where praentId="+id+" order by created desc";
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            return s.Selects(strSql);
+        }
 
     }
 }

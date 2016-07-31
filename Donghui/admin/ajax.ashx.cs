@@ -122,7 +122,7 @@ namespace Donghui.admin
                 case "addprice": 
                     string name = req.Form["p_price_name"];
                    string ids = req.Params["ids"];
-                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name), closeCurrent: "true"));
+                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name,ids), closeCurrent: "true"));
                     break;
                 case "updateprice":
                    name = req.Form["p_price_name"];

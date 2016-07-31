@@ -54,13 +54,12 @@
         var options = {};
         options.initnum = 10;
         options.singleNoindex = true;
-        options.addtool = true;
-        console.log(price_edit_id)
+        options.addtool = true; 
         if (price_edit_id) {
         
             $("#p_price_name").val(price_edit_name);
             $("#pricePid").val(price_edit_id);
-            console.log($("#pricePid").val())
+       
             options.action = "ajax.ashx?action=addpriceitem&pricePid=" + price_edit_id;
           
             $.ajax({
@@ -75,7 +74,7 @@
                         html.push("<tr> <td> " + d.name + "</td>");
                         html.push("  <td>" + d.itemPrice + " </td>"); 
                         html.push(' <td>   '); 
-                        html.push('<a href="ajax.ashx?action=deletepriceitem&id='+ d.id +'" data-toggle="doajax" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a></td> </tr>'); 
+                        html.push('<a href="ajax.ashx?action=deletepriceitem&id='+ d.id +'" data-toggle="doajax"   class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a></td> </tr>'); 
                     }
                     $("#addpriceitem tbody").empty().append(html.join(''));  
                 }, error: function () {
@@ -88,37 +87,47 @@
         }
         $("#addpriceitem").tabledit(options)
     }); 
-   
+
+  
     function add_price_save() { 
         if (price_edit_id) {  
             $("#j_addprice_form").attr("action", "ajax.ashx?action=updateprice&updateid=" + price_edit_id);
          
         } else {
             $("#j_addprice_form").attr("action", "ajax.ashx?action=addprice");
-            if (ids.length > 0) { 
-                $("#txtIds").val(ids.join(','));
+           
+            var ids = [];
+            var trs = $("#addpriceitem tbody tr");
+            for (var i = 0; i < trs.length; i++) { 
+                ids.push($(trs[i]).attr("pid"));
+            }
+            if (ids.length > 0) {
+                $("#txtIds").val(ids.join(',')); 
             }
         }
         $("#j_addprice_form").submit(); 
     }
-    var ids = [];
     var rowindex=-1;
     function action_callback(json) {
- 
+
         var $tr = $("#t_price" + rowindex).parent().parent().parent();
-    
+
         if (json[BJUI.keys.statusCode] == BJUI.statusCode.ok) {
-            ids.push(json["id"]);
-            console.log(ids.join(','));
-           $($($tr).find("td")[0]).text($($($tr).find("td")[0]).find("input").val());
-           $($($tr).find("td")[1]).text($($($tr).find("td")[1]).find("input").val());
-           $("#btnsave" + rowindex).remove();
+          
+            $($tr).attr("pid", json["id"]); 
+            $($($tr).find("td")[0]).text($($($tr).find("td")[0]).find("input").val());
+            $($($tr).find("td")[1]).text($($($tr).find("td")[1]).find("input").val());
+            $("#btnsave" + rowindex).remove();
             return true;
         } else {
         }
     }
     function btn_price_item_add(_this) {
         rowindex = $(_this).attr("name").split('-')[1];
+    }
+    function datacallback(json) {
+
+        console.log(json);
     }
  
 </script>

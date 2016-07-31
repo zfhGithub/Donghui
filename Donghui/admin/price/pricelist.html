@@ -40,17 +40,17 @@
 
                     html.push("<ul class='pagination'>");
                     html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
-                    html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                    html.push("<li class='j-prev' onclick='pricelist_prevpage()'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
 
                     for (var i = 1; i <= MaxPage; i++) {
                         var c = "j-num";
                         if (i == pageIndex) {
                             c = "selected " + c;
                         }
-                        html.push("<li class='"+c+"'><a href='javascript:'> "+i+"</a></li>");
+                        html.push("<li class='"+c+"' onclick='pricelist_j_num(this)'><a href='javascript:'> "+i+"</a></li>");
                     }
-                    html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
-                    html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
+                    html.push("<li class='j-next' onclick='pricelist_nextpage()'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last' onclick='pricelist_lastpage()'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
                     html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
                     html.push("<ul>");
 
@@ -69,32 +69,33 @@
             }
         });
     }
+    //下一页
+    function pricelist_nextpage() {
+        pageIndex++;
+        ProductInfo();
+    }
+    //末页
+    function pricelist_lastpage() { 
+        pageIndex = MaxPage;
+        ProductInfo(); 
+    }
+    function pricelist_prevpage() { 
+        pageIndex--;
+        ProductInfo();
+    }
+ 
+    function pricelist_j_num(that)
+    { //点击跳转相应页面
+        $(".j-num").removeClass("selected");
+        $(that).attr("class", "selected");
+        var Sum = $(that).text();
+        pageIndex = Sum;
+        ProductInfo();
+    }
     $(function () {
         ProductInfo();
         var Protype = $("#Protype").find("option:selected").text();
-        //下一页
-        $(".j-next").live("click", function () {
-            pageIndex++;
-            ProductInfo();
-        });
-        //点击跳转相应页面
-        $(".j-num").live("click", function () {
-            $(".j-num").removeClass("selected");
-            $(this).attr("class", "selected");
-            var Sum = $(this).text();
-            pageIndex = Sum;
-            ProductInfo();
-        })
-        //末页
-        $(".last").live("click", function () {
-            pageIndex = MaxPage;
-            ProductInfo();
-        });
-        //上一页
-        $(".j-prev").live("click", function () {
-            pageIndex--;
-            ProductInfo();
-        })
+        
         //输入跳转
         $(".goto").live("click", function () {
             var InputValue = $("#put").val();
@@ -122,24 +123,24 @@
         });
 
     });
-    function search() {
-        pageIndex = 1;
-        ProductInfo();
-    }
-    var price_edit_id;
-    var price_edit_name;
-    function detail(_this) {
-        price_edit_id = $(_this).attr("pid");
-        price_edit_name = $(_this).attr("pname");
-        $(_this).dialog({ id: 'dialog-addprice', url: 'price/addprice.html', title: '修改套餐', height: '400', width: "800", onClose: "dialog_addprice_before_close" });
-    }
-    function dialog_addprice_before_close($dialog) { 
-        price_edit_id = undefined;
-        price_edit_name = undefined;
-        $("body").navtab("refresh", "pricelist");
-        //refresh("pricelist");
-        return true;
-    }
+        function search() {
+            pageIndex = 1;
+            ProductInfo();
+        }
+        var price_edit_id;
+        var price_edit_name;
+        function detail(_this) {
+            price_edit_id = $(_this).attr("pid");
+            price_edit_name = $(_this).attr("pname");
+            $(_this).dialog({ id: 'dialog-addprice', url: 'price/addprice.html', title: '修改套餐', height: '400', width: "800", onClose: "dialog_addprice_before_close" });
+        }
+        function dialog_addprice_before_close($dialog) { 
+            price_edit_id = undefined;
+            price_edit_name = undefined;
+            $("body").navtab("refresh", "pricelist");
+            //refresh("pricelist");
+            return true;
+        }
 </script>
 <div class="bjui-pageHeader">
     <div class="pull-right">

@@ -206,7 +206,11 @@ namespace SqlOper
                     msg = failureMsg;
                 } 
             }
-            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":"+ closeCurrent + ",    \"forward\":\"\",   \"forwardConfirm\":\"\" ,"+json+"}";
+            if (string.Empty!=json)
+            {
+                json = "," + json;
+            }
+            string str = "{ \"statusCode\":\"" + statusCode + "\",    \"message\":\"" + msg + "\",   \"tabid\":\"\",	\"closeCurrent\":"+ closeCurrent + ",    \"forward\":\"\",   \"forwardConfirm\":\"\" "+json+"}";
 
             return str;
         }

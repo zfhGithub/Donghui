@@ -87,117 +87,33 @@
 			<br />
 		</div>
 		<div class="row flat">
-			<div class="col-lg-3 col-md-3 col-xs-6">
-				<ul class="plan plan1">
-					<li class="plan-name">Basic
-					</li>
-					<li class="plan-price">
-						<strong>$29</strong> Fee
-					</li>
-					<li>
-						<strong>08</strong> Responsive
-					</li>
-					<li>
-						<strong>12</strong> HTML5/CSS
-					</li>
-					<li>
-						<strong>15</strong> Flex
-					</li>
-					<li>
-						<strong>10</strong> Mobile App
-					</li>
-					<li>
-						<strong>Live</strong> Demo
-					</li>
-					<li class="plan-action">
-						<a href="#" class="btn">咨询客服</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-3 col-md-3 col-xs-6">
-				<ul class="plan plan2 featured">
-					<li class="plan-name">Standard
-					</li>
-					<li class="plan-price">
-						<strong>$59</strong> Fee
-					</li>
-					<li>
-						<strong>08</strong> Responsive
-					</li>
-					<li>
-						<strong>12</strong> HTML5/CSS
-					</li>
-					<li>
-						<strong>15</strong> Flex
-					</li>
-					<li>
-						<strong>10</strong> Mobile App
-					</li>
-					<li>
-						<strong>Live</strong> Demo
-					</li>
-					<li class="plan-action">
-						<a href="#" class="btn">Signup</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-3 col-md-3 col-xs-6">
-				<ul class="plan plan3">
-					<li class="plan-name">Advanced
-					</li>
-					<li class="plan-price">
-						<strong>$79</strong> Fee
-					</li>
-					<li>
-						<strong>08</strong> Responsive
-					</li>
-					<li>
-						<strong>12</strong> HTML5/CSS
-					</li>
-					<li>
-						<strong>15</strong> Flex
-					</li>
-					<li>
-						<strong>10</strong> Mobile App
-					</li>
-					<li>
-						<strong>Live</strong> Demo
-					</li>
-					<li class="plan-action">
-						<a href="#" class="btn">Signup</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="col-lg-3 col-md-3 col-xs-6">
-				<ul class="plan plan4 featured">
-					<li class="plan-name">Mighty
-					</li>
-					<li class="plan-price">
-						<strong>$109</strong> Fee
-					</li>
-					<li>
-						<strong>08</strong> Responsive
-					</li>
-					<li>
-						<strong>12</strong> HTML5/CSS
-					</li>
-					<li>
-						<strong>15</strong> Flex
-					</li>
-					<li>
-						<strong>10</strong> Mobile App
-					</li>
-					<li>
-						<strong>Live</strong> Demo
-					</li>
-					<li class="plan-action">
-						<a href="#" class="btn">Signup</a>
-					</li>
-				</ul>
-			</div>
+            <%
+                for (int i = 0; i < priceList.Rows.Count; i++)
+                {%>
+            	    <div class="col-lg-3 col-md-3 col-xs-6">
+				    <ul class="plan plan<%=i %> <%= i%2==0?"":"featured" %>">
+                          <li class="plan-name"><%= priceList.Rows[i]["name"].ToString() %>
+					    </li>
+                        <%
+                                    for (int j = 0; j < itemList.Count; j++)
+                                    {
+                                        if (itemList[j]["praentId"] == priceList.Rows[i]["id"].ToString())
+                                        {%>
+                                            <li class="plan-price">
+						                     <strong>¥<%= itemList[j]["itemPrice"] %></strong> <%= itemList[j]["name"] %>
+					                        </li>
+                                        <%}
+                                  }
+                        %>
+					   
+					    <li class="plan-action">
+						    <a href="#" class="btn">咨询客服</a>
+					    </li>
+				    </ul>
+			      </div> 
+                <%}
+            %>
+		 
 		</div>
 	</section>
  <footer id="footer">
