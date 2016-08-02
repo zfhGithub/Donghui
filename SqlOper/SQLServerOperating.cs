@@ -68,8 +68,8 @@ namespace SqlOper
                 }
             }
             catch (Exception ex)
-            { 
-                throw ex;
+            {
+                return new DataTable();
             } 
         }
 

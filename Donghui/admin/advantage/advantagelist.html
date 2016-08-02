@@ -12,10 +12,7 @@
             url: 'ajax.ashx?action=getadvantagelist',
             data: {
                 "pageIndex": pageIndex,
-                "pageSize": pageSize,
-                'customNo': customNo,
-                'customName': customName,
-                'Protype': Protype,
+                "pageSize": pageSize
             },
             type: "post",
             success: function (result) {
@@ -29,12 +26,12 @@
                 var data = da["d"];
                 $.each(data, function (k, v) {
                     html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
-
-                    html.push("  <td> <a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
-                });
+                    html.push("<td> <a href='#' onclick='advantage_edit(this,\"" + v.id + "\")' class='btn btn-green' >编辑</a>");
+                    html.push("<a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                }); 
                 $("#t_advantage_list tbody").empty().append(html.join(''));
                 html = [];
-                $("#total").html(TotalPage);//共6条数据
+                $("#total").html(TotalPage); 
 
                 html.push("<ul class='pagination'>");
                 html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
@@ -66,7 +63,17 @@
             }
         });
     }
-
+    var advantage_edit_id;
+    function advantage_edit(_this,id) {
+        advantage_edit_id = id;
+         $(_this).dialog({ id: 'dialog-addadvantage', url: 'advantage/addadvantage.html', title: '修改优势', height: '400', width: "860", onClose: "dialog_addadvantage_before_close" });
+    }
+    function dialog_addadvantage_before_close($dialog) {
+        advantage_edit_id = undefined;
+        $("body").navtab("refresh", "pricelist");
+        //refresh("pricelist");
+        return true;
+    }
     $(function () {
         ProductInfo();
         var Protype = $("#Protype").find("option:selected").text();
@@ -129,12 +136,12 @@
 <div class="bjui-pageHeader">
     <div class="pull-right">
 
-        <div class="btn-group">
+        <!--<div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy"> 复选框-批量操作<span class="caret"></span></button>
             <ul class="dropdown-menu right" role="menu" style="min-width: 153px;">
                 <li><a href="ajax.ashx?action=ProductDels" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="del" data-group="ids">删除选中</a></li>
             </ul>
-        </div>
+        </div>-->
     </div>
     <!--<input type="hidden" name="pageSize" value="${model.pageSize}">
      <input type="hidden" name="pageCurrent" value="${model.pageCurrent}">

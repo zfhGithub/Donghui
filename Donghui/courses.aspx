@@ -76,9 +76,9 @@
                 {%>
                    <li class="col-lg-3 col-sm-4 col-xs-6">
                     <a href="sidebar-right.aspx?id=<%=  advList.Rows[i]["id"].ToString()  %>" title="">
-                        <img src="<%= advList.Rows[i]["photo"].ToString() %>" alt="Barca" class="img-responsive" height="130px" />
+                        <img src="<%= advList.Rows[i]["photo"].ToString() %>" alt="Barca" class="img-responsive" height="188px" width="247px" />
                         <h2><%= advList.Rows[i]["title"] %> </h2>
-                        <span class="play-button"></span>
+                       <%-- <span class="play-button"></span>--%>
                         <span class="duration"><%= advList.Rows[i]["name"] %></span>
                     </a>
                 </li>

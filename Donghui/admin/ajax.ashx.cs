@@ -80,6 +80,11 @@ namespace Donghui.admin
                     string reulst = Utils.GetReulst(200, "添加成功！", "添加失败！", status, "true");
                     res.Write(reulst);
                     break;
+                case "updateadvantage":
+                    status = com.advantage.updateAdvantage(req.Params["id"],req.Form["t_advantage_name"], req.Form["t_advantage_title"], req.Form["hidden_advantagehead"], req.Form["t_advantage_content"]);
+                    reulst = Utils.GetReulst(200, "修改成功！", "修改失败！", status, "true");
+                    res.Write(reulst);
+                    break;
                 case "getadvantagelist":
                     currentIndex = req.Form["pageIndex"];
                     pageCount = req.Form["pageSize"];
@@ -92,6 +97,10 @@ namespace Donghui.admin
                 case "deleteadvantage":
                     string id = req.QueryString["id"];
                     res.Write(Utils.GetReulst(200, "删除成功！", "删除失败！", com.advantage.deleteAdvantageById(id)));
+                    break;
+                case "getadvantagedetailbyid":
+                    id = req.Params["id"];
+                    res.Write(Utils.DataTableToJSON(com.advantage.getAdvantageDetailById(id)));
                     break;
                 #endregion
 
@@ -181,23 +190,27 @@ namespace Donghui.admin
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "addarticle":
-                    title = req.Form["article_title"];
-                    photo = req.Form["article_photo"];
-                    content = req.Form["article_content"];
-                    subtitle = req.Form["article_subtitle"];
-                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.article.addArticle(title, subtitle, photo, content)));
+                    title = req.Form["i_article_title"];
+                    photo = req.Form["i_article_photo"];
+                    content = req.Form["i_article_content"];
+                    subtitle = req.Form["i_article_subtitle"];
+                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.article.addArticle(title, subtitle, photo, content),closeCurrent:"true"));
                     break;
                 case "deletearticle":
                     id = req.Params["id"];
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.deleteArticleById(id)));
                     break;
                 case "updatearticle":
-                    title = req.Form["article_title"];
-                    photo = req.Form["article_photo"];
-                    content = req.Form["article_content"];
-                    subtitle = req.Form["article_subtitle"];
+                    title = req.Form["i_article_title"];
+                    photo = req.Form["i_article_photo"];
+                    content = req.Form["i_article_content"];
+                    subtitle = req.Form["i_article_subtitle"];
+                    id = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.updateArticle(id, title, subtitle, photo, content),closeCurrent:"true"));
+                    break;
+                case "getarticledetailbyid":
                     id = req.Form["id"];
-                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.updateArticle(id, title, subtitle, photo, content)));
+                    res.Write(Utils.DataTableToJSON(com.article.getArticleDetailById(id)));
                     break;
                     #endregion
             }

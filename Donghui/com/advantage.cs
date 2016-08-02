@@ -23,6 +23,17 @@ namespace Donghui.com
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
             return  s.ExecuteSql(strSql,sp);
         }
+        public static int updateAdvantage(string id, string name, string subtitle, string photo, string content)
+        {
+            string strSql = string.Format(@"update News set subtitle=@subtitle,name=@name,photo=@photo,content=@content where id=@id and type='advantage'");
+            SqlParameter[] sp = new SqlParameter[] {
+                new SqlParameter ("id",id),new SqlParameter ("name",name),
+                new SqlParameter ("content",content),new SqlParameter ("subtitle",subtitle),
+                new SqlParameter ("photo",photo)
+            };
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            return s.ExecuteSql(strSql, sp);
+        }
 
         public static DataTable getAdvantageList(string currentIndex, string pageCount)
         {
@@ -90,6 +101,11 @@ namespace Donghui.com
             SQLServerOperating s = new SQLServerOperating();
             return s.ExecuteSql(strSql);
         }
-
+        public static DataTable getAdvantageDetailById(string id)
+        {
+            string strSql = "select id, type, name, title, subtitle, photo, content, created, deleted from News where type = 'advantage' and deleted = 0 and id="+id;
+            SQLServerOperating s = new SQLServerOperating();
+            return s.Selects(strSql);
+        }
     }
 }

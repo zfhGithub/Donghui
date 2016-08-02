@@ -188,7 +188,7 @@ function MainMenuClick(event, treeId, treeNode) {
     if (treeNode.target && treeNode.target == 'dialog')
         $(event.target).dialog({id:treeNode.tabid, url:treeNode.url, title:treeNode.name})
     else
-        $(event.target).navtab({id:treeNode.tabid, url:treeNode.url, title:treeNode.name, fresh:treeNode.fresh, external:treeNode.external})
+        $(event.target).navtab({ id: treeNode.tabid, url: treeNode.url, title: treeNode.name, fresh: treeNode.fresh, external: treeNode.external })
 }
 </script>
 <!-- for doc begin -->
@@ -271,6 +271,9 @@ $(function(){
 
                                 <li data-id="6" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">文章管理</li> 
                                 <li data-id="62" data-pid="6" data-url="article/articlelist.html" data-tabid="articlelist" >文章列表</li> 
+
+                    <%--             <li data-id="7" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">首页轮播图片</li> 
+                                <li data-id="71" data-pid="7" data-url="settings/setBanner.html" data-tabid="articlelist" >图片管理</li> --%>
                                   
                             </ul>                
 
@@ -317,7 +320,7 @@ $(function(){
             </div>
         </div>
     </div>
-    <footer id="bjui-footer">Copyright &copy; 2013 - 2015　<a href="../index.aspx" target="_blank">返回主页</a>　
+    <footer id="bjui-footer">Copyright &copy; 2013 - 2016　<a href="../index.aspx" target="_blank">返回主页</a>　
         <!--  
         <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252983288'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/stat.php%3Fid%3D1252983288%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
         -->

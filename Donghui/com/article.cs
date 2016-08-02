@@ -32,11 +32,11 @@ namespace Donghui.com
             string strSql = string.Format(@"INSERT INTO [News] ([type],[title],[subtitle],[content],created,photo,name,deleted)
                                             VALUES (@type,@title,@subtitle,@content,getdate(),@photo,@name,0)");
             SqlParameter[] sp = new SqlParameter[] {
-                new SqlParameter ("type","article"),new SqlParameter ("title",title),
+                new SqlParameter ("type","article"),new SqlParameter ("title",title),new SqlParameter ("name",title),
                 new SqlParameter ("content",content),   new SqlParameter ("photo",photo),   new SqlParameter ("subtitle",subtitle)
             };
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
-            return s.ExecuteSql(strSql);
+            return s.ExecuteSql(strSql,sp);
         }
 
         public static int deleteArticleById(string id)
@@ -46,15 +46,22 @@ namespace Donghui.com
             return s.ExecuteSql(strSql);
         }
 
-        public static int updateArticle(string id, string subtitle, string title, string photo, string content)
+        public static int updateArticle(string id, string title, string subtitle,string photo, string content)
         {
-            string sql = "update News Set title=@title,subtitle=@subtitle,photo=@photo,content=@content where id=@id";
+            string sql = "update News Set name=@name, title=@title,subtitle=@subtitle,photo=@photo,content=@content where id=@id";
             SqlParameter[] sp = new SqlParameter[] {
-                new SqlParameter ("title",title),new SqlParameter ("id",id),
+                new SqlParameter ("title",title),new SqlParameter ("id",id), new SqlParameter ("name",title),
                 new SqlParameter ("content",content),   new SqlParameter ("photo",photo), new SqlParameter ("subtitle",subtitle)
             };
             SQLServerOperating s = new SQLServerOperating();
             return s.ExecuteSql(sql, sp);
+        }
+
+        public static DataTable getArticleDetailById(string id)
+        {
+            string strSql = string.Format("select id, type, name, title, subtitle, photo, content, created, deleted from News where id={0} and type='Article' and deleted=0", id);
+            SQLServerOperating s = new SQLServerOperating();
+            return s.Selects(strSql);
         }
 
     }
