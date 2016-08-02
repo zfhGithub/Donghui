@@ -27,16 +27,16 @@ namespace Donghui.com
             return s.Select(strSql);
         }
 
-        public static int addCase(string title,string photo,string content)
+        public static int addCase(string title,string subtitle,string photo,string content)
         {
-            string strSql = string.Format(@"INSERT INTO [News] ([type],[title],[content],created,photo,name,deleted)
-                                            VALUES (@type,@title,@content,getdate(),@photo,@name,0)");
+            string strSql = string.Format(@"INSERT INTO [News] ([type],[name],[subtitle],[content],created,photo,deleted)
+                                            VALUES (@type,@name,@subtitle,@content,getdate(),@photo,0)");
             SqlParameter[] sp = new SqlParameter[] {
-                new SqlParameter ("type","case"),new SqlParameter ("title",title),
+                new SqlParameter ("type","case"),new SqlParameter ("name",title),new SqlParameter ("subtitle",subtitle),
                 new SqlParameter ("content",content),   new SqlParameter ("photo",photo)
             };
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
-            return s.ExecuteSql(strSql);
+            return s.ExecuteSql(strSql,sp);
         }
 
         public static int deleteCaseById(string id)
@@ -46,15 +46,29 @@ namespace Donghui.com
             return s.ExecuteSql(strSql);
         }
 
-        public static int updateCase(string id, string title, string photo, string content)
+        public static int updateCase(string id, string title,string subtitle, string photo, string content)
         {
-            string sql = "update News Set title=@title,photo=@photo,content=@content where id=@id";
+            string sql = "update News Set name=@name,subtitle=@subtitle,photo=@photo,content=@content where id=@id";
             SqlParameter[] sp = new SqlParameter[] {
-                new SqlParameter ("title",title),new SqlParameter ("id",id),
+                new SqlParameter ("name",title),new SqlParameter ("id",id),new SqlParameter ("subtitle",subtitle),
                 new SqlParameter ("content",content),   new SqlParameter ("photo",photo)
             };
             SQLServerOperating s = new SQLServerOperating();
             return s.ExecuteSql(sql, sp);
+        }
+
+        public static DataTable getCaseDetailById(string id)
+        {
+            string strSql = "select id,name, subtitle, photo, content, created, deleted from News where [type]='case' and id = " + id;
+            SQLServerOperating s = new SQLServerOperating();
+            return s.Selects(strSql);
+        }
+
+        public static DataTable getCaseList()
+        {
+            string strSql = "select id,   name, subtitle, photo, content, created, deleted from News where [type]='case' and deleted=0 ";
+            SQLServerOperating s = new SQLServerOperating();
+           return s.Selects(strSql);
         }
 
     }

@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="webThemez.com">
-	<title></title>
+	<title>案例</title>
 	<link rel="favicon" href="assets/images/favicon.png">
 	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -62,7 +62,7 @@
 		<header id="head" class="secondary">
             <div class="container">
                     <h1>案例</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing eliras scele!</p>
+                    <p>你最值得信赖的美国月子服务专家</p>
                 </div>
     </header>
 
@@ -75,7 +75,7 @@
 					<br />
 					<br />
 					<p>
-						At lorem Ipsum available, but the majority have suffered alteration in some form by injected huffered altehe majority have suffered alteration in some form by injected huffered alteration in some form by injected humour.uffered alteration in some form by injected h
+						<%--At lorem Ipsum available, but the majority have suffered alteration in some form by injected huffered altehe majority have suffered alteration in some form by injected huffered alteration in some form by injected humour.uffered alteration in some form by injected h--%>
 					<br />
 						<br />
 					</p>
@@ -83,18 +83,39 @@
 
 					<div class="row">
 						<nav id="filter" class="col-md-12 text-center">
-							<ul>
+							<%--<ul>
 								<li><a href="#" class="current btn-theme btn-small" data-filter="*">All</a></li>
 								<li><a href="#" class="btn-theme btn-small" data-filter=".webdesign">Development</a></li>
 								<li><a href="#" class="btn-theme btn-small" data-filter=".photography">Designing</a></li>
 								<li><a href="#" class="btn-theme btn-small" data-filter=".print">Tools</a></li>
-							</ul>
+							</ul>--%>
 						</nav>
 						<div class="col-md-12">
 							<div class="row">
 								<div class="portfolio-items isotopeWrapper clearfix" id="3">
+                            
+                                    <%
+                                        for (int i = 0; i < caseList.Rows.Count; i++)
+                                        {%>
+                                    	<article class="col-sm-4 isotopeItem webdesign">
+										<div class="portfolio-item">
+											<img src="<%= caseList.Rows[i]["photo"].ToString() %>" alt="" width="360" height="275"/>
+											<div class="portfolio-desc align-center">
+												<div class="folio-info">
+													<a href="sidebar-right.aspx?id=<%= caseList.Rows[i]["id"].ToString()  %>" class="fancybox" target="_blank">
+														<h5><%=  caseList.Rows[i]["name"].ToString() %></h5>
+														<i class="fa fa-link fa-2x"></i></a>
+												</div>
+											</div>
+                                            <label><%=  caseList.Rows[i]["subtitle"].ToString() %></label>
+										</div>
+									</article>
 
-									<article class="col-sm-4 isotopeItem webdesign">
+                                        <%}
+                                         %>
+
+
+<%--									<article class="col-sm-4 isotopeItem webdesign">
 										<div class="portfolio-item">
 											<img src="assets/images/portfolio/img1.jpg" alt="" />
 											<div class="portfolio-desc align-center">
@@ -210,7 +231,7 @@
 												</div>
 											</div>
 										</div>
-									</article>
+									</article>--%>
 								</div>
 
 							</div>

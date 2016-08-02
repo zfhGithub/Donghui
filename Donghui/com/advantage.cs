@@ -11,13 +11,13 @@ namespace Donghui.com
     public class advantage
     {
        
-        public static int addAdvantage(string name, string title ,string photo,string content)
+        public static int addAdvantage(string name, string subtitle, string photo,string content)
         {
-            string strSql = string .Format(@"INSERT INTO [News] ([type],[title],[content],created,photo,name,deleted)
-                                            VALUES (@type,@title,@content,getdate(),@photo,@name,0)");
+            string strSql = string .Format(@"INSERT INTO [News] ([type],[subtitle],[content],created,photo,name,deleted)
+                                            VALUES (@type,@subtitle,@content,getdate(),@photo,@name,0)");
             SqlParameter[] sp = new SqlParameter[] {
                 new SqlParameter ("type","advantage"),new SqlParameter ("name",name),
-                new SqlParameter ("content",content),new SqlParameter ("title",title),
+                new SqlParameter ("content",content),new SqlParameter ("subtitle",subtitle),
                 new SqlParameter ("photo",photo)
             };
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();

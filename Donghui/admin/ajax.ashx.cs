@@ -114,20 +114,20 @@ namespace Donghui.admin
                     string priceItemPrice = req.Params["price"];
                     string priceItemPid = req.Params["pricePid"];
                     string identity = com.price.addPriceItem(priceItemName, priceItemPrice, priceItemPid);
-                    if (!string.IsNullOrWhiteSpace( identity ))
+                    if (!string.IsNullOrWhiteSpace(identity))
                         res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", 1, json: "\"id\":\"" + identity + "\""));
                     else
                         res.Write(Utils.GetReulst(200, "添加成功！", "添加失败！", 0));
                     break;
-                case "addprice": 
+                case "addprice":
                     string name = req.Form["p_price_name"];
-                   string ids = req.Params["ids"];
-                    res.Write(Utils.GetReulst(200,"添加成功","添加失败", com.price.addPrice(name,ids), closeCurrent: "true"));
+                    string ids = req.Params["ids"];
+                    res.Write(Utils.GetReulst(200, "添加成功", "添加失败", com.price.addPrice(name, ids), closeCurrent: "true"));
                     break;
                 case "updateprice":
-                   name = req.Form["p_price_name"];
+                    name = req.Form["p_price_name"];
                     id = req.Params["updateid"];
-                   res.Write( Utils.GetReulst(200,"修改成功","修改失败", com.price.updatePrice(id, name), closeCurrent: "true"));
+                    res.Write(Utils.GetReulst(200, "修改成功", "修改失败", com.price.updatePrice(id, name), closeCurrent: "true"));
                     break;
                 case "deletepriceitem":
                     id = req.Params["id"];
@@ -146,23 +146,30 @@ namespace Donghui.admin
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "addcase":
-                     title = req.Form["case_title"];
-                    string photo = req.Form["case_photo"];
-                    string content = req.Form["case_content"];
-                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.@case.addCase(title, photo, content)));
+                    title = req.Form["i_case_title"];
+                    string subtitle = req.Form["i_case_subtitle"];
+                    string photo = req.Form["i_case_photo"];
+                    string content = req.Form["i_case_content"];
+                    res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.@case.addCase(title, subtitle, photo, content), closeCurrent: "true"));
                     break;
                 case "deletecase":
                     id = req.Params["id"];
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.@case.deleteCaseById(id)));
                     break;
                 case "updatecase":
-                    title = req.Form["case_title"];
-                     photo = req.Form["case_photo"];
-                     content = req.Form["case_content"];
+                    title = req.Form["i_case_title"];
+                    subtitle = req.Form["i_case_subtitle"];
+                    photo = req.Form["i_case_photo"];
+                    content = req.Form["i_case_content"];
+                    id = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "修改成功", "修改失败", com.@case.updateCase(id, title, subtitle, photo, content),closeCurrent:"true"));
+                    break;
+                case "getcasedetailbyid":
                     id = req.Form["id"];
-                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.@case.updateCase(id, title, photo, content)));
+                    res.Write(Utils.DataTableToJSON(com.@case.getCaseDetailById(id)));
                     break;
                 #endregion
+
                 #region 文章管理
                 case "getarticlelist":
                     currentIndex = req.Form["pageIndex"];
@@ -177,7 +184,7 @@ namespace Donghui.admin
                     title = req.Form["article_title"];
                     photo = req.Form["article_photo"];
                     content = req.Form["article_content"];
-                    string subtitle = req.Form["article_subtitle"];
+                    subtitle = req.Form["article_subtitle"];
                     res.Write(Utils.GetReulst(200, "添加成功！", "添加失败", com.article.addArticle(title, subtitle, photo, content)));
                     break;
                 case "deletearticle":
@@ -193,7 +200,6 @@ namespace Donghui.admin
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.article.updateArticle(id, title, subtitle, photo, content)));
                     break;
                     #endregion
-
             }
         }
 

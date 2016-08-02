@@ -1,6 +1,6 @@
 ﻿
 <div class="bjui-pageContent">
-    <form action="ajax.ashx?action=addproduct" id="j_product_form" data-toggle="validate" data-alertmsg="false">
+    <form action="ajax.ashx?action=addcase" id="f_addcase_form" data-toggle="validate" data-alertmsg="false">
         <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
         <table class="table table-condensed table-hover" width="100%">
             <tbody>
@@ -8,10 +8,8 @@
                     <td colspan="4">
                         <label for="i_case_title" class="control-label x85">标题：</label>
                         <input type="text" name="i_case_title" id="i_case_title" value="" data-rule="required" size="35">
-                    </td>
-                    
-                </tr>
-            
+                    </td> 
+                </tr> 
 
                 <tr>
                     <td colspan="4">
@@ -39,9 +37,9 @@
                     <td colspan="4">
                         <label for="j_custom_content" class="control-label x85">内容：</label>
                         <div style="display: inline-block; vertical-align: middle;">
-                            <textarea name="pdetail" id="j_form_content" class="j-content" style="width: 700px;" data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
+                            <textarea name="i_case_content" id="i_case_content" class="j-content" style="width: 700px;" data-upload-json="ajax.ashx?action=kindeditor&type=kindeditor"
                                       data-after-upload="kindeditor_upload_success" data-file-manager-json="ajax.ashx?action=fileManagerJson"
-                                      data-toggle="kindeditor" data-minheight="200"></textarea>
+                                      data-toggle="kindeditor" data-minheight="200" data-rule="内容:required"></textarea>
                         </div>
                     </td>
                 </tr>
@@ -52,7 +50,7 @@
 <div class="bjui-pageFooter">
     <ul>
         <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
-        <li><button type="button" class="btn-default" id="btnAddProductSave" data-icon="save">保存</button></li>
+        <li><button type="button" class="btn-default" data-icon="save" onclick="add_case(this)">保存</button></li>
     </ul>
 </div>
 <script type="text/javascript">
@@ -60,9 +58,35 @@
         var json = JSON.parse(data);
         if (json.statusCode == 200) {
             $("#i_case_photo").val(json.url);
-            $('#j_case_span_head').html('已上传图片：<img src="' + json.url + '" width="100">')
-
-        }
-
+            $('#j_case_span_head').html('已上传图片：<img src="' + json.url + '" width="100">') 
+        } 
     }
+    function add_case(_this)
+    {
+        if (case_edit_id) {
+            $("#f_addcase_form").attr("action", "ajax.ashx?action=updatecase&id=" + case_edit_id);
+           // $("#i_case_content").html($("#i_case_content").html()+" ." );
+        }
+        $("#f_addcase_form").submit();
+    }
+    $(function () {
+        if (case_edit_id) {
+            $.ajax({
+                url: "ajax.ashx?action=getcasedetailbyid",
+                data: { id: case_edit_id },
+                type: "post",
+                success: function (r) {
+                    var d = JSON.parse(r)["d"][0];
+                    $("#i_case_title").val(d.name);
+                    $("#i_case_subtitle").val(d.subtitle);
+                    $("#i_case_photo").val(d.photo);
+                    $('#j_case_span_head').html('已上传图片：<img src="' + d.photo + '" width="100">');
+                    $("#i_case_content").html(d.content);
+                    KindEditor.html('#i_case_content', d.content );
+                }, error: function () {
+                    console.log("error");
+                }
+            });
+        }
+    });
 </script>

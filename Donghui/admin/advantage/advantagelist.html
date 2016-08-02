@@ -28,7 +28,7 @@
                 da = JSON.parse(da);
                 var data = da["d"];
                 $.each(data, function (k, v) {
-                    html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.title + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
+                    html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
 
                     html.push("  <td> <a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                 });
@@ -182,7 +182,7 @@
             <tr>
                 <th data-order-field="rowid">序号</th>
                 <th data-order-field="id">优势名称</th>
-                <th data-order-field="name">标题</th>
+                <th data-order-field="name">二级标题</th>
             
                 <th data-order-field="created">创建时间</th>
                 <th data-order-field="birthplace">图片</th> 

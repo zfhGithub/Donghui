@@ -26,9 +26,9 @@
                     da = JSON.parse(da);
                     var data = da["d"];
                     $.each(data, function (k, v) {
-                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.title + "</td><td>" + v.subtitle + "</td><td>" + v.created + "</td><td><img src='" + v.photo + "' /></td>  ");
-
-                        html.push("  <td> <a href='ajax.ashx?action=deletemessage&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td><td>" + v.created + "</td><td><img width='80' height='60' src='" + v.photo + "' /></td>  ");
+                        html.push("<td> <a href='#' onclick='case_edit(this,\"" + v.id + "\")' class='btn btn-green' >编辑</a>");
+                        html.push("   <a href='ajax.ashx?action=deletemessage&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                     });
                     $("#t_case_list tbody").empty().append(html.join(''));
                     html = [];
@@ -122,7 +122,19 @@
         pageIndex = 1;
         ProductInfo();
     }
+    var case_edit_id;
+    function case_edit(_this, id) {
+        case_edit_id = id;
+        $(_this).dialog({ id: 'dialog-addcase', url: 'case/addcase.html', title: '修改案例', height: '600', width: "860", onClose: "dialog_addcase_before_close" });
 
+    }
+    function dialog_addcase_before_close($dialog) {
+        case_edit_id = undefined;
+        //price_edit_name = undefined;
+        //$("body").navtab("refresh", "pricelist");
+        //refresh("pricelist");
+        return true;
+    }
 </script>
 <div class="bjui-pageHeader">
     <div class="pull-right">
@@ -147,7 +159,7 @@
         <button type="submit" class="btn-default" data-icon="search" onclick="search()">查询</button>&nbsp;
         <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo" onclick="Clear()">清空查询</a>-->
         <div class="pull-right">
-            <button type="button" class="btn-blue" data-url="case/addcase.html" data-id="dialog-addprice" data-width="860" data-height="400"
+            <button type="button" class="btn-blue" data-url="case/addcase.html" data-id="dialog-addcase" data-width="860" data-height="600"
                     data-toggle="dialog"> 添加案例 </button>
             <!--<button type="button" class="btn-blue" data-url="/B-JUI/ajaxDone2.html?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="可以在控制台(network)查看被删除ID">删除选中行</button>&nbsp;
             <div class="btn-group">
@@ -177,13 +189,11 @@
     <table class="table table-bordered table-hover table-striped table-top" data-selected-multi="true" id="t_case_list">
         <thead>
             <tr>
-                <th data-order-field="rowid">序号</th>
-                <th data-order-field="name">名称</th>
+                <th data-order-field="rowid">序号</th> 
                 <th data-order-field="type">标题</th> 
                 <th data-order-field="birthday">介绍</th>
                 <th data-order-field="created">创建时间</th>
-                <th data-order-field="birthplace">图片</th>
-                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th data-order-field="birthplace">图片</th> 
                 <th data-order-field="#">操作</th>
             </tr>
         </thead>

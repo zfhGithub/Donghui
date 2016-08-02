@@ -55,6 +55,9 @@
             success: function (r) {
                 var d = JSON.parse(r)["d"][0];
                 
+                $("#j_form_aboutus").html(d.AboutusText);
+                $("#j_form_achievement").html(d.AchievementText);
+                $("#j_form_team").html(d.MyTeamText);
                 KindEditor.html('#j_form_aboutus', d.AboutusText);
                 KindEditor.html('#j_form_achievement', d.AchievementText);
                 KindEditor.html('#j_form_team', d.MyTeamText);
