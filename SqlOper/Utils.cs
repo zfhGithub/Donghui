@@ -259,7 +259,7 @@ namespace SqlOper
             }
             return sb.ToString();
         }
-        public static string UploadImage(HttpPostedFile file, string type)
+        public static string UploadImage(HttpPostedFile file, string type, HttpContext context)
         {
             if (type == "head")
             {
@@ -278,38 +278,56 @@ namespace SqlOper
 
                 //  string rt = Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
                 //  Utils.SetPicDescription(filepath + "best-" + fileName, "BESTCAPS", pointX: 0.2f, pointY: 0.5f);
-                    return "{ \"statusCode\":\"200\",\"url\":\"/image/head/" + fileName + "\"}"; ;
+                return "{ \"statusCode\":\"200\",\"url\":\"/image/head/" + fileName + "\"}"; ;
                 #endregion
             }
             else if (type.StartsWith("banner"))
             {
+                #region 首页轮播图
+
                 if (file.ContentLength > 5242880)
                 {
                     return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
                 }
-                String filepath = HttpContext.Current.Server.MapPath("~") + @"image\";
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"assets\images\banner\";
                 if (!Directory.Exists(filepath))
                 {
                     Directory.CreateDirectory(filepath);
                 }
                 String fileName = "";
-                if (type.Equals("banner1") || type.Equals("banner2") || type.Equals("banner3"))
+                SQLServerOperating s = new SQLServerOperating();
+                string oldBanners = s.Select("select bannerImages from Company");
+                string oldName = context.Request.Params["oldname"];
+                string newBanners = "";
+                fileName = Guid.NewGuid() + ".jpg";
+                if (string.IsNullOrWhiteSpace(oldName))
                 {
-                    fileName = type + ".jpg";
-                    if (File.Exists(filepath + fileName))
-                    {
-                        File.Delete(filepath + fileName);
-                    }
-                    file.SaveAs(filepath + fileName);
-                    return "{ \"statusCode\":200,\"url\":\"/image/" + fileName + "\"}";
+                    newBanners += oldBanners+fileName + ";";
+                     
                 }
                 else
                 {
-                    return "{ \"statusCode\":300,\"url\":\"\"}";
+                    newBanners = oldBanners.Replace(oldName + "", fileName);
                 }
+              
+             
+               
+                if (File.Exists(filepath + fileName))
+                {
+                    File.Delete(filepath + fileName);
+                } 
+                file.SaveAs(filepath + fileName);
+          
+               // newBanners += fileName + ";"; 
+                s.ExecuteSql("update Company set bannerImages ='" + newBanners + "' ");
+                return "{ \"statusCode\":200,\"url\":\"/assets/images/banner/" + fileName + "\",\"fun\":\""+ type + "\"}";
+
+                #endregion
             }
             else if (type == "kindeditor")
             {
+                #region kindeditor
+                 
                 if (file.ContentLength > 5242880)
                 {
                     return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
@@ -324,13 +342,29 @@ namespace SqlOper
                     String fileName = Guid.NewGuid() + ".png";
                     file.SaveAs(filepath + fileName);
                     // return "{ \"statusCode\":\"200\",\"message\":\"上传成功\",\"src\":\""+fileName+"\"}";
-                   // Utils.SetPicDescription(filepath + fileName, font: 30, pointX: 0.25f, pointY: 0.5f);
+                    // Utils.SetPicDescription(filepath + fileName, font: 30, pointX: 0.25f, pointY: 0.5f);
                     return "{ \"error\":0,\"url\":\"/image/detail/" + fileName + "\"}";
                 }
                 catch
                 {
                     return "{ \"statusCode\":\"300\",\"message\":\"上传失败\"}";
                 }
+                #endregion
+            }
+            else if (type=="logo")
+            {
+                if (file.ContentLength > 2097152)
+                {
+                    return "{\"status\":\"0\",\"statusCode\":\"300\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"assets\images\";
+                string fileName = "logo.png";
+                if (File.Exists(filepath + fileName))
+                {
+                    File.Delete(filepath+fileName);
+                }
+                file.SaveAs(filepath + fileName);
+                return "{ \"statusCode\":\"200\",\"url\":\"assets/images/" + fileName + "\"}"; ;
             }
             else
             {
@@ -348,7 +382,7 @@ namespace SqlOper
                     String fileName = Guid.NewGuid() + ".png";
                     file.SaveAs(filepath + fileName);
                     //   Utils.GetThumbnail(filepath + fileName, filepath + "best-" + fileName, 160, 100, "best-" + fileName);
-                   // Utils.SetPicDescription(filepath + fileName, font: 23, pointX: 0.25f, pointY: 0.5f);
+                    // Utils.SetPicDescription(filepath + fileName, font: 23, pointX: 0.25f, pointY: 0.5f);
                     return "{ \"statusCode\":\"200\",\"message\":\"上传成功\",\"src\":\"" + fileName + "\"}";
                 }
                 catch
@@ -359,5 +393,14 @@ namespace SqlOper
             }
         }
 
+
+        public static int DeleteBanner(string oldName)
+        {
+            SQLServerOperating s = new SQLServerOperating();
+            string oldBanners = s.Select("select bannerImages from Company");
+            oldBanners = oldBanners.Replace(oldName+";","");
+           return s.ExecuteSql("update Company set bannerImages ='" + oldBanners + "' ");
+
+        }
     }
 }

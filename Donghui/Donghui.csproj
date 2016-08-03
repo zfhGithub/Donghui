@@ -630,18 +630,18 @@
     <Content Include="admin\product\AddProduct.html" />
     <Content Include="admin\product\CommentManagement.html" />
     <Content Include="admin\product\ProductTable.html" />
-    <Content Include="admin\settings\setBanner.html" />
+    <Content Include="admin\settings\addBanner.html" />
+    <Content Include="admin\settings\setBanner.aspx" />
+    <Content Include="admin\settings\setLogo.html" />
     <Content Include="assets\images\775-1606241S114K1-lp.jpg" />
     <Content Include="assets\images\775-1606241S439610-lp.jpg" />
     <Content Include="assets\images\775-1606241SRH46-lp.jpg" />
     <Content Include="assets\images\775-1606241T055128-lp.jpg" />
-    <Content Include="assets\images\banner\01.jpg" />
-    <Content Include="assets\images\banner\03.jpg" />
-    <Content Include="assets\images\banner\04.jpg" />
-    <Content Include="assets\images\banner\05.jpg" />
-    <Content Include="assets\images\banner\banner22.jpg" />
-    <Content Include="assets\images\banner\banner_live.jpg" />
-    <Content Include="assets\images\banner\banner_mbq.jpg" />
+    <Content Include="assets\images\banner\banner1.jpg" />
+    <Content Include="assets\images\banner\banner2.jpg" />
+    <Content Include="assets\images\banner\banner3.jpg" />
+    <Content Include="assets\images\banner\banner4.jpg" />
+    <Content Include="assets\images\banner\banner5.jpg" />
     <Content Include="assets\images\logo.png" />
     <Content Include="packages.config" />
     <Content Include="351\assets\fonts\fontawesome-webfont.eot" />
@@ -869,6 +869,13 @@
     </Compile>
     <Compile Include="admin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\settings\setBanner.aspx.cs">
+      <DependentUpon>setBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\settings\setBanner.aspx.designer.cs">
+      <DependentUpon>setBanner.aspx</DependentUpon>
     </Compile>
     <Compile Include="com\aboutinfo.cs" />
     <Compile Include="com\advantage.cs" />

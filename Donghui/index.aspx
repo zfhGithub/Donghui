@@ -66,15 +66,19 @@
             
 					<div class="fluid_container">                       
                     <div class="camera_wrap camera_emboss pattern_1" id="camera_wrap_4">
-                        <div data-thumb="assets/images/slides/thumbs/img1.jpg" data-src="assets/images/slides/img1.jpg">
-                            <h2>We develop.</h2>
-                        </div> 
-                        <div data-thumb="assets/images/slides/thumbs/img2.jpg" data-src="assets/images/slides/img2.jpg">
-                        </div>
-                        <div data-thumb="assets/images/slides/thumbs/img3.jpg" data-src="assets/images/slides/img3.jpg">
-                        </div> 
-                          <div data-thumb="assets/images/banner/03.jpg" data-src="assets/images/banner/03.jpg">
-                        </div> 
+                        <% for (int i = 0; i < bannerList.Count; i++)
+                            {
+                                if (!string.IsNullOrEmpty( bannerList[i]))
+                                {
+                                    %>
+                                <div data-thumb="assets/images/banner/<%= bannerList[i] %>" data-src="assets/images/banner/<%= bannerList[i] %>">  </div> 
+                            <%    }
+                                
+                            } %>
+                      <%--  <div data-thumb="assets/images/slides/img1.jpg" data-src="assets/images/slides/img1.jpg">  </div> 
+                        <div data-thumb="assets/images/slides/img2.jpg" data-src="assets/images/slides/img2.jpg">  </div>
+                        <div data-thumb="assets/images/slides/img3.jpg" data-src="assets/images/slides/img3.jpg">  </div> 
+                        <div data-thumb="assets/images/banner/03.jpg" data-src="assets/images/banner/03.jpg">  </div> --%>
                     </div><!-- #camera_wrap_3 -->
                 </div><!-- .fluid_container -->
 		</div>
@@ -235,9 +239,11 @@
     <script type='text/javascript' src='assets/js/camera.min.js'></script> 
     <script src="assets/js/bootstrap.min.js"></script> 
 	<script src="assets/js/custom.js"></script>
+
     <script>
-		jQuery(function(){
-			
+     
+        jQuery(function () {
+           
 			jQuery('#camera_wrap_4').camera({
                 transPeriod: 500,
                 time: 3000,
@@ -254,7 +260,7 @@
 
 		});
       
-	</script>
-    
+        
+	</script> 
 </body>
 </html>

@@ -49,7 +49,7 @@ namespace Donghui.com
 
         public static Dictionary<string, string> getAboutUsInfo()
         {
-            string strSql = "select Id, CompanyName, Address, Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText from Company";
+            string strSql = "select Id, CompanyName, Address, Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText, BannerImages, LogoImage from Company";
             SQLServerOperating s = new SQLServerOperating();
             DataTable dt = s.Selects(strSql);
             Dictionary<string, string> dic = new Dictionary<string, string>();

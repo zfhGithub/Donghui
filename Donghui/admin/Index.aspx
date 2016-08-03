@@ -272,8 +272,8 @@ $(function(){
                                 <li data-id="6" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">文章管理</li> 
                                 <li data-id="62" data-pid="6" data-url="article/articlelist.html" data-tabid="articlelist" >文章列表</li> 
 
-                    <%--             <li data-id="7" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">首页轮播图片</li> 
-                                <li data-id="71" data-pid="7" data-url="settings/setBanner.html" data-tabid="articlelist" >图片管理</li> --%>
+                                 <li data-id="7" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">设置</li> 
+                                <li data-id="71" data-pid="7" data-url="settings/setBanner.aspx" data-tabid="setBanner" >图片管理</li> 
                                   
                             </ul>                
 

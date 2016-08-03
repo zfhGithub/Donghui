@@ -1,0 +1,47 @@
+﻿
+<div class="bjui-pageContent">
+    <form action="ajax.ashx?action=addcase" id="f_addcase_form" data-toggle="validate" data-alertmsg="false">
+        <input type="hidden" name="custom.id" value="edce142bc2ed4ec6b623aacaf602a4de">
+        <table class="table table-condensed table-hover" width="100%">
+            <tbody>
+
+                <tr>
+                    <td colspan="4">
+                        <label for="u_logo_pic_up" class="control-label x85">图片：</label>
+                        <div style="display: inline-block; vertical-align: middle;">
+                            <div id="u_logo_pic_up_add" data-toggle="upload" data-uploader="ajax.ashx?action=kindeditor&type=logo"
+                                 data-file-size-limit="5242880"
+                                 data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                 data-multi="true"
+                                 data-drag-drop="true"
+                                 data-button-text="设置LOGO"
+                                 data-on-upload-success="case_banner_upload_success"
+                                 data-icon="cloud-upload"></div>
+                            <input type="hidden" id="i_logo_pic" value="" data-rule="图片:required">
+                            <span id="j_logo_span_pic"><img src="../assets/images/logo.png" alt="LOGO" /> </span>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </form>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close" id="btn_addbanner">取消</button></li>
+   
+    </ul>
+</div>
+<script type="text/javascript">
+    function case_banner_upload_success(file, data) {
+        
+        var json = JSON.parse(data);
+       
+        if (json.statusCode == 200) { 
+            $('#j_logo_span_pic').html('已上传图片：<img src="../../' + json.url+"?t="+new Date().getTime() + '" width="100">')
+           // $("#btn_addbanner").trigger("click");
+        }
+    }
+
+</script>

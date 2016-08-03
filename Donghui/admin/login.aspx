@@ -115,7 +115,7 @@ a:link {color: #285e8e;}
     <div class="setting"><a href="javascript:;" onclick="choose_bg();" title="更换背景"><span class="glyphicon glyphicon-th-large"></span></a></div>
 	<div class="login_box">
         <div class="login_logo">
-            <img src="js/images/logo.png" >
+            <img src="../assets/images/logo.png" alt="Alternate Text" />
         </div>
         <!--
 		<c:if test="${!empty message}">
