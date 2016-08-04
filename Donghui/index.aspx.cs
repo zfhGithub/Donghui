@@ -16,6 +16,7 @@ namespace Donghui
         public List<Dictionary<string, string>> newsList = new List<Dictionary<string, string>>();
         public DataTable advList = new DataTable();
         public List<string> bannerList = new List<string>();
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -32,7 +33,7 @@ namespace Donghui
                         bannerList.Add(banners[i]);
                     }
                 }
-                
+                qqList = com.settings.getQQs();
             }
             catch (Exception)
             {

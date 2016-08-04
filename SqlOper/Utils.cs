@@ -302,32 +302,32 @@ namespace SqlOper
                 fileName = Guid.NewGuid() + ".jpg";
                 if (string.IsNullOrWhiteSpace(oldName))
                 {
-                    newBanners += oldBanners+fileName + ";";
-                     
+                    newBanners += oldBanners + fileName + ";";
+
                 }
                 else
                 {
                     newBanners = oldBanners.Replace(oldName + "", fileName);
                 }
-              
-             
-               
+
+
+
                 if (File.Exists(filepath + fileName))
                 {
                     File.Delete(filepath + fileName);
-                } 
+                }
                 file.SaveAs(filepath + fileName);
-          
-               // newBanners += fileName + ";"; 
+
+                // newBanners += fileName + ";"; 
                 s.ExecuteSql("update Company set bannerImages ='" + newBanners + "' ");
-                return "{ \"statusCode\":200,\"url\":\"/assets/images/banner/" + fileName + "\",\"fun\":\""+ type + "\"}";
+                return "{ \"statusCode\":200,\"url\":\"/assets/images/banner/" + fileName + "\",\"fun\":\"" + type + "\"}";
 
                 #endregion
             }
             else if (type == "kindeditor")
             {
                 #region kindeditor
-                 
+
                 if (file.ContentLength > 5242880)
                 {
                     return "{ \"statusCode\":\"300\",\"message\":\"文件不能超过5兆\"}";
@@ -351,8 +351,9 @@ namespace SqlOper
                 }
                 #endregion
             }
-            else if (type=="logo")
+            else if (type == "logo")
             {
+                #region logo
                 if (file.ContentLength > 2097152)
                 {
                     return "{\"status\":\"0\",\"statusCode\":\"300\"}";
@@ -361,10 +362,28 @@ namespace SqlOper
                 string fileName = "logo.png";
                 if (File.Exists(filepath + fileName))
                 {
-                    File.Delete(filepath+fileName);
+                    File.Delete(filepath + fileName);
                 }
                 file.SaveAs(filepath + fileName);
                 return "{ \"statusCode\":\"200\",\"url\":\"assets/images/" + fileName + "\"}"; ;
+                #endregion
+            }
+            else if (type == "erweima")
+            {
+                #region 微信二维码
+                if (file.ContentLength > 2097152)
+                {
+                    return "{\"status\":\"0\",\"statusCode\":\"300\"}";
+                }
+                String filepath = HttpContext.Current.Server.MapPath("~") + @"assets\customerservice\images\";
+                string fileName = "erweima.jpg";
+                if (File.Exists(filepath + fileName))
+                {
+                    File.Delete(filepath + fileName);
+                }
+                file.SaveAs(filepath + fileName);
+                return "{ \"statusCode\":\"200\",\"url\":\"../assets/customerservice/images/" + fileName + "\"}"; ;
+                #endregion
             }
             else
             {

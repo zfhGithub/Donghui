@@ -632,7 +632,17 @@
     <Content Include="admin\product\ProductTable.html" />
     <Content Include="admin\settings\addBanner.html" />
     <Content Include="admin\settings\setBanner.aspx" />
+    <Content Include="admin\settings\setCustomerService.html" />
     <Content Include="admin\settings\setLogo.html" />
+    <Content Include="assets\customerservice\customer-service.css" />
+    <Content Include="assets\customerservice\images\erweima.jpg" />
+    <Content Include="assets\customerservice\images\invite_bg.png" />
+    <Content Include="assets\customerservice\images\online_arrow.jpg" />
+    <Content Include="assets\customerservice\images\online_botbg.jpg" />
+    <Content Include="assets\customerservice\images\online_phone.jpg" />
+    <Content Include="assets\customerservice\images\open_im.png" />
+    <Content Include="assets\customerservice\images\qq.png" />
+    <Content Include="assets\customerservice\lanren.css" />
     <Content Include="assets\images\775-1606241S114K1-lp.jpg" />
     <Content Include="assets\images\775-1606241S439610-lp.jpg" />
     <Content Include="assets\images\775-1606241SRH46-lp.jpg" />
@@ -673,6 +683,7 @@
     <Content Include="admin\js\font\typicons.eot" />
     <Content Include="admin\js\font\typicons.ttf" />
     <Content Include="admin\js\font\typicons.woff" />
+    <Content Include="assets\customerservice\images\online_phone.psd" />
     <None Include="Properties\PublishProfiles\donghui_localhost.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -886,6 +897,7 @@
     <Compile Include="com\case.cs" />
     <Compile Include="com\message.cs" />
     <Compile Include="com\price.cs" />
+    <Compile Include="com\settings.cs" />
     <Compile Include="contact.aspx.cs">
       <DependentUpon>contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

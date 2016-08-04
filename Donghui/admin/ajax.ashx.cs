@@ -222,7 +222,21 @@ namespace Donghui.admin
                 case "deletebanner":
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", Utils.DeleteBanner(req.Params["id"])));
                     break;
-                 
+                case "getserviceqq":
+                    js = new JavaScriptSerializer();
+                   var json = js.Serialize(com.settings.getServices());
+                    res.Write(json=="[\"\"]"?"":json  );
+                    break;
+                case "addserviceqq":
+                    string qq = req.Form["serviceQQ"];
+                    name = req.Form["serviceName"];
+                    res.Write(Utils.GetReulst(200, "保存成功", "保存失败", com.settings.addServices(qq, name)));
+                    break;
+                case "deleteserviceqq":
+                    qq = req.Params["id"];
+                    name = req.Params["name"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.settings.deleteQQ(qq, name)));
+                    break;
                     #endregion
             }
         }

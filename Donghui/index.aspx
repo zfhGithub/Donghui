@@ -19,9 +19,12 @@
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
-	<![endif]-->
+	<![endif]--> 
+    <link href="assets/customerservice/customer-service.css" rel="stylesheet" />
+    <link href="assets/customerservice/lanren.css" rel="stylesheet" />
 </head>
 <body>
+  
 	<!-- Fixed navbar -->
 	<div class="navbar navbar-inverse">
 		<div class="container">
@@ -29,7 +32,7 @@
 				<!-- Button for smallest screens -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 				<a class="navbar-brand" href="index.aspx">
-					<img src="assets/images/logo.png" alt="Techro HTML5 template"></a>
+					<img src="assets/images/logo.png" alt=""></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right mainNav">
@@ -228,9 +231,46 @@
 			</div>
 		</div>
 	</footer>
+ 
+        <div id="rightArrow" class="open-im">&nbsp;</div>
+   
+   <%-- <div id="rightArrow"><a href="javascript:;" title="在线客户"></a></div>--%>
+   
+    <div id="floatDivBoxs">
+        <div class="floatDtt">在线客服</div>
+        <div class="floatShadow">
+            <ul class="floatDqq">
+                <%
+                    foreach (KeyValuePair<string,string> item in qqList)
+                    {
+                        if ( item.Key.Split('-').Length > 0)
+                        { 
+                        %>
+                       <li><a target="_blank" href="tencent://message/?uin=<%= item.Key.Split('-')[0] %>&Site=sc.chinaz.com&Menu=yes">
+                        <img src="assets/customerservice/images/qq.png" align="absmiddle"><%= item.Value %></a></li>
+                    <%}}
+                     %>  
+            </ul>
+            <div class="floatDtxt">热线电话</div>
+            <div class="floatDtel">
+                <img src="assets/customerservice/images/online_phone.jpg" width="155" height="45" alt=""></div>
+            <div class="floatImg">
+                <img src="assets/customerservice/images/erweima.jpg" width="100%">微信公众账号</div>
+        </div>
+        <div class="floatDbg"></div>
+    </div>
 
+
+    <div class="lanrenzhijia_m" id="lanrenzhijia_m">
+        <ul>
+            <a href="javascript:;" class="close" name="close"></a>
+            <a href="tencent://message/?uin=639083793&Site=sc.chinaz.com&Menu=yes" target="_blank" style="left: 145px;"></a>
+            <a href="javascript:;" name="close" style="left: 235px;"></a>
+        </ul>
+    </div>
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="assets/js/modernizr-latest.js"></script> 
+  
 	<script type='text/javascript' src='assets/js/jquery.min.js'></script>
     <script type='text/javascript' src='assets/js/fancybox/jquery.fancybox.pack.js'></script>
     
@@ -257,10 +297,32 @@
 				opacityOnGrid: false,
 				imagePath: 'assets/images/'
 			});
+			jQuery('#lanrenzhijia_m').delay(3000).slideDown();
+			jQuery('a[name=close]').click(function () {
+			    jQuery('#lanrenzhijia_m').slideUp();
+			    jQuery('#lanrenzhijia_m').delay(5000).slideDown();
+			});
+
+			var flag = 0;
+			jQuery('#rightArrow').on("click", function () {
+			    if (flag == 1) {
+			        jQuery("#floatDivBoxs").animate({ right: '-175px' }, 300);
+			        jQuery(this).animate({ right: '-5px' }, 300);
+			        jQuery(this).css('background-position', '0px 0');
+			        flag = 0;
+			    } else {
+			        jQuery("#floatDivBoxs").animate({ right: '0' }, 300);
+			        jQuery(this).animate({ right: '170px' }, 300);
+			        jQuery(this).css('background-position', '0px 0');
+			        flag = 1;
+			    }
+			});
 
 		});
       
         
 	</script> 
+ 
+    
 </body>
 </html>

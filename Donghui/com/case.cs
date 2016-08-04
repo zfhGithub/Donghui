@@ -73,7 +73,7 @@ namespace Donghui.com
 
         public static DataTable getCaseListTop3()
         {
-            string strSql = "select top 3 id, type, name, title, subtitle, photo, content, created, deleted from News where type='case' and deleted=0 order by created desc";
+            string strSql = "select top 6 id, type, name, title, subtitle, photo, content, created, deleted from News where type='case' and deleted=0 order by created desc";
             SQLServerOperating s = new SQLServerOperating();
             return s.Selects(strSql);
         }
