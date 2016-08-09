@@ -7,7 +7,28 @@ Note: Please do not remove the footer backlink (webthemez.com)--(if you want to 
 Licence: Creative Commons Attribution 3.0** - http://creativecommons.org/licenses/by/3.0/
 */
 jQuery(document).ready(function ($) {
-    
+
+    $('#lanrenzhijia_m').delay(3000).slideDown();
+    $('a[name=close]').click(function () {
+        $('#lanrenzhijia_m').slideUp();
+        $('#lanrenzhijia_m').delay(5000).slideDown();
+    });
+
+    var flag = 0;
+    $('#rightArrow').on("click", function () {
+        if (flag == 1) {
+            $("#floatDivBoxs").animate({ right: '-175px' }, 300);
+            $(this).animate({ right: '-5px' }, 300);
+            $(this).css('background-position', '0px 0');
+            flag = 0;
+        } else {
+            $("#floatDivBoxs").animate({ right: '0' }, 300);
+            $(this).animate({ right: '170px' }, 300);
+            $(this).css('background-position', '0px 0');
+            flag = 1;
+        }
+    });
+
     //Set the carousel options
     $('#quote-carousel').carousel({
         pause: true,

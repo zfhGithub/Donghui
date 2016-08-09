@@ -22,6 +22,8 @@
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+        <link href="assets/customerservice/customer-service.css" rel="stylesheet" />
+    <link href="assets/customerservice/lanren.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -41,15 +43,13 @@
 					<li><a href="courses.aspx">领先优势</a></li>
 					<li><a href="price.aspx">价格</a></li>
 					<li class="active"><a href="videos.aspx">案例</a></li>
-					<%--<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 赴美生子攻略 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-right.aspx">Right Sidebar</a></li>
-							<li><a href="#">Dummy Link1</a></li>
-							<li><a href="#">Dummy Link2</a></li>
-							<li><a href="#">Dummy Link3</a></li>
+							<li><a href="sidebar-right.aspx?id=17">赴美生子流程</a></li>
+							<li><a href="sidebar-right.aspx?id=16">赴美生子优势</a></li> 
 						</ul>
-					</li>--%>
+					</li>
 					<li><a href="contact.aspx">联系我们</a></li>
 
 				</ul>
@@ -300,6 +300,40 @@
 		</div>
 	</footer>
 
+      <div id="rightArrow" class="open-im">&nbsp;</div>
+    
+    <div id="floatDivBoxs">
+        <div class="floatDtt">在线客服</div>
+        <div class="floatShadow">
+            <ul class="floatDqq">
+                <%
+                    foreach (KeyValuePair<string,string> item in qqList)
+                    {
+                        if ( item.Key.Split('-').Length > 0)
+                        { 
+                        %>
+                       <li><a target="_blank" href="tencent://message/?uin=<%= item.Key.Split('-')[0] %>&Site=sc.chinaz.com&Menu=yes">
+                        <img src="assets/customerservice/images/qq.png" align="absmiddle"><%= item.Value %></a></li>
+                    <%}}
+                     %>  
+            </ul>
+            <div class="floatDtxt">热线电话</div>
+            <div class="floatDtel">
+                <img src="assets/customerservice/images/online_phone.jpg" width="155" height="45" alt=""></div>
+            <div class="floatImg">
+                <img src="assets/customerservice/images/erweima.jpg" width="100%">微信公众账号</div>
+        </div>
+        <div class="floatDbg"></div>
+    </div>
+
+
+    <div class="lanrenzhijia_m" id="lanrenzhijia_m" style="z-index:1000;">
+        <ul>
+            <a href="javascript:;" class="close" name="close"></a>
+            <a href="tencent://message/?uin=639083793&Site=sc.chinaz.com&Menu=yes" target="_blank" style="left: 145px;"></a>
+            <a href="javascript:;" name="close" style="left: 235px;"></a>
+        </ul>
+    </div>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>

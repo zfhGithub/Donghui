@@ -14,7 +14,7 @@ namespace SqlOper
     public static class Utils
     {
         private static string language = "zh-cn";
-
+         
         public static string Language
         {
             get

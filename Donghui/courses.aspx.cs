@@ -13,10 +13,11 @@ namespace Donghui
         public string myCommitHtml="";
         public string title = "";
         public DataTable advList = new DataTable();
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
-           advList =  com.advantage.getAdvantageList("1", "4");
+            qqList = com.settings.getQQs();
+            advList =  com.advantage.getAdvantageList("1", "4");
             DataTable dt = com.advantage.getMyCommit();
             myCommitHtml = dt.Rows[0]["content"].ToString();
             title = dt.Rows[0]["title"].ToString();

@@ -10,10 +10,12 @@ namespace Donghui
 {
     public partial class videos : System.Web.UI.Page
     {
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         public DataTable caseList = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-           caseList = com.@case.getCaseList();
+            qqList = com.settings.getQQs();
+            caseList = com.@case.getCaseList();
         }
     }
 }

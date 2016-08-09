@@ -642,6 +642,7 @@
     <Content Include="assets\customerservice\images\online_phone.jpg" />
     <Content Include="assets\customerservice\images\open_im.png" />
     <Content Include="assets\customerservice\images\qq.png" />
+    <Content Include="assets\customerservice\js.js" />
     <Content Include="assets\customerservice\lanren.css" />
     <Content Include="assets\images\775-1606241S114K1-lp.jpg" />
     <Content Include="assets\images\775-1606241S439610-lp.jpg" />

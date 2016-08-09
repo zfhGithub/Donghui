@@ -33,7 +33,7 @@ namespace Donghui
                         bannerList.Add(banners[i]);
                     }
                 }
-                qqList = com.settings.getQQs();
+               qqList = com.settings.getQQs();
             }
             catch (Exception)
             {

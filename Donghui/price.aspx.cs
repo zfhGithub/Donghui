@@ -10,10 +10,12 @@ namespace Donghui
 {
     public partial class price : System.Web.UI.Page
     {
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         public DataTable priceList = new DataTable();
         public List<Dictionary<string, string>> itemList = new List<Dictionary<string, string>>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            qqList = com.settings.getQQs();
             priceList = com.price.getPriceTop4();
             foreach (DataRow row in priceList.Rows)
             {

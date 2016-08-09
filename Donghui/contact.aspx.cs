@@ -11,9 +11,11 @@ namespace Donghui
     public partial class contact : System.Web.UI.Page
     {
         public DataTable contactDt = new DataTable();
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
              contactDt = com.aboutinfo.getAboutInfo();
+            qqList = com.settings.getQQs();
             if (Request.HttpMethod.ToUpper() =="POST")
             {
                 string cname = Request.Form["cname"];
@@ -25,6 +27,7 @@ namespace Donghui
                 {
                     Response.Write("<script>alert('我们已经收到你的留言！');</script>");
                 }
+
             }
         }
     }

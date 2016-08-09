@@ -11,7 +11,8 @@ namespace Donghui
     public partial class sidebar_right : System.Web.UI.Page
     {
         public Dictionary<string, string> News = new Dictionary<string, string>();
-        public DataTable newsList = new DataTable(); 
+        public DataTable newsList = new DataTable();
+        public Dictionary<string, string> qqList = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -26,8 +27,8 @@ namespace Donghui
                 News.Add("photo", row["photo"].ToString());
                 News.Add("content", row["content"].ToString());
                 News.Add("created", row["created"].ToString());
-
-               newsList = s.Selects("select top 10 id, type, name, title, subtitle, photo, content, created, deleted from News where  deleted=0 order by created desc");
+                qqList = com.settings.getQQs();
+                newsList = s.Selects("select top 10 id, type, name, title, subtitle, photo, content, created, deleted from News where  deleted=0 order by created desc");
             }
             catch (Exception)
             {
