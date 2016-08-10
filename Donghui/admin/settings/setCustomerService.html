@@ -2,28 +2,18 @@
     <div class="pageFormContent">
         <div style="margin:15px auto 0; width:800px;">
             <fieldset>
-                <legend><button type="button" class="btn-green" data-toggle="tableditadd" data-target="#services" data-num="1" data-icon="plus">添加编辑行</button>&nbsp;</legend>
+                <legend><button type="button" class="btn-green" data-toggle="tableditadd" data-target="#servicesqqlist" data-num="1" data-icon="plus">添加客服QQ</button>&nbsp;</legend>
                 <form action="ajaxDone2.html" id="j_custom_form" class="pageForm" data-toggle="validate" method="post">
-                    <table class="table table-bordered table-hover table-striped table-top"> 
-                        <tbody>
-                            <tr>
-                                <td id="weixintd">微信二维码</td>
-                                <td id="erweimatd"></td>
-                                <td>
-                                
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                   
 
-                    <table id="services" class="table table-bordered table-hover table-striped table-top" data-toggle="tabledit"
+                    <table id="servicesqqlist" class="table table-bordered table-hover table-striped table-top" data-toggle="tabledit"
                            data-addtool="true" data-initnum="0" data-action="ajax.ashx?action=addserviceqq" data-single-noindex="true">
                         <thead>
                             <tr>
                                 <th title="QQ号">
                                     <input type="text" value="" placeholder="请输入客服QQ号" size="10" name="serviceQQ" id="serviceQQ#index#" data-rule="required,integer" />
                                 </th>
-                                <th title="名称">
+                                <th title="显示名称">
                                     <input type="text" value="" placeholder="请输入客服名称" size="10" name="serviceName" id="serviceName#index#" data-rule="required" />
                                 </th>
                                 <th title="操作">
@@ -38,21 +28,49 @@
                    
            
                     </form>
-</fieldset>
+        </fieldset>
             <fieldset>
-                <legend>微信二维码</legend>
+                <legend>客服电话与微信二维码</legend>
+
                 <br />
-                <img src="../assets/customerservice/images/erweima.jpg"  id="erweima"/>
-                <div style="display: inline-block; vertical-align: middle;">
-                    <div id="u_case_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=kindeditor&type=erweima"
-                         data-file-size-limit="5242880"
-                         data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
-                         data-multi="true"
-                         data-drag-drop="true"
-                         data-on-upload-success="erweima_photo_upload_success"
-                         data-icon="cloud-upload"></div>
-                    
-                </div>
+                <table>
+                    <tr>
+                        <td style="width:350px;">
+                            <form action="ajaxDone2.html" id="j_custom_phone" class="pageForm" data-toggle="validate" method="post">
+                                <button type="button" class="btn-green" data-toggle="tableditadd" data-target="#servicesphonelist" data-num="1" data-icon="plus">添加客服电话</button>
+                                <table class="table table-bordered table-hover table-striped table-top" data-toggle="tabledit" data-addtool="true" data-initnum="0"
+                                       id="servicesphonelist" data-action="ajax.ashx?action=addservicephone" data-single-noindex="true">
+                                    <thead>
+                                        <tr>
+                                            <th title="电话号码"> <input type="text" placeholder="请输入电话号码" name="txtPhone" value="" data-rule="required" /> </th>
+                                            <th title="操作">
+                                                <a href="javascript:;" class="btn btn-green" data-toggle="dosave" id="btnsavephone#index#" name="t_price-#index#">保存</a>
+                                                <a href="javascript:;" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a> 
+                                            </th>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                       
+                                    </tbody>
+
+                                </table>
+                                </form>
+                        </td>
+                        <td>
+                            <img src="../assets/customerservice/images/erweima.jpg" id="erweima" style="width:150px;height:120px;" />
+                            <div style="display: inline-block; vertical-align: middle;">
+                                <div id="u_case_pic_up" data-toggle="upload" data-uploader="ajax.ashx?action=kindeditor&type=erweima"
+                                     data-file-size-limit="5242880"
+                                     data-file-type-exts="*.jpg;*.png;*.gif;*.mpg"
+                                     data-multi="true"
+                                     data-drag-drop="true"
+                                     data-on-upload-success="erweima_photo_upload_success"
+                                     data-icon="cloud-upload"></div> 
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+             
             </fieldset>
 
 </div>
@@ -68,22 +86,20 @@
     function erweima_photo_upload_success(file, data) {
         var json = JSON.parse(data);
         if (json.statusCode == 200) { 
-            $('#erweima').attr("src",json.url+"?t="+new Date().getTime());
+            $('#erweima').attr("src", json.url + "?t=" + new Date().getTime()).css({"width":"150px","height":"120px"});
         }
     }
    
     $(function () {
       
-      
+        
             $.ajax({
                 url: "ajax.ashx?action=getserviceqq",
                 data: {   },
                 type: "post",
                 success: function (r) {
                     var arr = JSON.parse(r);
-                    var html = [];
-                    console.log(arr.length);
-
+                    var html = []; 
                     for (var i = 0; i < arr.length; i++) {
                         var a = arr[i].split('/');
                         if (a.length > 0) { 
@@ -93,10 +109,34 @@
                             html.push('<a href="ajax.ashx?action=deleteserviceqq&id=' + a[0] + '&name=' + a[1] + '" data-toggle="doajax"   class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a></td> </tr>');
                         }
                     }
-                    $("#services").append(html.join(''));
-                    $("#erweimatd").html(' ');
-                    $("#weixintd").html('');
+                    $("#servicesqqlist").append(html.join(''));
+                  //  $("#erweimatd").html(' ');
+                   // $("#weixintd").html('');
                     
+                }, error: function () {
+                    console.log("error");
+                }
+            });
+
+
+            $.ajax({
+                url: "ajax.ashx?action=getservicephone",
+                data: {},
+                type: "post",
+                success: function (r) {
+                    var arr = JSON.parse(r);
+                    var html = []; 
+                    for (var i = 0; i < arr.length; i++) {
+                        var a = arr[i];
+                        if (a) {
+                            html.push("<tr> <td> " + a + "</td>"); 
+                            html.push('<td> <a href="ajax.ashx?action=deleteservicephone&id=' + a[0] +'" data-toggle="doajax" class="btn btn-red row-del" data-confirm-msg="确定要删除该行信息吗？">删除</a></td> </tr>');
+                        }
+                    }
+                    $("#servicesphonelist").append(html.join(''));
+                    //  $("#erweimatd").html(' ');
+                    // $("#weixintd").html('');
+
                 }, error: function () {
                     console.log("error");
                 }

@@ -14,9 +14,11 @@ namespace Donghui
         public string title = "";
         public DataTable advList = new DataTable();
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
+        public List<string> phoneList = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             qqList = com.settings.getQQs();
+            phoneList = com.settings.getPhones();
             advList =  com.advantage.getAdvantageList("1", "4");
             DataTable dt = com.advantage.getMyCommit();
             myCommitHtml = dt.Rows[0]["content"].ToString();

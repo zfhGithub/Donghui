@@ -12,10 +12,12 @@ namespace Donghui
     {
         public DataTable contactDt = new DataTable();
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
+        public List<string> phoneList = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
              contactDt = com.aboutinfo.getAboutInfo();
             qqList = com.settings.getQQs();
+            phoneList = com.settings.getPhones();
             if (Request.HttpMethod.ToUpper() =="POST")
             {
                 string cname = Request.Form["cname"];

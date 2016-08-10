@@ -12,6 +12,9 @@ a:hover{color:#e8431f;}
 #floatDivBoxs .floatDqq{padding:0 14px;}
 #floatDivBoxs .floatDqq li{height:45px;line-height:45px;font-size:15px;border-bottom:1px solid #e3e3e3; text-align:right}
 #floatDivBoxs .floatDqq li img{ float:left; margin-top:7px;}
+#floatDivBoxs .floatDphone{padding:0 14px;}
+#floatDivBoxs .floatDphone li{height:45px;line-height:45px;font-size:15px;border-bottom:1px solid #e3e3e3; text-align:right}
+#floatDivBoxs .floatDphone li img{ float:left; margin-top:7px;width:32px;height:30px;margin-left:-12px;}
 #floatDivBoxs .floatDtxt{font-size:18px;color:#333;padding:12px 14px;}
 #floatDivBoxs .floatDtel{padding:0 0 15px 10px;}
 #floatDivBoxs .floatImg{text-align:center;padding:10px;background:#EBEBEB;}

@@ -13,6 +13,7 @@ namespace Donghui
         public Dictionary<string, string> News = new Dictionary<string, string>();
         public DataTable newsList = new DataTable();
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
+        public List<string> phoneList = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -28,6 +29,7 @@ namespace Donghui
                 News.Add("content", row["content"].ToString());
                 News.Add("created", row["created"].ToString());
                 qqList = com.settings.getQQs();
+                phoneList = com.settings.getPhones();
                 newsList = s.Selects("select top 10 id, type, name, title, subtitle, photo, content, created, deleted from News where  deleted=0 order by created desc");
             }
             catch (Exception)

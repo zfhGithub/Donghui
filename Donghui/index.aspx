@@ -249,7 +249,16 @@
             </ul>
             <div class="floatDtxt">热线电话</div>
             <div class="floatDtel">
-                <img src="assets/customerservice/images/online_phone.jpg" width="155" height="45" alt=""></div>
+              <%--  <img src="assets/customerservice/images/online_phone.jpg" width="155" height="45" alt="">--%>
+                   <ul class="floatDphone" >
+                       <%
+                           for (int i = 0; i < phoneList.Count; i++)
+                           {%>
+                         <li><a href="javascript:;">    <img src="assets/customerservice/images/phone.png" align="absmiddle"> <%= phoneList[i] %> </a> </li>
+                           <%}
+                            %> 
+                   </ul>
+            </div>
             <div class="floatImg">
                 <img src="assets/customerservice/images/erweima.jpg" width="100%">微信公众账号</div>
         </div>

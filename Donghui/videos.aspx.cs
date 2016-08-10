@@ -11,11 +11,13 @@ namespace Donghui
     public partial class videos : System.Web.UI.Page
     {
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
+        public List<string> phoneList = new List<string>();
         public DataTable caseList = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             qqList = com.settings.getQQs();
             caseList = com.@case.getCaseList();
+            phoneList = com.settings.getPhones();
         }
     }
 }

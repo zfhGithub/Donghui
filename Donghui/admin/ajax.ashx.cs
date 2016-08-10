@@ -224,8 +224,8 @@ namespace Donghui.admin
                     break;
                 case "getserviceqq":
                     js = new JavaScriptSerializer();
-                   var json = js.Serialize(com.settings.getServices());
-                    res.Write(json=="[\"\"]"?"":json  );
+                    var json = js.Serialize(com.settings.getServices());
+                    res.Write(json == "[\"\"]" ? "" : json);
                     break;
                 case "addserviceqq":
                     string qq = req.Form["serviceQQ"];
@@ -236,6 +236,20 @@ namespace Donghui.admin
                     qq = req.Params["id"];
                     name = req.Params["name"];
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.settings.deleteQQ(qq, name)));
+                    break;
+                case "addservicephone":
+                    string phone = req.Form["txtPhone"];
+
+                    res.Write(Utils.GetReulst(200, "保存成功", "保存失败", com.settings.addServicesPhone(phone)));
+                    break;
+                case "getservicephone":
+                    js = new JavaScriptSerializer();
+                    json = js.Serialize(com.settings.getServicesPhones());
+                    res.Write(json == "[\"\"]" ? "" : json);
+                    break;
+                case "deleteservicephone":
+                    phone = req.Params["id"];
+                    res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.settings.deletePhone(phone)));
                     break;
                     #endregion
             }

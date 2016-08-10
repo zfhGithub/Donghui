@@ -13,10 +13,12 @@ namespace Donghui
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
         public DataTable priceList = new DataTable();
         public List<Dictionary<string, string>> itemList = new List<Dictionary<string, string>>();
+        public List<string> phoneList = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             qqList = com.settings.getQQs();
             priceList = com.price.getPriceTop4();
+            phoneList = com.settings.getPhones();
             foreach (DataRow row in priceList.Rows)
             {
                 string pid = row["id"].ToString();
