@@ -251,6 +251,11 @@ namespace Donghui.admin
                     phone = req.Params["id"];
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", com.settings.deletePhone(phone)));
                     break;
+                case "updatepassword":
+                    string olepassword = req.Params["olepassword"];
+                    string newpassword = req.Params["newpassword"];
+                    res.Write(Utils.GetReulst(200,"修改成功","修改失败",com.settings.updatePassword( newpassword, olepassword)));
+                    break;
                     #endregion
             }
         }

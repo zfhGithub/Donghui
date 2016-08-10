@@ -31,7 +31,7 @@ namespace Donghui.admin
                     if (dt.Rows.Count > 0)
                     {
                         DataRow row = dt.Rows[0];
-                        Donghui.Models.Users users = new Models.Users()
+                        SqlOper.Models.Users users = new SqlOper.Models.Users()
                         {
                             Id = row["id"].ToString(),
                             LoginName = row["LoginName"].ToString(),
@@ -41,6 +41,7 @@ namespace Donghui.admin
                         };
 
                         Session["UserInfo"] = users;
+                      
                         Response.Redirect("index.aspx");
                     }
                     else

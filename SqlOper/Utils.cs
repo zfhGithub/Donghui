@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.SessionState;
 
 namespace SqlOper
 {
@@ -420,6 +421,12 @@ namespace SqlOper
             oldBanners = oldBanners.Replace(oldName+";","");
            return s.ExecuteSql("update Company set bannerImages ='" + oldBanners + "' ");
 
+        }
+
+        public static void setSession(SqlOper.Models.Users user)
+        {
+          //  HttpSessionState sess =  new HttpSessionState() ;
+           // sess["UserInfo"] = user;
         }
     }
 }

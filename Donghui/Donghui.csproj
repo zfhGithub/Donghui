@@ -924,7 +924,6 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs" />
     <Compile Include="price.aspx.cs">
       <DependentUpon>price.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
