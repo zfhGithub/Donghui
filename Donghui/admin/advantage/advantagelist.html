@@ -1,137 +1,145 @@
 ﻿<script type="text/javascript">
-    var pageIndex = 1;
-    var pageSize = 10;
-    var MaxPage;
-    var TotalPage;//总条数
+    var advantagelist  = { pageIndex: 1, pageSize: 10, MaxPage: 0, TotalPage :0}
 
-    function ProductInfo() {
+    function advantagelistpage() {
         var customNo = $("#customNo").val();
         var customName = $("#customName").val();
-        var Protype = $("#Protype").find("option:selected").val();
         $.ajax({
             url: 'ajax.ashx?action=getadvantagelist',
-            data: {
-                "pageIndex": pageIndex,
-                "pageSize": pageSize
-            },
-            type: "post",
-            success: function (result) {
-                var html = [];
-                var json = JSON.parse(result);
-                TotalPage = json["count"];//总记录数
-                //求出最大页
-                MaxPage = Math.ceil(TotalPage / pageSize);
-                var da = json["data"];
-                da = JSON.parse(da);
-                var data = da["d"];
-                $.each(data, function (k, v) {
-                    html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
-                    html.push("<td> <a href='#' onclick='advantage_edit(this,\"" + v.id + "\")' class='btn btn-green' >编辑</a>");
-                    html.push("<a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
-                }); 
-                $("#t_advantage_list tbody").empty().append(html.join(''));
-                html = [];
-                $("#total").html(TotalPage); 
+                data: {
+                    "pageIndex": advantagelist.pageIndex,
+                    "pageSize": advantagelist.pageSize,
+                },
+                type: "post",
+                success: function (result) {
+                    var html = [];
+                    var json = JSON.parse(result);
+                    var count = json["count"];
+                    count = JSON.parse(count);
+                    advantagelist.TotalPage = json["count"];//总记录数
+                    //求出最大页
+                    advantagelist.MaxPage = Math.ceil(advantagelist.TotalPage / advantagelist.pageSize);
 
-                html.push("<ul class='pagination'>");
-                html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
-                html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                    var da = json["data"];
+                    da = JSON.parse(da);
+                    var data = da["d"];
+                    $.each(data, function (k, v) {
+                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td> <td>" + v.created + "</td><td><img width='60' height='60' src='" + v.photo + "' /></td>  ");
+                        html.push("<td> <a href='#' onclick='advantage_edit(this,\"" + v.id + "\")' class='btn btn-green' >编辑</a>");
+                        html.push("<a href='ajax.ashx?action=deleteadvantage&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                    }); 
+                    $("#t_advantage_list tbody").empty().append(html.join(''));
+                    html = [];
 
-                for (var i = 1; i <= MaxPage; i++) {
-                    var c = "j-num";
-                    if (i == pageIndex) {
-                        c = "selected " + c;
+                    $("#advantagelist_total").html(advantagelist.TotalPage);//共..条数据
+                    html.push("<ul class='pagination'>");
+                    html.push("<li class='j-first'><a href='javascript:' onclick='advantage_first()'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                    html.push("<li class='j-prev'><a href='javascript:' onclick='advantage_Prepage()'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+
+                    for (var i = 1; i <= advantagelist.MaxPage; i++) {
+                        var c = "j-num";
+                        if (i == advantagelist.pageIndex) {
+                            c = "selected " + c;
+                        }
+                        html.push("<li class='" + c + "'><a href='javascript:' onclick='advantagelist_page_click(this)'> " + i + "</a></li>");
                     }
-                    html.push("<li class='" + c + "'><a href='javascript:'> " + i + "</a></li>");
-                }
-                html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
-                html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
-                html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
-                html.push("<ul>");
+                    html.push("<li class='j-next'><a href='javascript:' onclick='advantage_next()'><span class='next' ><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last'><a href='javascript:' onclick='advantage_weiye()'><i class='fa fa-step-forward'></i>末页</a></li>")
+                    html.push("<li class='jumpto'><span class='p-input'><input  id='advantage_putvalue' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='advantage_Letgo()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                    html.push("<ul>");
+                    $("#advantagelistination").empty().append(html.join(''));
+                    //如果当前页等于1就让首页、上一页不可点击
+                    if (advantagelist.pageIndex == 1) {
+                        $("#advantagelistination .j-first").addClass("disabled");
+                        $("#advantagelistination .j-prev").addClass("disabled");
 
-                $("#pagination").empty().append(html.join(''));
-                //如果当前页等于1就让首页、上一页不可点击
-                if (pageIndex == 1) {
-                    $(".j-first").addClass("disabled");
-                    $(".j-prev").addClass("disabled");
-                }
-
-                if (pageIndex == MaxPage) {
-                    $(".j-next").addClass("disabled");
-                    $(".j-last").addClass("disabled");
-                }
+                    }
+                    if (advantagelist.pageIndex == advantagelist.MaxPage)
+                    {
+                        $("#advantagelistination .j-next").addClass("disabled");
+                        $("#advantagelistination .j-last").addClass("disabled");
+                        return advantagelist.MaxPage;
+                    }
             }
         });
     }
+    //下一页
+    function advantage_next() {
+        advantagelist.pageIndex++;
+        if (advantagelist.pageIndex > advantagelist.MaxPage) {
+            advantagelist.pageIndex = advantagelist.MaxPage;
+        }
+        advantagelistpage();
+    }
+    //上一页
+    function advantage_Prepage () {
+        advantagelist.pageIndex--;
+        if (advantagelist.pageIndex < 1) {
+            advantagelist.pageIndex = 1;
+        }
+        advantagelistpage();
+    }
+    //首页
+    function advantage_first() {
+        advantagelist.pageIndex = 1;
+        advantagelistpage();
+    }
+
+    //尾页
+    function advantage_weiye() {
+
+        advantagelist.pageIndex = advantagelist.MaxPage;
+        advantagelistpage();
+
+    }
+    function advantage_Letgo() {
+        var InputValue = $("#advantage_putvalue").val();
+        if (InputValue > advantagelist.MaxPage) {
+            $(this).alertmsg('warn', '你输入的数字超过页面范围');
+            return;
+        }
+        if (InputValue < 1) {
+            $(this).alertmsg('warn', '请输入大于第一页的数字');
+            return;
+        }
+        if (isNaN(Number(InputValue)) || InputValue == "") {
+            $(this).alertmsg('warn', '请输入数字');
+            return;
+        }
+        //console.log(InputValue);
+        advantagelist.pageIndex = InputValue;
+        advantagelistpage();
+    }
+    function advantagelist_page_size_change(_this) {
+        var checkText = $(_this).find("option:selected").text();
+        advantagelist.pageIndex = 1;
+        advantagelist.pageSize = checkText;
+        advantagelistpage();
+    }
+    function advantagelist_page_click(_this) {
+        $(_this).attr("class", "selected");
+        var Sum = $(_this).text();
+        advantagelist.pageIndex = Sum;
+        advantagelistpage();
+    }
+    $(function () {
+        advantagelistpage();
+    });
+    function search() {
+        advantagelist.pageIndex = 1;
+        advantagelistpage();
+    }
+
     var advantage_edit_id;
-    function advantage_edit(_this,id) {
+    function advantage_edit(_this, id) {
         advantage_edit_id = id;
-         $(_this).dialog({ id: 'dialog-addadvantage', url: 'advantage/addadvantage.html', title: '修改优势', height: '400', width: "860", onClose: "dialog_addadvantage_before_close" });
+        $(_this).dialog({ id: 'dialog-addadvantage', url: 'advantage/addadvantage.html', title: '修改优势', height: '400', width: "860", onClose: "dialog_addadvantage_before_close" });
     }
     function dialog_addadvantage_before_close($dialog) {
         advantage_edit_id = undefined;
-        $("body").navtab("refresh", "pricelist");
-        //refresh("pricelist");
+        $("body").navtab("refresh", "advantagelist");
         return true;
     }
-    $(function () {
-        ProductInfo();
-        var Protype = $("#Protype").find("option:selected").text();
-        //下一页
-        $(".j-next").live("click", function () {
-            pageIndex++;
-            ProductInfo();
-        });
-        //点击跳转相应页面
-        $(".j-num").live("click", function () {
-            $(".j-num").removeClass("selected");
-            $(this).attr("class", "selected");
-            var Sum = $(this).text();
-            pageIndex = Sum;
-            ProductInfo();
-        })
-        //末页
-        $(".last").live("click", function () {
-            pageIndex = MaxPage;
-            ProductInfo();
-        });
-        //上一页
-        $(".j-prev").live("click", function () {
-            pageIndex--;
-            ProductInfo();
-        })
-        //输入跳转
-        $(".goto").live("click", function () {
-            var InputValue = $("#put").val();
-            if (InputValue > MaxPage) {
-                $(this).alertmsg('warn', '你输入的数字超过页面范围');
-                return;
-            }
-            if (InputValue < 1) {
-                $(this).alertmsg('warn', '请输入大于第一页的数字');
-                return;
-            }
-            if (isNaN(Number(InputValue)) || InputValue == "") {
-                $(this).alertmsg('warn', '请输入数字');
-                return;
-            }
-            console.log(InputValue);
-            pageIndex = InputValue;
-            ProductInfo();
-        });
-        // 设置option选项 .选中每页显示多少条数据
-        $("#s_advantage").live("change", function () {
-            var checkText = $("#s_advantage_select").find("option:selected").text();
-            pageSize = checkText;
-            ProductInfo();
-        });
-
-    });
-    function search() {
-        pageIndex = 1;
-        ProductInfo();
-    }
-
 </script>
 <div class="bjui-pageHeader">
     <div class="pull-right">
@@ -202,17 +210,17 @@
 <div class="bjui-pageFooter">
     <div class="pages">
         <span>每页&nbsp;</span>
-        <div class="selectPagesize" id="s_advantage">
-            <select data-toggle="selectpicker" id="s_advantage_select">
+        <div class="selectPagesize" onchange="advantagelist_page_size_change(this)">
+            <select data-toggle="selectpicker">
                 <option value="10" id="three">10</option>
                 <option value="20" id="six">20</option>
                 <option value="30">30</option>
 
             </select>
         </div>
-        <span>&nbsp;条, 共&nbsp;<span id="total"> </span> 条</span>
+        <span>&nbsp;条, 共&nbsp;<span id="advantagelist_total"> </span> 条</span>
     </div>
-    <div class="pagination-box" id="ination" data-total="10" data-page-size="2" data-page-current="1">
+    <div class="pagination-box" id="advantagelistination" data-total="10" data-page-size="2" data-page-current="1">
     </div>
 
 </div>

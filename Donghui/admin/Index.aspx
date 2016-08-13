@@ -260,7 +260,7 @@ $(function(){
                                 <li data-id="22" data-pid="2" data-url="message/messagelist.html"data-tabid="messagelist" >留言列表</li>  
                                  
                                 <li data-id="3" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">领先优势</li> 
-                                <li data-id="32" data-pid="3" data-url="advantage/advantagelist.html"data-tabid="setBanner5" >优势管理</li> 
+                                <li data-id="32" data-pid="3" data-url="advantage/advantagelist.html"data-tabid="advantagelist" >优势管理</li> 
                                 <li data-id="31" data-pid="3" data-url="advantage/mycommit.html"data-tabid="mycommit" >我们的承诺</li>  
 
                                 <li data-id="4" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">价格</li> 
@@ -274,7 +274,7 @@ $(function(){
 
                                 <li data-id="7" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">设置</li> 
                                 <li data-id="71" data-pid="7" data-url="settings/setBanner.aspx" data-tabid="setBanner" >图片管理</li> 
-                                <li data-id="72" data-pid="7" data-url="settings/setCustomerService.html" data-tabid="setBanner" >客服设置</li> 
+                                <li data-id="72" data-pid="7" data-url="settings/setCustomerService.html" data-tabid="setCustomerService" >客服设置</li> 
                                   
                             </ul>                
 

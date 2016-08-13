@@ -1,138 +1,146 @@
 ﻿<script type="text/javascript">
+    var articlelist  = { pageIndex: 1, pageSize: 10, MaxPage: 0, TotalPage :0}
 
-    var pageIndex = 1;
-    var pageSize = 10;
-    var MaxPage;
-    var TotalPage;//总条数
-
-    function ProductInfo() {
+    function articlelistpage() {
         var customNo = $("#customNo").val();
         var customName = $("#customName").val();
-        var Protype = $("#Protype").find("option:selected").val();
         $.ajax({
             url: 'ajax.ashx?action=getarticlelist',
                 data: {
-                    "pageIndex": pageIndex,
-                    "pageSize": pageSize,
+                    "pageIndex": articlelist.pageIndex,
+                    "pageSize": articlelist.pageSize,
                 },
                 type: "post",
                 success: function (result) {
                     var html = [];
                     var json = JSON.parse(result);
-                    TotalPage = json["count"];//总记录数
+                    var count = json["count"];
+                    count = JSON.parse(count);
+                    articlelist.TotalPage = json["count"];//总记录数
                     //求出最大页
-                    MaxPage = Math.ceil(TotalPage / pageSize);
+                    articlelist.MaxPage = Math.ceil(articlelist.TotalPage / articlelist.pageSize);
+
                     var da = json["data"];
                     da = JSON.parse(da);
                     var data = da["d"];
                     $.each(data, function (k, v) {
-                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td><td>" + v.created + "</td><td><img width='80' height='60' src='"+v.photo+"'/></td>  ");
-                        html.push(' <td>  <a class="btn btn-green" onclick="article_edit(this,'+v.id+')">编辑</a> ');
+                        html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td><td>" + v.created + "</td><td><img width='80' height='60' src='" + v.photo + "'/></td>  ");
+                        html.push(' <td>  <a class="btn btn-green" onclick="article_edit(this,' + v.id + ')">编辑</a> ');
                         html.push("    <a href='ajax.ashx?action=deletearticle&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                     });
                     $("#t_article_list tbody").empty().append(html.join(''));
                     html = [];
-                    $("#total").html(TotalPage);
 
+                    $("#articlelist_total").html(articlelist.TotalPage);//共..条数据
                     html.push("<ul class='pagination'>");
-                    html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
-                    html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
-
-                    for (var i = 1; i <= MaxPage; i++) {
+                    html.push("<li class='j-first'><a href='javascript:' onclick='article_first()'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                    html.push("<li class='j-prev'><a href='javascript:' onclick='article_Prepage()'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                    console.log("articlelist:", articlelist);
+                    for (var i = 1; i <= articlelist.MaxPage; i++) {
                         var c = "j-num";
-                        if (i == pageIndex) {
+                        if (i == articlelist.pageIndex) {
                             c = "selected " + c;
                         }
-                        html.push("<li class='"+c+"'><a href='javascript:'> "+i+"</a></li>");
+                        html.push("<li class='" + c + "'><a href='javascript:' onclick='articlelist_page_click(this)'> " + i + "</a></li>");
                     }
-                    html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
-                    html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
-                    html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                    html.push("<li class='j-next'><a href='javascript:' onclick='article_next()'><span class='next' ><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last'><a href='javascript:' onclick='article_weiye()'><i class='fa fa-step-forward'></i>末页</a></li>")
+                    html.push("<li class='jumpto'><span class='p-input'><input  id='article_putvalue' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='article_Letgo()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
                     html.push("<ul>");
-
-                    $("#pagination").empty().append(html.join(''));
+                    $("#articlelistination").empty().append(html.join(''));
                     //如果当前页等于1就让首页、上一页不可点击
-                    if (pageIndex == 1) {
-                        $(".j-first").addClass("disabled");
-                        $(".j-prev").addClass("disabled");
-                    }
+                    if (articlelist.pageIndex == 1) {
+                        $("#articlelistination .j-first").addClass("disabled");
+                        $("#articlelistination .j-prev").addClass("disabled");
 
-                    if (pageIndex == MaxPage)
+                    }
+                    if (articlelist.pageIndex == articlelist.MaxPage)
                     {
-                        $(".j-next").addClass("disabled");
-                        $(".j-last").addClass("disabled");
+                        $("#articlelistination .j-next").addClass("disabled");
+                        $("#articlelistination .j-last").addClass("disabled"); 
                     }
             }
         });
     }
+    //下一页
+    function article_next() {
+        articlelist.pageIndex++;
+        if (articlelist.pageIndex > articlelist.MaxPage) {
+            articlelist.pageIndex = articlelist.MaxPage;
+        }
+        articlelistpage();
+    }
+    //上一页
+    function article_Prepage () {
+        articlelist.pageIndex--;
+        if (articlelist.pageIndex < 1) {
+            articlelist.pageIndex = 1;
+        }
+        articlelistpage();
+    }
+    //首页
+    function article_first() {
+        articlelist.pageIndex = 1;
+        articlelistpage();
+    }
+
+    //尾页
+    function article_weiye() {
+
+        articlelist.pageIndex = articlelist.MaxPage;
+        articlelistpage();
+
+    }
+    function article_Letgo() {
+        var InputValue = $("#article_putvalue").val();
+        if (InputValue > articlelist.MaxPage) {
+            $(this).alertmsg('warn', '你输入的数字超过页面范围');
+            return;
+        }
+        if (InputValue < 1) {
+            $(this).alertmsg('warn', '请输入大于第一页的数字');
+            return;
+        }
+        if (isNaN(Number(InputValue)) || InputValue == "") {
+            $(this).alertmsg('warn', '请输入数字');
+            return;
+        } 
+        articlelist.pageIndex = InputValue;
+        articlelistpage();
+    }
+    function articlelist_page_size_change(_this) {
+        var checkText = $(_this).find("option:selected").text();
+        articlelist.pageIndex = 1;
+        articlelist.pageSize = checkText;
+        articlelistpage();
+    }
+    function articlelist_page_click(_this) {
+        $(_this).attr("class", "selected");
+        var Sum = $(_this).text();
+        articlelist.pageIndex = Sum;
+        articlelistpage();
+    }
+    $(function () { 
+        articlelistpage(); 
+    });
+    function search() {
+        articlelist.pageIndex = 1;
+        articlelistpage();
+    }
+
     var article_edit_id;
-    function article_edit(_this,id) {
+    function article_edit(_this, id) {
         article_edit_id = id;
         $(_this).dialog({ id: 'dialog-addarticle', url: 'article/addarticle.html', title: '修改文章', height: '600', width: "860", onClose: "dialog_addarticle_before_close" });
 
     }
     function dialog_addarticle_before_close($dialog) {
         article_edit_id = undefined;
+        $("body").navtab("refresh", "articlelist");
     }
-    $(function () {
-        ProductInfo();
-        var Protype = $("#Protype").find("option:selected").text();
-        //下一页
-        $(".j-next").live("click", function () {
-            pageIndex++;
-            ProductInfo();
-        });
-        //点击跳转相应页面
-        $(".j-num").live("click", function () {
-            $(".j-num").removeClass("selected");
-            $(this).attr("class", "selected");
-            var Sum = $(this).text();
-            pageIndex = Sum;
-            ProductInfo();
-        })
-        //末页
-        $(".last").live("click", function () {
-            pageIndex = MaxPage;
-            ProductInfo();
-        });
-        //上一页
-        $(".j-prev").live("click", function () {
-            pageIndex--;
-            ProductInfo();
-        })
-        //输入跳转
-        $(".goto").live("click", function () {
-            var InputValue = $("#put").val();
-            if (InputValue>MaxPage) {
-                $(this).alertmsg('warn','你输入的数字超过页面范围');
-                return;
-            }
-            if (InputValue<1) {
-                $(this).alertmsg('warn', '请输入大于第一页的数字');
-                return;
-            }
-            if (isNaN(Number(InputValue))||InputValue=="") {
-                $(this).alertmsg('warn', '请输入数字');
-                return;
-            }
-            console.log(InputValue);
-            pageIndex = InputValue;
-            ProductInfo();
-        });
-        // 设置option选项 .选中每页显示多少条数据
-        $("#sl").live("change", function () {
-            var checkText = $("#sel").find("option:selected").text();
-            pageSize = checkText;
-            ProductInfo();
-        });
-
-    });
-    function search() {
-        pageIndex = 1;
-        ProductInfo();
-    }
-
 </script>
+
+ 
 <div class="bjui-pageHeader">
     <div class="pull-right">
 
@@ -208,17 +216,17 @@
 <div class="bjui-pageFooter">
     <div class="pages">
         <span>每页&nbsp;</span>
-        <div class="selectPagesize" id="sl">
-            <select data-toggle="selectpicker" id="sel">
+        <div class="selectPagesize"  onchange="articlelist_page_size_change(this)">
+            <select data-toggle="selectpicker" >
                 <option value="10" id="three">10</option>
                 <option value="20" id="six">20</option>
                 <option value="30">30</option>
 
             </select>
         </div>
-        <span>&nbsp;条, 共&nbsp;<span id="total"> </span> 条</span>
+        <span>&nbsp;条, 共&nbsp;<span id="articlelist_total"> </span> 条</span>
     </div>
-    <div class="pagination-box" id="ination" data-total="10" data-page-size="2" data-page-current="1">
+    <div class="pagination-box" id="articlelistination" data-total="10" data-page-size="2" data-page-current="1">
     </div>
 
 </div>

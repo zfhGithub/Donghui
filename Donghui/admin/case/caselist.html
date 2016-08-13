@@ -1,27 +1,25 @@
 ﻿<script type="text/javascript">
+    var caselist  = { pageIndex: 1, pageSize: 10, MaxPage: 0, TotalPage :0}
 
-    var pageIndex = 1;
-    var pageSize = 10;
-    var MaxPage;
-    var TotalPage;//总条数
-
-    function ProductInfo() {
+    function caselistpage() {
         var customNo = $("#customNo").val();
         var customName = $("#customName").val();
-        var Protype = $("#Protype").find("option:selected").val();
         $.ajax({
             url: 'ajax.ashx?action=getcaselist',
                 data: {
-                    "pageIndex": pageIndex,
-                    "pageSize": pageSize, 
+                    "pageIndex": caselist.pageIndex,
+                    "pageSize": caselist.pageSize,
                 },
                 type: "post",
                 success: function (result) {
                     var html = [];
                     var json = JSON.parse(result);
-                    TotalPage = json["count"];//总记录数
+                    var count = json["count"];
+                    count = JSON.parse(count);
+                    caselist.TotalPage = json["count"];//总记录数
                     //求出最大页
-                    MaxPage = Math.ceil(TotalPage / pageSize);
+                    caselist.MaxPage = Math.ceil(caselist.TotalPage / caselist.pageSize);
+
                     var da = json["data"];
                     da = JSON.parse(da);
                     var data = da["d"];
@@ -32,96 +30,106 @@
                     });
                     $("#t_case_list tbody").empty().append(html.join(''));
                     html = [];
-                    $("#total").html(TotalPage);//共6条数据
 
+                    $("#caselist_total").html(caselist.TotalPage);//共..条数据
                     html.push("<ul class='pagination'>");
-                    html.push("<li class='j-first'><a href='javascript:'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
-                    html.push("<li class='j-prev'><a href='javascript:'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
+                    html.push("<li class='j-first'><a href='javascript:' onclick='case_first()'><span class='first'><i class='fa fa-step-backward'></i>首页</span></a></li>");
+                    html.push("<li class='j-prev'><a href='javascript:' onclick='case_Prepage()'><span class='previous'><i class='fa fa-backward'></i>上一页</span></li>");
 
-                    for (var i = 1; i <= MaxPage; i++) {
+                    for (var i = 1; i <= caselist.MaxPage; i++) {
                         var c = "j-num";
-                        if (i == pageIndex) {
+                        if (i == caselist.pageIndex) {
                             c = "selected " + c;
                         }
-                        html.push("<li class='"+c+"'><a href='javascript:'> "+i+"</a></li>");
+                        html.push("<li class='" + c + "'><a href='javascript:' onclick='caselist_page_click(this)'> " + i + "</a></li>");
                     }
-                    html.push("<li class='j-next'><a href='javascript:'><span class='next'><i class='fa fa-forward'></i>下一页</span></li>");
-                    html.push("<li class='j-last'><a href='javascript:'><span class='last'><i class='fa fa-step-forward'></i>末页</span></li>");
-                    html.push("<li class='jumpto'><span class='p-input'><input id='put'class='form-control input-sm-pages' type='text' size='2.6' value='' title='输入跳转页码，回车确认'></span><a class='goto' href='javascript:' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
+                    html.push("<li class='j-next'><a href='javascript:' onclick='case_next()'><span class='next' ><i class='fa fa-forward'></i>下一页</span></li>");
+                    html.push("<li class='j-last'><a href='javascript:' onclick='case_weiye()'><i class='fa fa-step-forward'></i>末页</a></li>")
+                    html.push("<li class='jumpto'><span class='p-input'><input  id='case_putvalue' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='case_Letgo()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
                     html.push("<ul>");
-
-                    $("#pagination").empty().append(html.join(''));
+                    $("#caselistination").empty().append(html.join(''));
                     //如果当前页等于1就让首页、上一页不可点击
-                    if (pageIndex == 1) {
-                        $(".j-first").addClass("disabled");
-                        $(".j-prev").addClass("disabled");
-                    }
+                    if (caselist.pageIndex == 1) {
+                        $("#caselistination .j-first").addClass("disabled");
+                        $("#caselistination .j-prev").addClass("disabled");
 
-                    if (pageIndex == MaxPage)
+                    }
+                    if (caselist.pageIndex == caselist.MaxPage)
                     {
-                        $(".j-next").addClass("disabled");
-                        $(".j-last").addClass("disabled");
+                        $("#caselistination .j-next").addClass("disabled");
+                        $("#caselistination .j-last").addClass("disabled");
+                        return caselist.MaxPage;
                     }
             }
         });
     }
-    $(function () {
-        ProductInfo();
-        var Protype = $("#Protype").find("option:selected").text();
-        //下一页
-        $(".j-next").live("click", function () {
-            pageIndex++;
-            ProductInfo();
-        });
-        //点击跳转相应页面
-        $(".j-num").live("click", function () {
-            $(".j-num").removeClass("selected");
-            $(this).attr("class", "selected");
-            var Sum = $(this).text();
-            pageIndex = Sum;
-            ProductInfo();
-        })
-        //末页
-        $(".last").live("click", function () {
-            pageIndex = MaxPage;
-            ProductInfo();
-        });
-        //上一页
-        $(".j-prev").live("click", function () {
-            pageIndex--;
-            ProductInfo();
-        })
-        //输入跳转
-        $(".goto").live("click", function () {
-            var InputValue = $("#put").val();
-            if (InputValue>MaxPage) {
-                $(this).alertmsg('warn','你输入的数字超过页面范围');
-                return;
-            }
-            if (InputValue<1) {
-                $(this).alertmsg('warn', '请输入大于第一页的数字');
-                return;
-            }
-            if (isNaN(Number(InputValue))||InputValue=="") {
-                $(this).alertmsg('warn', '请输入数字');
-                return;
-            }
-            console.log(InputValue);
-            pageIndex = InputValue;
-            ProductInfo();
-        });
-        // 设置option选项 .选中每页显示多少条数据
-        $("#caselist_sl").live("change", function () {
-            var checkText = $("#caselist_sel").find("option:selected").text();
-            pageSize = checkText;
-            ProductInfo();
-        });
+    //下一页
+    function case_next() {
+        caselist.pageIndex++;
+        if (caselist.pageIndex > caselist.MaxPage) {
+            caselist.pageIndex = caselist.MaxPage;
+        }
+        caselistpage();
+    }
+    //上一页
+    function case_Prepage () {
+        caselist.pageIndex--;
+        if (caselist.pageIndex < 1) {
+            caselist.pageIndex = 1;
+        }
+        caselistpage();
+    }
+    //首页
+    function case_first() {
+        caselist.pageIndex = 1;
+        caselistpage();
+    }
 
+    //尾页
+    function case_weiye() {
+
+        caselist.pageIndex = caselist.MaxPage;
+        caselistpage();
+
+    }
+    function case_Letgo() {
+        var InputValue = $("#case_putvalue").val();
+        if (InputValue > caselist.MaxPage) {
+            $(this).alertmsg('warn', '你输入的数字超过页面范围');
+            return;
+        }
+        if (InputValue < 1) {
+            $(this).alertmsg('warn', '请输入大于第一页的数字');
+            return;
+        }
+        if (isNaN(Number(InputValue)) || InputValue == "") {
+            $(this).alertmsg('warn', '请输入数字');
+            return;
+        }
+        //console.log(InputValue);
+        caselist.pageIndex = InputValue;
+        caselistpage();
+    }
+    function caselist_page_size_change(_this) {
+        var checkText = $(_this).find("option:selected").text();
+        caselist.pageIndex = 1;
+        caselist.pageSize = checkText;
+        caselistpage();
+    }
+    function caselist_page_click(_this) {
+        $(_this).attr("class", "selected");
+        var Sum = $(_this).text();
+        caselist.pageIndex = Sum;
+        caselistpage();
+    }
+    $(function () { 
+        caselistpage(); 
     });
     function search() {
-        pageIndex = 1;
-        ProductInfo();
+        caselist.pageIndex = 1;
+        caselistpage();
     }
+ 
     var case_edit_id;
     function case_edit(_this, id) {
         case_edit_id = id;
@@ -130,12 +138,14 @@
     }
     function dialog_addcase_before_close($dialog) {
         case_edit_id = undefined;
-        //price_edit_name = undefined;
-        //$("body").navtab("refresh", "pricelist");
-        //refresh("pricelist");
+        $("body").navtab("refresh", "caselist");
         return true;
     }
 </script>
+
+
+
+ 
 <div class="bjui-pageHeader">
     <div class="pull-right">
 
@@ -203,17 +213,17 @@
 <div class="bjui-pageFooter">
     <div class="pages">
         <span>每页&nbsp;</span>
-        <div class="selectPagesize" id="caselist_sl">
-            <select data-toggle="selectpicker" id="caselist_sel">
+        <div class="selectPagesize" onchange="caselist_page_size_change(this)">
+            <select data-toggle="selectpicker">
                 <option value="10" id="three">10</option>
                 <option value="20" id="six">20</option>
                 <option value="30">30</option>
 
             </select>
         </div>
-        <span>&nbsp;条, 共&nbsp;<span id="total"></span>  条</span>
+        <span>&nbsp;条, 共&nbsp;<span id="caselist_total"></span>  条</span>
     </div>
-    <div class="pagination-box" id="pagination" data-total="10" data-page-size="2" data-page-current="1">
+    <div class="pagination-box" id="caselistination" data-total="10" data-page-size="2" data-page-current="1">
     </div>
 
 
