@@ -72,8 +72,7 @@ namespace SqlOper
                 return new DataTable();
             } 
         }
-
-
+         
         public int ExecutionSql(List<string> sqlList,List<SqlParameter[]> listSqlParmeter)
         {
             if (sqlList.Count == 0)
@@ -107,5 +106,6 @@ namespace SqlOper
                 conn.Close();
             }
         }
+
     }
 }

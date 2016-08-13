@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using SqlOper.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Web.SessionState;
 
 namespace SqlOper
 {
-    public static class Utils
+    public static class Utils 
     {
         private static string language = "zh-cn";
          
@@ -32,6 +33,8 @@ namespace SqlOper
                 language = value;
             }
         }
+
+       
 
         /// <summary>
         /// 生成缩略图
@@ -260,6 +263,7 @@ namespace SqlOper
             }
             return sb.ToString();
         }
+
         public static string UploadImage(HttpPostedFile file, string type, HttpContext context)
         {
             if (type == "head")
@@ -423,10 +427,27 @@ namespace SqlOper
 
         }
 
-        public static void setSession(SqlOper.Models.Users user)
+        private static string _sessionName;
+        public static string SessionName
         {
-          //  HttpSessionState sess =  new HttpSessionState() ;
-           // sess["UserInfo"] = user;
+            get
+            {
+                return _sessionName??"UserInfo";
+            }
+
+            set
+            {
+                _sessionName = value;
+            }
+        }
+        public static void setSession(Users user)
+        {
+            HttpContext.Current.Session[_sessionName] = user; 
+        }
+
+        public static Users getSession(string key = null)
+        {
+            return HttpContext.Current.Session[key ?? _sessionName] as Users;
         }
     }
 }
