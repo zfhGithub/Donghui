@@ -26,7 +26,7 @@
                     $.each(data, function (k, v) {
                         html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.subtitle + "</td><td>" + v.created + "</td><td><img width='80' height='60' src='" + v.photo + "' /></td>  ");
                         html.push("<td> <a href='#' onclick='case_edit(this,\"" + v.id + "\")' class='btn btn-green' >编辑</a>");
-                        html.push("   <a href='ajax.ashx?action=deletemessage&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
+                        html.push("   <a href='ajax.ashx?action=deletecase&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行信息吗？'>删除</a></td></tr>");
                     });
                     $("#t_case_list tbody").empty().append(html.join(''));
                     html = [];

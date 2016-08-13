@@ -27,7 +27,7 @@
                         html.push("<tr><td>" + v.rowIndex + "</td><td>" + v.name + "</td><td>" + v.sumprice + "</td><td>" + v.created + "</td>   ");
 
                         html.push(' <td>  <a class="btn btn-green" pid=' + v.id + ' pname="' + v.name + '" onclick="detail(this)">详情</a> ');
-                        html.push(" <a href='ajax.ashx?action=deletepriceitem&id=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行以及所有的子项目吗？'>删除</a></td></tr>");
+                        html.push(" <a href='ajax.ashx?action=deletepriceitem&pid=" + v.id + "' class='btn btn-red' data-toggle='doajax' data-confirm-msg='确定要删除该行以及所有的子项目吗？'>删除</a></td></tr>");
                     });
                     $("#t_price_list tbody").empty().append(html.join(''));
                     html = [];
@@ -49,8 +49,7 @@
                     html.push("<li class='jumpto'><span class='p-input'><input  id='price_putvalue' class='form-control input-sm-pages' type='text' size='2.6' value='' title='跳转页号'></span><a class='goto' href='javascript:' onclick='price_Letgo()' title='跳转'><i class='fa fa-chevron-right'></i></a></li>")
                     html.push("<ul>");
                     $("#pricelistination").empty().append(html.join(''));
-                    //如果当前页等于1就让首页、上一页不可点击
-                    console.log(pricelist);
+                    //如果当前页等于1就让首页、上一页不可点击 
                     if (pricelist.pageIndex == 1) {
                         $("#pricelistination .j-first").addClass("disabled");
                         $("#pricelistination .j-prev").addClass("disabled");
@@ -106,8 +105,7 @@
         if (isNaN(Number(InputValue)) || InputValue == "") {
             $(this).alertmsg('warn', '请输入数字');
             return;
-        }
-        //console.log(InputValue);
+        } 
         pricelist.pageIndex = InputValue;
         pricelistpage();
     }

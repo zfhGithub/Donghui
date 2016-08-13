@@ -32,5 +32,12 @@ namespace Donghui.com
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
             return s.Select(strSql);
         }
+
+        public static int deleteMessage(string id)
+        {
+            string strSql = "delete from message where Id="+id;
+            SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
+            return s.ExecuteSql(strSql);
+        }
     }
 }

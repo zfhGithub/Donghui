@@ -64,6 +64,10 @@ namespace Donghui.admin
                     JavaScriptSerializer js = new JavaScriptSerializer();
                     res.Write(js.Serialize(jsonDic));
                     break;
+                case "deletemessage":
+                    string id = req.Params["pid"];
+                    res.Write( Utils.GetReulst(200,"删除成功","删除失败",com.message.deleteMessage(id)));
+                    break;
                 #endregion
 
                 #region 领先优势
@@ -95,7 +99,7 @@ namespace Donghui.admin
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "deleteadvantage":
-                    string id = req.QueryString["id"];
+                    id = req.QueryString["id"];
                     res.Write(Utils.GetReulst(200, "删除成功！", "删除失败！", com.advantage.deleteAdvantageById(id)));
                     break;
                 case "getadvantagedetailbyid":
@@ -176,7 +180,7 @@ namespace Donghui.admin
                 case "getcasedetailbyid":
                     id = req.Form["id"];
                     res.Write(Utils.DataTableToJSON(com.@case.getCaseDetailById(id)));
-                    break;
+                    break; 
                 #endregion
 
                 #region 文章管理
