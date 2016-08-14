@@ -124,17 +124,7 @@
 
     $(function () {
 
-        pricelistpage();
-        //点击跳转相应页面
-        $("#pricelistination .j-num").live("click", function () {
-            $("#pricelistination .j-num").removeClass("selected");
-            $(this).attr("class", "selected");
-            var Sum = $(this).text();
-            pricelist.pageIndex = Sum;
-            pricelistpage();
-        })
-         
-
+        pricelistpage(); 
     });
     function search() {
         pricelist.pageIndex = 1;
