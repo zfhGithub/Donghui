@@ -41,8 +41,7 @@ namespace Donghui.com
             string qqs = s.Select("select CustomerServicePhone from Company"); 
             return qqs.Split(';');
         }
-
-
+        
         public static Dictionary<string, string> getQQs() {
             SQLServerOperating s = new SQLServerOperating();
             string qqs = s.Select("select CustomerServiceQQ from Company");
