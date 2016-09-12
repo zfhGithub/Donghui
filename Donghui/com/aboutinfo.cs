@@ -35,7 +35,7 @@ namespace Donghui.com
         }
         public static DataTable getAboutInfo()
         {
-            string strSql = "SELECT Id, CompanyName, Address,  Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText FROM [Donghui].[dbo].[Company]";
+            string strSql = "SELECT Id, CompanyName, Address,  Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText FROM [Company]";
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
             return s.Selects(strSql);
         }

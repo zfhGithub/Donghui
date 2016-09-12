@@ -49,8 +49,11 @@ namespace Donghui.com
             Dictionary<string, string> dic = new Dictionary<string, string>();
             for (int i = 0; i < str.Length; i++)
             {
-                string[] o = str[i].Split('/');
-                dic[o[0]+"-"+i] = o[1];
+                if (!string.IsNullOrEmpty(str[i]))
+                {
+                    string[] o = str[i].Split('/');
+                    dic[o[0] + "-" + i] = o[1];
+                }
             }
             return dic;
         }
