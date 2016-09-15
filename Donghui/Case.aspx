@@ -1,15 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="videos.aspx.cs" Inherits="Donghui.videos" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Case.aspx.cs" Inherits="Donghui.Case" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="webThemez.com">
-	<title>案例</title>
+   <title>案例|<%= aboutusDic["SeoTitle"] %></title>
+    <meta name="keywords" content="<%= aboutusDic["SeoKeywords"] %>" />
+    <meta name="description" content="<%= aboutusDic["SeoDescription"] %>"/>
+	 
 	<link rel="favicon" href="assets/images/favicon.png">
-	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">
+<%--	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">--%>
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<!-- Custom styles for our template -->
@@ -24,6 +25,16 @@
 	<![endif]-->
         <link href="assets/customerservice/customer-service.css" rel="stylesheet" />
     <link href="assets/customerservice/lanren.css" rel="stylesheet" />
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?bc0f8aa0929818cf5b3b6b55240e5de4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </head>
 
 <body>
@@ -40,14 +51,14 @@
 				<ul class="nav navbar-nav pull-right mainNav">
 					<li><a href="index.aspx">首页</a></li>
 					<li><a href="about.aspx">关于</a></li>
-					<li><a href="courses.aspx">领先优势</a></li>
+					<li><a href="Advantage.aspx">领先优势</a></li>
 					<li><a href="price.aspx">价格</a></li>
-					<li class="active"><a href="videos.aspx">案例</a></li>
+					<li class="active"><a href="Case.aspx">案例</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 赴美生子攻略 <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-right.aspx?id=17">赴美生子流程</a></li>
-							<li><a href="sidebar-right.aspx?id=16">赴美生子优势</a></li> 
+							<li><a href="detail.aspx?id=17">赴美生子流程</a></li>
+							<li><a href="detail.aspx?id=16">赴美生子优势</a></li> 
 						</ul>
 					</li>
 					<li><a href="contact.aspx">联系我们</a></li>
@@ -102,7 +113,7 @@
 											<img src="<%= caseList.Rows[i]["photo"].ToString() %>" alt="" width="360" height="275"/>
 											<div class="portfolio-desc align-center">
 												<div class="folio-info">
-													<a href="sidebar-right.aspx?id=<%= caseList.Rows[i]["id"].ToString()  %>" class="fancybox" target="_blank">
+													<a href="detail.aspx?id=<%= caseList.Rows[i]["id"].ToString()  %>" class="fancybox" target="_blank">
 														<h5><%=  caseList.Rows[i]["name"].ToString() %></h5>
 														<i class="fa fa-link fa-2x"></i></a>
 												</div>
@@ -278,9 +289,9 @@
 							<p class="simplenav">
 								<a href="index.aspx">首页</a> | 
 								<a href="about.aspx">关于</a> |
-								<a href="courses.aspx">领先优势</a> |
+								<a href="Advantage.aspx">领先优势</a> |
 								<a href="price.aspx">价格</a> |
-								<a href="videos.aspx">案例</a> |
+								<a href="Case.aspx">案例</a> |
 								<a href="contact.aspx">联系我们</a>
 							</p>
 						</div>
@@ -289,7 +300,7 @@
 					<div class="col-md-6 panel">
 						<div class="panel-body">
 							<p class="text-right">
-								Copyright &copy; 东辉珠宝有限公司 2016. 
+								Copyright &copy;  2016. 
 							</p>
 						</div>
 					</div>

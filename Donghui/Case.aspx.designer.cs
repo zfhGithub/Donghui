@@ -10,6 +10,7 @@
 namespace Donghui {
     
     
-    public partial class courses {
+    public partial class Case
+    {
     }
 }

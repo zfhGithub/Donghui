@@ -189,7 +189,7 @@ function MainMenuClick(event, treeId, treeNode) {
         $(event.target).dialog({id:treeNode.tabid, url:treeNode.url, title:treeNode.name})
     else
         $(event.target).navtab({ id: treeNode.tabid, url: treeNode.url, title: treeNode.name, fresh: treeNode.fresh, external: treeNode.external })
-}
+} 
 </script>
 <!-- for doc begin -->
 <link type="text/css" rel="stylesheet" href="js/js/syntaxhighlighter-2.1.382/styles/shCore.css"/>
@@ -274,7 +274,9 @@ $(function(){
 
                                 <li data-id="7" data-pid="0" data-faicon="folder-open-o" data-faicon-close="folder-o" data-url="#">设置</li> 
                                 <li data-id="71" data-pid="7" data-url="settings/setBanner.aspx" data-tabid="setBanner" >图片管理</li> 
-                                <li data-id="72" data-pid="7" data-url="settings/setCustomerService.html" data-tabid="setCustomerService" >客服设置</li> 
+                                <li data-id="72" data-pid="7" data-url="settings/setCustomerService.html" data-tabid="setCustomerService">客服设置</li> 
+                                <li data-id="75" data-pid="7" data-url="settings/seo.html" data-tabid="seo" >SEO设置</li> 
+                                <li data-id="76" data-pid="7" data-url="http://tongji.baidu.com/web/welcome/login" data-tabid="tongji" >访问统计</li> 
                                   
                             </ul>                
 
