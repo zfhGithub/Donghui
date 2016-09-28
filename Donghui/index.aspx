@@ -9,7 +9,8 @@
 	<meta name="author" content="webThemez.com">
 	<title>去塞班岛生孩子</title>
 	<link rel="favicon" href="assets/images/favicon.png">
-	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">
+<%--	<link rel="stylesheet" media="screen" href="http://fonts.useso.com/css?family=Open+Sans:300,400,700">--%>
+    <link href="assets/css/family.css" rel="stylesheet" />
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css"> 
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen"> 
@@ -219,7 +220,7 @@
 					<div class="col-md-6 panel">
 						<div class="panel-body">
 							<p class="text-right">
-								Copyright &copy; 东辉珠宝有限公司 2016. 
+								Copyright &copy;  2016. 
 							</p>
 						</div>
 					</div>

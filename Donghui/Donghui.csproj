@@ -634,6 +634,7 @@
     <Content Include="admin\settings\setBanner.aspx" />
     <Content Include="admin\settings\setCustomerService.html" />
     <Content Include="admin\settings\setLogo.html" />
+    <Content Include="assets\css\family.css" />
     <Content Include="assets\customerservice\customer-service.css" />
     <Content Include="assets\customerservice\images\erweima.jpg" />
     <Content Include="assets\customerservice\images\invite_bg.png" />
