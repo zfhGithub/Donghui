@@ -221,7 +221,7 @@ namespace Donghui.admin
                 #region 设置
                 case "getbanners":
                     js = new JavaScriptSerializer();
-                    res.Write(js.Serialize(com.aboutinfo.getAboutUsInfo()));
+                    res.Write(js.Serialize(com.settings.getAboutUsInfo()));
                     break;
                 case "deletebanner":
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", Utils.DeleteBanner(req.Params["id"])));
@@ -259,6 +259,16 @@ namespace Donghui.admin
                     string olepassword = req.Params["olepassword"];
                     string newpassword = req.Params["newpassword"];
                     res.Write(Utils.GetReulst(200,"修改成功","修改失败",com.settings.updatePassword( newpassword, olepassword)));
+                    break;
+                case "setseo":
+                    string seotitle = req.Form["txtTitle"];
+                    string keywords = req.Form["txtKeywords"];
+                    string description = req.Form["txtDescription"];
+                    res.Write(Utils.GetReulst(200,"设置成功.", "设置失败", com.settings.setSeo(seotitle, keywords, description)));
+                    break;
+                case "getseo":
+                    js = new JavaScriptSerializer();
+                    res.Write(js.Serialize(com.settings.getAboutUsInfo()));
                     break;
                     #endregion
             }

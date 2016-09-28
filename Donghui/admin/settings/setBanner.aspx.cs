@@ -13,7 +13,7 @@ namespace Donghui.admin.settings
         public List<string> bannerList = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            aboutusDic = com.aboutinfo.getAboutUsInfo(); 
+            aboutusDic = com.settings.getAboutUsInfo(); 
             if (!string.IsNullOrEmpty(aboutusDic["BannerImages"]))
             {
                 string[] banners = aboutusDic["BannerImages"].Split(';');

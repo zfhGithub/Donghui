@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
+
 namespace Donghui
 {
-    public partial class about : System.Web.UI.Page
+    public partial class Advantage : System.Web.UI.Page
     {
-        public DataTable aboutDt = new DataTable();
+        public string myCommitHtml="";
+        public string title = "";
+        public DataTable advList = new DataTable();
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
-        public List<Dictionary<string, string>> newsList = new List<Dictionary<string, string>>();
         public List<string> phoneList = new List<string>();
         public Dictionary<string, string> aboutusDic = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             aboutusDic = com.settings.getAboutUsInfo();
-            aboutDt = com.aboutinfo.getAboutInfo();
             qqList = com.settings.getQQs();
-            newsList = com.aboutinfo.getNewsList();
             phoneList = com.settings.getPhones();
+            advList =  com.advantage.getAdvantageList("1", "4");
+            DataTable dt = com.advantage.getMyCommit();
+            myCommitHtml = dt.Rows[0]["content"].ToString();
+            title = dt.Rows[0]["title"].ToString();
         }
     }
 }

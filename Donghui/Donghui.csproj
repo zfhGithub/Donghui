@@ -631,6 +631,7 @@
     <Content Include="admin\product\CommentManagement.html" />
     <Content Include="admin\product\ProductTable.html" />
     <Content Include="admin\settings\addBanner.html" />
+    <Content Include="admin\settings\seo.html" />
     <Content Include="admin\settings\setBanner.aspx" />
     <Content Include="admin\settings\setCustomerService.html" />
     <Content Include="admin\settings\setLogo.html" />
@@ -851,12 +852,12 @@
     <Content Include="assets\js\modernizr-latest.js" />
     <Content Include="assets\js\respond.min.js" />
     <Content Include="contact.aspx" />
-    <Content Include="courses.aspx" />
+    <Content Include="Advantage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
     <Content Include="price.aspx" />
-    <Content Include="sidebar-right.aspx" />
-    <Content Include="videos.aspx" />
+    <Content Include="detail.aspx" />
+    <Content Include="Case.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -908,12 +909,12 @@
     <Compile Include="contact.aspx.designer.cs">
       <DependentUpon>contact.aspx</DependentUpon>
     </Compile>
-    <Compile Include="courses.aspx.cs">
-      <DependentUpon>courses.aspx</DependentUpon>
+    <Compile Include="Advantage.aspx.cs">
+      <DependentUpon>Advantage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="courses.aspx.designer.cs">
-      <DependentUpon>courses.aspx</DependentUpon>
+    <Compile Include="Advantage.aspx.designer.cs">
+      <DependentUpon>Advantage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -933,19 +934,19 @@
       <DependentUpon>price.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sidebar-right.aspx.cs">
-      <DependentUpon>sidebar-right.aspx</DependentUpon>
+    <Compile Include="detail.aspx.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="sidebar-right.aspx.designer.cs">
-      <DependentUpon>sidebar-right.aspx</DependentUpon>
+    <Compile Include="detail.aspx.designer.cs">
+      <DependentUpon>detail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="videos.aspx.cs">
-      <DependentUpon>videos.aspx</DependentUpon>
+    <Compile Include="Case.aspx.cs">
+      <DependentUpon>Case.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="videos.aspx.designer.cs">
-      <DependentUpon>videos.aspx</DependentUpon>
+    <Compile Include="Case.aspx.designer.cs">
+      <DependentUpon>Case.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

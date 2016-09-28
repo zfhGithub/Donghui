@@ -23,7 +23,7 @@ namespace Donghui
             try
             {
                 caseList = com.@case.getCaseListTop3();
-                aboutusDic = com.aboutinfo.getAboutUsInfo();
+                aboutusDic = com.settings.getAboutUsInfo();
                 newsList = com.aboutinfo.getNewsList();
                 advList = com.advantage.getAdvantageList("1", "4");
                 if (!string.IsNullOrEmpty(aboutusDic["BannerImages"]))

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -49,8 +50,11 @@ namespace Donghui.com
             Dictionary<string, string> dic = new Dictionary<string, string>();
             for (int i = 0; i < str.Length; i++)
             {
-                string[] o = str[i].Split('/');
-                dic[o[0]+"-"+i] = o[1];
+                if (!string.IsNullOrEmpty(str[i]))
+                {
+                    string[] o = str[i].Split('/');
+                    dic[o[0] + "-" + i] = o[1];
+                }
             }
             return dic;
         }
@@ -109,5 +113,30 @@ namespace Donghui.com
             SQLServerOperating s = new SQLServerOperating();
             return s.ExecuteSql(sql);
         }
+         
+        public static Dictionary<string, string> getAboutUsInfo()
+        {
+            string strSql = "select Id, CompanyName, Address, Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText, BannerImages, LogoImage, SeoTitle, SeoKeywords, SeoDescription from Company";
+            SQLServerOperating s = new SQLServerOperating();
+            DataTable dt = s.Selects(strSql);
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            foreach (DataColumn dc in dt.Columns)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    dic[dc.ColumnName] = row[dc.ColumnName].ToString();
+                }
+            }
+            return dic;
+        }
+
+        public static int setSeo(string title, string keywords, string description)
+        {
+            string strSql = "update Company set SeoTitle=@SeoTitle,SeoKeywords=@SeoKeywords,SeoDescription=@SeoDescription ";
+            SQLServerOperating s = new SQLServerOperating();
+            return s.ExecuteSql(strSql, new System.Data.SqlClient.SqlParameter[] {
+                new SqlParameter("SeoTitle", title),new SqlParameter ("SeoKeywords",keywords),new SqlParameter ("SeoDescription",description) });
+        }
+
     }
 }

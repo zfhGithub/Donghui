@@ -14,8 +14,10 @@ namespace Donghui
         public DataTable priceList = new DataTable();
         public List<Dictionary<string, string>> itemList = new List<Dictionary<string, string>>();
         public List<string> phoneList = new List<string>();
+        public Dictionary<string, string> aboutusDic = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            aboutusDic = com.settings.getAboutUsInfo();
             qqList = com.settings.getQQs();
             priceList = com.price.getPriceTop4();
             phoneList = com.settings.getPhones();

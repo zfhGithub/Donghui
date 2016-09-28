@@ -35,7 +35,7 @@ namespace Donghui.com
         }
         public static DataTable getAboutInfo()
         {
-            string strSql = "SELECT Id, CompanyName, Address,  Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText FROM [Donghui].[dbo].[Company]";
+            string strSql = "SELECT Id, CompanyName, Address,  Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText FROM [Company]";
             SqlOper.SQLServerOperating s = new SqlOper.SQLServerOperating();
             return s.Selects(strSql);
         }
@@ -47,21 +47,7 @@ namespace Donghui.com
             return s.ExecuteSql(strSql);
         }
 
-        public static Dictionary<string, string> getAboutUsInfo()
-        {
-            string strSql = "select Id, CompanyName, Address, Email, Phone, Contacts, Introduce, AboutusText, AchievementText, MyTeamText, BannerImages, LogoImage from Company";
-            SQLServerOperating s = new SQLServerOperating();
-            DataTable dt = s.Selects(strSql);
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            foreach (DataColumn dc in dt.Columns)
-            {
-                foreach (DataRow row in dt.Rows)
-                {
-                    dic[dc.ColumnName] = row[dc.ColumnName].ToString();
-                }
-            }
-            return dic;
-        }
+      
         /// <summary>
         /// 获取最新的10条新闻
         /// </summary>

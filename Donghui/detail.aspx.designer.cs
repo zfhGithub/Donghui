@@ -10,6 +10,6 @@
 namespace Donghui {
     
     
-    public partial class sidebar_right {
+    public partial class detail {
     }
 }

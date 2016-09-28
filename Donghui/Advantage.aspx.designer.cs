@@ -10,6 +10,6 @@
 namespace Donghui {
     
     
-    public partial class videos {
+    public partial class Advantage {
     }
 }

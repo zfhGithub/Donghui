@@ -8,14 +8,16 @@ using System.Web.UI.WebControls;
 
 namespace Donghui
 {
-    public partial class sidebar_right : System.Web.UI.Page
+    public partial class detail : System.Web.UI.Page
     {
         public Dictionary<string, string> News = new Dictionary<string, string>();
         public DataTable newsList = new DataTable();
         public Dictionary<string, string> qqList = new Dictionary<string, string>();
         public List<string> phoneList = new List<string>();
+        public Dictionary<string, string> aboutusDic = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
+            aboutusDic = com.settings.getAboutUsInfo();
             try
             {
                 int id = int.Parse(Request.QueryString["id"]);
