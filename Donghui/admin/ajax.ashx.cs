@@ -61,7 +61,7 @@ namespace Donghui.admin
                     Dictionary<string, string> jsonDic = new Dictionary<string, string>();
                     jsonDic.Add("data", Utils.DataTableToJSON(com.message.getMessageList(currentIndex, pageCount)));
                     jsonDic.Add("count", com.message.getMessageListCount());
-                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    JavaScriptSerializer js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "deletemessage":
@@ -95,7 +95,7 @@ namespace Donghui.admin
                     jsonDic = new Dictionary<string, string>();
                     jsonDic.Add("data", Utils.DataTableToJSON(com.advantage.getAdvantageList(currentIndex, pageCount)));
                     jsonDic.Add("count", com.advantage.getAdvantageCount());
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "deleteadvantage":
@@ -119,7 +119,7 @@ namespace Donghui.admin
                     jsonDic = new Dictionary<string, string>();
                     jsonDic.Add("data", Utils.DataTableToJSON(com.price.getPriceList(currentIndex, pageCount)));
                     jsonDic.Add("count", com.price.getPriceListCount());
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "addpriceitem":
@@ -156,6 +156,7 @@ namespace Donghui.admin
                     jsonDic.Add("data", Utils.DataTableToJSON(com.@case.getCaseList(currentIndex, pageCount)));
                     jsonDic.Add("count", com.@case.getCaseListCount());
                     js = new JavaScriptSerializer();
+                    js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "addcase":
@@ -190,7 +191,7 @@ namespace Donghui.admin
                     jsonDic = new Dictionary<string, string>();
                     jsonDic.Add("data", Utils.DataTableToJSON(com.article.getArticleList(currentIndex, pageCount)));
                     jsonDic.Add("count", com.article.getArticleListCount());
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(jsonDic));
                     break;
                 case "addarticle":
@@ -220,14 +221,14 @@ namespace Donghui.admin
 
                 #region 设置
                 case "getbanners":
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(com.settings.getAboutUsInfo()));
                     break;
                 case "deletebanner":
                     res.Write(Utils.GetReulst(200, "删除成功", "删除失败", Utils.DeleteBanner(req.Params["id"])));
                     break;
                 case "getserviceqq":
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     var json = js.Serialize(com.settings.getServices());
                     res.Write(json == "[\"\"]" ? "" : json);
                     break;
@@ -247,7 +248,7 @@ namespace Donghui.admin
                     res.Write(Utils.GetReulst(200, "保存成功", "保存失败", com.settings.addServicesPhone(phone)));
                     break;
                 case "getservicephone":
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     json = js.Serialize(com.settings.getServicesPhones());
                     res.Write(json == "[\"\"]" ? "" : json);
                     break;
@@ -267,7 +268,7 @@ namespace Donghui.admin
                     res.Write(Utils.GetReulst(200,"设置成功.", "设置失败", com.settings.setSeo(seotitle, keywords, description)));
                     break;
                 case "getseo":
-                    js = new JavaScriptSerializer();
+                    js = new JavaScriptSerializer(); js.MaxJsonLength = int.MaxValue;
                     res.Write(js.Serialize(com.settings.getAboutUsInfo()));
                     break;
                     #endregion
